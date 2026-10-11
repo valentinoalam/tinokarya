@@ -10,6 +10,7 @@ import {
 } from "motion/react";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
+import gsap from 'gsap';
 
 export interface ProjectItem {
   id: string | number;
@@ -127,7 +128,7 @@ function AnimatedCard({
 
         <div
           style={{ backgroundColor: project.color }}
-          className="relative grid min-h-[28rem] grid-cols-1 items-center gap-6 overflow-hidden rounded-b-2xl rounded-tr-2xl p-6 shadow-[0_4px_8px_-4px_rgba(0,0,0,0.12),inset_0_-2px_4px_-2px_rgba(0,0,0,0.25)] sm:p-8 md:min-h-[33rem] md:grid-cols-[minmax(0,1.12fr)_minmax(16rem,0.88fr)] md:gap-14 md:p-8"
+          className="relative grid min-h-112 grid-cols-1 items-center gap-6 overflow-hidden rounded-b-2xl rounded-tr-2xl p-6 shadow-[0_4px_8px_-4px_rgba(0,0,0,0.12),inset_0_-2px_4px_-2px_rgba(0,0,0,0.25)] sm:p-8 md:min-h-[33rem] md:grid-cols-[minmax(0,1.12fr)_minmax(16rem,0.88fr)] md:gap-14 md:p-8"
         >
           <div className="z-10 flex flex-col items-start gap-3.5">
             {project.tags && project.tags.length > 0 ? (
@@ -172,7 +173,7 @@ function AnimatedCard({
                   href={project.websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative z-10 inline-flex items-center rounded-full border border-black/25 px-5 py-2.5 text-sm font-medium text-black no-underline transition-colors hover:bg-black/[0.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                  className="relative z-10 inline-flex items-center rounded-full border border-black/25 px-5 py-2.5 text-sm font-medium text-black no-underline transition-colors hover:bg-black/6 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-black"
                 >
                   Kunjungi website
                   <span className="sr-only"> (buka di tab baru)</span>
@@ -181,7 +182,7 @@ function AnimatedCard({
             </div>
           </div>
 
-          <div className="relative h-60 w-full overflow-hidden rounded-xl bg-white/25 sm:h-72 md:h-96 lg:h-[25rem]">
+          <div className="relative h-60 w-full overflow-hidden rounded-xl bg-white/25 sm:h-72 md:h-96 lg:h-100">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={project.image}
@@ -249,6 +250,25 @@ export function ScrollStackDeck({
     };
   }, [enableLenis, container]);
 
+    
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.work-item', {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 100%',
+          end: 'bottom 100%',
+          scrub: 1,
+        },
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -267,7 +287,7 @@ export function ScrollStackDeck({
       className={`w-full bg-[#F4F6F8] font-sans text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white ${className}`}
     >
       {showIntro ? (
-        <div className="flex w-full flex-col items-center justify-center px-4 py-16 text-center">
+        <div className="flex w-full flex-col items-center justify-center px-4 text-center">
           <div className="flex max-w-3xl flex-col items-center gap-5">
             <div className="flex flex-col items-center gap-2.5">
               {title ? (
@@ -318,7 +338,7 @@ export function ScrollStackDeck({
         style={{ height: `${projects.length * 110}vh` }}
       >
         <div className="pointer-events-none sticky top-0 grid h-screen min-h-screen w-full place-items-center px-4">
-          <div className="pointer-events-auto relative h-[37rem] min-h-[37rem] w-[min(calc(100%-2rem),62.5rem)] overflow-visible">
+          <div className="pointer-events-auto relative h-148 min-h-148 w-[min(calc(100%-2rem),62.5rem)] overflow-visible">
             {projects.map((project, index) => (
               <AnimatedCard
                 key={project.id}

@@ -1,30 +1,8 @@
-// import dynamic from "next/dynamic";
+'use client';
 
-// const PortfolioGallery = dynamic(() => import("./gallery"));
-
-// export default function StudyCaseSection() {
-//   const projects = [
-//     // { image: "/karya/rendang-ponky.png", title: "Rendang Ponky Website", description: "A landing page for Rendang Ponky.", link: "https://rendang-ponky.vercel.app/" },
-//     {
-//       image: "/karya/barbershop.png",
-//       title: "Barbershop Landing Page",
-//       description: "Modern landing page design for a barbershop.",
-//       link: "https://barbershop-tino.vercel.app/",
-//     },
-//     {
-//       image: "/karya/carwash.png",
-//       title: "Carwash Landing Page",
-//       description: "Demo website for carwash business.",
-//       link: "https://carwash-tino.vercel.app/",
-//     },
-//   ];
-
-//   return (
-//     <div className="relative">
-//       <PortfolioGallery projects={projects} />
-//     </div>
-//   );
-// }
+import { MagicText } from "@/components/ui/magic-text";
+import { LightRays } from "@/components/ui/light-rays"
+import RightDotsDecoration from "@/components/right-dots-decoration";
 
 import { ScrollStackDeck } from "@/components/scroll-stack-deck";
 import { showcaseProjects } from "@/data/case-studies";
@@ -34,14 +12,23 @@ import { showcaseProjects } from "@/data/case-studies";
  * id="karya" dipakai sebagai target tautan "/#karya".
  */
 export function ShowcaseSection() {
+  
   return (
-    <section id="karya" className="scroll-mt-4">
+    <section id="karya" className="mt-16 scroll-mt-4">
+      <div className="w-full relative text-center">
+        <RightDotsDecoration />
+        <MagicText className="text-6xl text-black font-bebas text-shadow-4xl/60 font-black text-center mb-4 md:text-8xl">
+          Featured Work
+        </MagicText>
+        <p className="w-full mx-auto text-lg text-stone-800">
+          Explore our latest projects and see how we different from other agencies.
+        </p>
+      </div>
       <ScrollStackDeck
         projects={showcaseProjects}
-        title="Karya"
-        subtitle="Proyek Next.js yang saya bangun. Klik kartu untuk membaca studi kasusnya."
         scrollIndicatorText="Scroll"
       />
+      <LightRays />
     </section>
   );
 }
