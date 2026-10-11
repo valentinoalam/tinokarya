@@ -1,0 +1,10 @@
+.faq h2 { font-size: clamp(1.9rem, 4.2vw, 2.8rem); margin-bottom: 2rem; }
+.item { border-top: 1px solid var(--line); padding: 1.1rem 0; max-width: 760px; }
+.item:last-of-type { border-bottom: 1px solid var(--line); }
+.item summary { cursor: pointer; font-weight: 700; font-size: 1.1rem; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.item summary::-webkit-details-marker { display: none; }
+.icon { font-size: 1.5rem; line-height: 1; font-weight: 500; flex: none; display: inline-block; }
+/* Tanpa JS / gerak dikurangi: ikon beralih saat dibuka */
+.item[open] .icon { transform: rotate(45deg); }
+.body { overflow: hidden; }
+.body p { margin: .75rem 0 0; color: var(--muted); }

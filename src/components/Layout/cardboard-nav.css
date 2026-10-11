@@ -1,0 +1,300 @@
+/* ==========================================================================
+   Cardboard navbar
+   - Tekstur kardus kraft (grain + serat + corrugation) murni CSS/SVG
+   - Bentuk lipatan ujung tutup kardus (flap trapesium + garis crease)
+   - Submenu desktop & menu mobile membuka seperti lipatan kardus (rotateX)
+   ========================================================================== */
+
+.cb-nav {
+  --cb-flap: 14px;
+
+  --cb-base: #c49a63;
+  --cb-light: #dcbb8a;
+  --cb-ink: #3a2310;
+  --cb-ink-soft: rgba(58, 35, 16, 0.72);
+  --cb-score: rgba(72, 42, 12, 0.5);
+  --cb-chip: rgba(255, 243, 220, 0.38);
+  --cb-chip-hover: rgba(255, 243, 220, 0.62);
+  --cb-tile: rgba(60, 34, 8, 0.12);
+
+  /* bintik halus kertas */
+  --cb-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .27  0 0 0 0 .16  0 0 0 0 .06  1.4 0 0 0 -.38'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+  /* serat memanjang */
+  --cb-fibre: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='160'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.012 .55' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .33  0 0 0 0 .2  0 0 0 0 .07  1.6 0 0 0 -.55'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>");
+
+  color: var(--cb-ink);
+}
+
+.dark .cb-nav {
+  --cb-base: #8a6540;
+  --cb-light: #a58058;
+  --cb-ink: #26170a;
+  --cb-ink-soft: rgba(38, 23, 10, 0.75);
+  --cb-chip: rgba(255, 236, 205, 0.3);
+  --cb-chip-hover: rgba(255, 236, 205, 0.5);
+}
+
+/* ---------- Tekstur kardus ---------- */
+.cb-paper {
+  background-color: var(--cb-base);
+  background-image:
+    var(--cb-grain),
+    var(--cb-fibre),
+    repeating-linear-gradient(90deg, rgba(85, 50, 15, 0.06) 0 2px, transparent 2px 7px),
+    radial-gradient(120% 90% at 18% 0%, rgba(255, 235, 195, 0.35), transparent 60%),
+    linear-gradient(180deg, var(--cb-light), var(--cb-base));
+  background-size: 200px 200px, 480px 160px, auto, auto, auto;
+}
+
+/* ---------- Bar utama: lipatan ujung tutup kardus ---------- */
+.cb-bar {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 6px rgba(50, 28, 6, 0.28))
+    drop-shadow(0 1px 0 rgba(50, 28, 6, 0.4));
+}
+
+.cb-bar-shape {
+  position: absolute;
+  inset: 0;
+  /* ujung flap miring seperti tutup kardus */
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--cb-flap)),
+    calc(100% - 22px) 100%,
+    22px 100%,
+    0 calc(100% - var(--cb-flap))
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 240, 210, 0.5);
+}
+
+/* garis lipat vertikal di dekat sudut */
+.cb-bar-shape::before,
+.cb-bar-shape::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: var(--cb-flap);
+  border-left: 1.5px dashed var(--cb-score);
+  opacity: 0.7;
+}
+.cb-bar-shape::before { left: 22px; }
+.cb-bar-shape::after { right: 22px; }
+
+/* flap bawah + crease */
+.cb-bar-flap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--cb-flap);
+  background: linear-gradient(
+    180deg,
+    rgba(60, 34, 8, 0.3),
+    rgba(60, 34, 8, 0.08) 55%,
+    rgba(255, 232, 190, 0.18)
+  );
+  border-top: 1.5px dashed var(--cb-score);
+  box-shadow: 0 -1px 0 rgba(255, 236, 200, 0.55);
+}
+
+/* ---------- Teks & tombol "cap" ---------- */
+.cb-nav .cb-trigger,
+.cb-nav .cb-chip {
+  color: var(--cb-ink);
+  text-shadow: 0 1px 0 rgba(255, 236, 200, 0.55);
+}
+
+.cb-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 2.5rem;
+  padding: 0 0.9rem;
+  border-radius: 0.4rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  background: transparent;
+  outline: 1.5px dashed transparent;
+  outline-offset: -3px;
+  transition: background 0.2s ease, outline-color 0.2s ease;
+}
+.cb-trigger:hover,
+.cb-trigger[aria-expanded="true"],
+.cb-trigger.is-active {
+  background: var(--cb-chip);
+  outline-color: var(--cb-score);
+}
+.cb-trigger:focus-visible,
+.cb-chip:focus-visible {
+  outline: 2px solid var(--cb-ink);
+  outline-offset: 2px;
+}
+.cb-chev { transition: transform 0.3s ease; }
+.cb-trigger[aria-expanded="true"] .cb-chev { transform: rotate(180deg); }
+
+.cb-ink-soft { color: var(--cb-ink-soft); }
+
+.cb-chip {
+  background: var(--cb-chip);
+  border: 1.5px dashed var(--cb-score);
+  border-radius: 0.5rem;
+  transition: background 0.2s ease;
+}
+.cb-chip:hover { background: var(--cb-chip-hover); }
+
+.cb-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border-radius: 0.4rem;
+  background: var(--cb-tile);
+}
+
+/* ---------- Lipatan (fold) ---------- */
+.cb-drop,
+.cb-m {
+  perspective: 1200px;
+  perspective-origin: 50% 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: visibility 0s linear 0.9s;
+}
+.cb-drop[data-cb-open="true"],
+.cb-m[data-cb-open="true"] {
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.cb-fold {
+  transform-origin: 50% 0;
+  transform-style: preserve-3d;
+  transform: rotateX(90deg);
+  transition: transform 0.5s cubic-bezier(0.5, 0, 0.9, 0.5);
+  transition-delay: var(--dc, 0s);
+}
+[data-cb-open="true"] .cb-fold {
+  transform: rotateX(0deg);
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.25, 0.9, 0.3, 1.04);
+  transition-delay: var(--do, 0s);
+}
+
+.cb-face {
+  position: relative;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.cb-face-shadow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 5px 5px rgba(50, 28, 6, 0.25));
+}
+.cb-face-paper {
+  position: absolute;
+  inset: 0;
+  clip-path: var(--cb-clip, none);
+  box-shadow: inset 0 1px 0 rgba(255, 240, 210, 0.45);
+}
+.cb-face-body { position: relative; }
+
+/* crease di tepi atas tiap lipatan */
+.cb-crease .cb-face-paper { border-top: 1.5px dashed var(--cb-score); }
+
+/* bentuk ujung flap */
+.cb-clip-flap {
+  --cb-clip: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 10px 100%);
+}
+.cb-clip-lip {
+  --cb-clip: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 8px 100%);
+}
+.cb-clip-end {
+  --cb-clip: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 12px),
+    calc(100% - 20px) 100%,
+    20px 100%,
+    0 calc(100% - 12px)
+  );
+}
+.cb-fold-lip { margin: 0 10px; }
+
+/* bayangan: gelap saat terlipat, terang saat terbuka */
+.cb-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(30, 15, 3, 0.78), rgba(30, 15, 3, 0.35));
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  transition-delay: var(--dc, 0s);
+}
+[data-cb-open="true"] .cb-shade {
+  opacity: 0;
+  transition-delay: calc(var(--do, 0s) + 0.05s);
+}
+
+/* isi muncul berurutan setelah lipatan terbuka */
+.cb-item {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+[data-cb-open="true"] .cb-item {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(0.28s + var(--i, 0) * 45ms);
+}
+
+/* ---------- Posisi submenu desktop ---------- */
+.cb-drop {
+  position: absolute;
+  z-index: 60;
+  left: 0;
+  width: 19rem;
+  /* tepat di bawah flap header (trigger tinggi 2.5rem di dalam baris 4rem) */
+  top: calc(100% + 0.75rem + var(--cb-flap) - 2px);
+}
+.cb-drop[data-align="end"] { left: auto; right: 0; }
+/* jembatan hover agar menu tidak menutup saat kursor melewati celah */
+.cb-drop::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(-0.75rem - var(--cb-flap) - 4px);
+  height: calc(0.75rem + var(--cb-flap) + 4px);
+}
+
+/* ---------- Menu mobile ---------- */
+.cb-m {
+  position: absolute;
+  z-index: 60;
+  left: 1.125rem;
+  right: 1.125rem;
+  top: calc(100% - 2px);
+}
+.cb-m-scroll {
+  max-height: min(50dvh, 26rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* ---------- Aksesibilitas gerak ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cb-fold,
+  .cb-shade,
+  .cb-item {
+    transition-duration: 0.01s !important;
+    transition-delay: 0s !important;
+  }
+}

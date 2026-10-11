@@ -1,0 +1,420 @@
+{
+  "packages": [
+    {
+      "id": "landing",
+      "name": "Landing Page",
+      "description": "One-Time Purchase - Focused single-page site for campaigns and lead gen.",
+      "basePrice": 3500000,
+      "duration": "7-10 hari kerja",
+      "active": true,
+      "images": [
+        "/images/lp/1.webp",
+        "/images/lp/2.webp",
+        "/images/lp/3.webp",
+        "/images/lp/4.webp",
+        "/images/lp/5.webp",
+        "/images/lp/6.webp",
+        "/images/lp/7.webp",
+        "/images/lp/8.webp"
+      ],
+      "previewUrl": "https://dribbble.com/search/landing-page",
+      "features": [
+        "Fully functional Landing Page",
+        "Desain Responsif (Mobile-Friendly)",
+        "1 Contact form yang terhubung ke WA/Email",
+        "Basic SEO on Page",
+        "Fast loading speed",
+        "Basic analytics",
+        "Social media integrations",
+        "SSL security",
+        "SEO-optimized pages",
+        "Documentation and user guide",
+        "Analytics and reporting setup",
+        "Desain dan pengembangan awal",
+        "Dapat memilih 5 section",
+        "2 kali revisi",
+        "Garansi bug fixing selama 1 bulan"
+      ]
+    },
+    {
+      "id": "business",
+      "name": "Basic Website",
+      "description": "Up to 5 pages with CMS, forms, and basic SEO.",
+      "basePrice": 8000000,
+      "active": true,
+      "images": [
+        "/images/website/1.png",
+        "/images/website/2.webp",
+        "/images/website/3.png"
+      ],
+      "previewUrl": "https://dribbble.com/search/website",
+      "features": [
+        "Hingga 5 halaman",
+        "Mobile responsive",
+        "Formulir kontak",
+        "Optimasi SEO dasar",
+        "Sistem manajemen konten",
+        "Integrasi analitik dasar",
+        "3 kali revisi",
+        "Fungsi blog",
+        "Email newsletter",
+        "Dukungan 30 hari setelah peluncuran"
+      ]
+    },
+    {
+      "id": "special",
+      "name": "Special Website",
+      "description": "Mulai dari Rp 12.000.000",
+      "basePrice": 12000000,
+      "active": true,
+      "images": [
+        "/images/app/1.webp",
+        "/images/app/2.webp",
+        "/images/app/3.webp",
+        "/images/app/4.webp",
+        "/images/app/5.webp",
+        "/images/app/6.webp"
+      ],
+      "previewUrl": "https://dribbble.com/search/website",
+      "features": [
+        "Hingga 10 halaman",
+        "Desain website custom sesuai kebutuhan bisnis (landing page, company profile, e-commerce, atau sistem khusus)",
+        "Fitur-fitur khusus seperti login user, dashboard admin, integrasi API, dll",
+        "Mobile responsive",
+        "Formulir kontak lanjutan",
+        "Optimasi SEO lanjutan",
+        "Sistem manajemen konten",
+        "Integrasi analitik lanjutan",
+        "Siap untuk e-commerce",
+        "5 kali revisi",
+        "Dukungan prioritas",
+        "Dukungan 60 hari termasuk perbaikan bug"
+      ]
+    }
+  ],
+  "features": [
+    { "id": "contact-form", "name": "Contact Form", "price": 250000 },
+    { "id": "analytics", "name": "Analytics Setup", "price": 200000 },
+    { "id": "social", "name": "Social Integrations", "price": 150000 },
+    { "id": "cms", "name": "CMS Integration", "price": 800000 },
+    { "id": "blog", "name": "Blog Setup", "price": 1200000 },
+    { "id": "gallery", "name": "Gallery", "price": 600000 },
+    { "id": "multilingual", "name": "Multi-language", "price": 900000 },
+    { "id": "booking", "name": "Booking System", "price": 1800000 },
+    { "id": "payment", "name": "Payments", "price": 1400000 },
+    { "id": "membership", "name": "Membership", "price": 2000000 }
+  ],
+  "designComplexity": [
+    { "id": "standard", "name": "Standard", "description": "Clean and modern", "multiplier": 1.0 },
+    { "id": "custom", "name": "Custom", "description": "Tailored visuals", "multiplier": 1.25 },
+    { "id": "premium", "name": "Premium", "description": "High polish & motion", "multiplier": 1.5 }
+  ],
+  "timelines": [
+    { "id": "flex", "name": "Flexible (4–8 weeks)", "multiplier": 1.0 },
+    { "id": "standard", "name": "Standard (2–4 weeks)", "multiplier": 1.15 },
+    { "id": "rush", "name": "Rush (≤2 weeks)", "multiplier": 1.35 }
+  ],
+  "additionalServices": [
+    { "id": "seo", "name": "On-page SEO", "price": 600 },
+    { "id": "hosting", "name": "Hosting Setup", "price": 300 },
+    { "id": "maintenance", "name": "Maintenance (6 mo.)", "price": 900 },
+    { "id": "training", "name": "Client Training", "price": 400 },
+    { "id": "copywriting", "name": "Copywriting", "price": 800 },
+    { "id": "photography", "name": "Photography", "price": 1200 }
+  ],
+  "discounts": [
+    { "id": "student", "name": "Student", "percentage": 0.1 },
+    { "id": "earlybird", "name": "Early Bird", "percentage": 0.15 }
+  ],
+  "currency": "Rp",
+  "monthlyServices": {
+    "id": "backup_maintenance",
+    "name": "Backup, Maintenance & Update Bulanan",
+    "price": 500000,
+    "features": [
+      "Optimasi SEO lanjutan",
+      "Pemeliharaan rutin (bug fixing, keamanan, dll)",
+      "A/B testing untuk optimasi konversi",
+      "Update konten 1-4x per bulan",
+      "Upgrade tampilan setiap 3 bulan sekali",
+      "Laporan performa bulanan",
+      "Hosting dan domain termasuk",
+      "Backup website secara berkala",
+      "Perbaikan bug atau error",
+      "Optimasi kecepatan website",
+      "Konsultasi teknis via WhatsApp/Email"
+    ],
+    "details": "Pemeliharaan website, update sistem, dan backup data secara berkala."
+  },
+  "addons": {
+    "customization": [
+      {
+        "id": "additional_section",
+        "name": "Additional Section",
+        "price": 300000,
+        "details": "Tambahkan satu section baru ke halaman, seperti fitur, testimoni, atau FAQ."
+      },
+      {
+        "id": "dark_theme",
+        "name": "Dark Theme Feature",
+        "price": 500000,
+        "details": "Menambahkan fitur mode gelap dan terang dengan toggle otomatis.",
+        "unit": "per page"
+      },
+      {
+        "id": "lang",
+        "name": "Multi Language (Eng/Ind)",
+        "price": 500000,
+        "details": "Menambahkan fitur multi-bahasa di website (Bahasa Inggris & Indonesia).",
+        "unit": "per page"
+      },
+      {
+        "id": "articles",
+        "name": "Articles Section with SEO",
+        "price": 800000,
+        "details": "Menambahkan fitur blog atau artikel ke dalam website.",
+        "unit": "per 3 articles"
+      },
+      {
+        "id": "social_media",
+        "name": "Integrasi Media Sosial",
+        "price": 500000,
+        "details": "Menghubungkan website dengan platform media sosial seperti Instagram dan Facebook."
+      }
+    ],
+    "design": [
+      {
+        "id": "figma",
+        "name": "Figma Desain",
+        "priceRange": {
+          "min": 500000,
+          "max": 2000000
+        },
+        "details": "Desain UI/UX menggunakan Figma untuk tampilan profesional dan responsif."
+      },
+      {
+        "id": "logo",
+        "name": "Logo Design",
+        "price": 1000000,
+        "details": "Desain logo profesional yang unik dan sesuai brand bisnis."
+      },
+      {
+        "id": "animate",
+        "name": "Simple Animation",
+        "price": 250000,
+        "details": "Animasi dasar untuk meningkatkan daya tarik halaman.",
+        "unit": "per section"
+      },
+      {
+        "id": "interactive",
+        "name": "Custom Advanced Animation",
+        "priceRange": {
+          "min": 500000,
+          "max": 1500000
+        },
+        "details": "Animasi canggih yang menyesuaikan dengan interaksi pengguna.",
+        "unit": "per section"
+      },
+      {
+        "id": "art",
+        "name": "Custom 2D Art",
+        "priceRange": {
+          "min": 150000,
+          "max": 2000000
+        },
+        "details": "Ilustrasi 2D custom untuk kebutuhan desain website.",
+        "unit": "per asset"
+      },
+      {
+        "id": "3d",
+        "name": "3D Object/Full Scene",
+        "priceRange": {
+          "min": 500000,
+          "max": 15000000
+        },
+        "details": "Pembuatan objek dan scene 3D berkualitas tinggi.",
+        "unit": "per scene"
+      }
+    ],
+    "support": [
+      {
+        "id": "domain",
+        "name": "Custom Domain Setup",
+        "price": 50000,
+        "details": "Konfigurasi dan pengaturan domain kustom untuk website.",
+        "note": "tidak termasuk pembelian domain"
+      },
+      {
+        "id": "hosting_config",
+        "name": "Penyediaan & Konfigurasi Hosting",
+        "priceRange": {
+          "min": 500000,
+          "max": 2500000
+        },
+        "details": "Konfigurasi VPS, Shared Hosting, dan optimasi kinerja server.",
+        "note": "bergantung pada provider dan paket hosting yang diinginkan"
+      }
+    ],
+    "communication": [
+      {
+        "id": "newsletter",
+        "name": "Integrasi Newsletter",
+        "price": 200000,
+        "details": "Koneksi formulir dengan layanan newsletter seperti Mailchimp, SendGrid, dsb.",
+        "note": "Belum termasuk biaya pihak ketiga.",
+        "unit": "per layanan"
+      },
+      {
+        "id": "cms_integration",
+        "name": "Integrasi CMS",
+        "priceRange": {
+          "min": 1000000,
+          "max": 3500000
+        },
+        "details": "Menambahkan sistem manajemen konten seperti WordPress atau Strapi."
+      },
+      {
+        "id": "live_chat",
+        "name": "Live Chat & Tombol WhatsApp",
+        "priceRange": {
+          "min": 300000,
+          "max": 1000000
+        },
+        "details": "Menambahkan fitur chat langsung dan tombol WhatsApp untuk komunikasi lebih cepat."
+      },
+      {
+        "id": "blog_setup",
+        "name": "Pengaturan Blog",
+        "price": 4500000,
+        "details": "Setup lengkap blog dengan kategori dan tag."
+      }
+    ],
+    "extended": [
+      {
+        "id": "additional_page",
+        "name": "Halaman Tambahan",
+        "price": 450000,
+        "details": "Halaman custom dengan desain yang sesuai dengan gaya situs Anda.",
+        "unit": "per halaman"
+      },
+      {
+        "id": "additional_form",
+        "name": "Additional Form",
+        "price": 200000,
+        "details": "Menambahkan formulir tambahan sesuai kebutuhan pengguna.",
+        "unit": "per form"
+      },
+      {
+        "id": "api_integration",
+        "name": "Integrasi API",
+        "priceRange": {
+          "min": 750000,
+          "max": 2500000
+        },
+        "details": "Menghubungkan website dengan API eksternal seperti Google Maps dan Firebase."
+      },
+      {
+        "id": "memberships",
+        "name": "Sistem membership/pelanggan",
+        "price": 2500000,
+        "details": "Membantu Anda mengelola pelanggan dengan fitur member area, reward, dan program loyalitas."
+      }
+    ],
+    "ecommerce": [
+      {
+        "id": "ecommerce_features",
+        "name": "Fitur E-commerce",
+        "price": 12000000,
+        "details": "Desain website toko online dengan Fitur belanja lengkap termasuk keranjang, galeri produk, checkout, dan opsi pembayaran melalui transfer bank.",
+        "note": "Tidak termasuk integrasi dengan payment gateway."
+      },
+      {
+        "id": "payment_gateway",
+        "name": "Integrasi Payment Gateway",
+        "priceRange": {
+          "min": 1000000,
+          "max": 3500000
+        },
+        "details": "Menghubungkan pembayaran dengan Midtrans, Xendit, PayPal, dan lainnya."
+      },
+      {
+        "id": "shipping_integration",
+        "name": "Integrasi sistem pengiriman",
+        "price": 1200000,
+        "details": "Menambahkan fitur cek ongkir dan integrasi otomatis dengan ekspedisi seperti JNE, J&T, dan lainnya."
+      },
+      {
+        "id": "manajemen_produk",
+        "name": "Manajemen produk dan kategori",
+        "price": 2000000,
+        "details": "Memungkinkan pengelolaan produk dan kategori melalui sistem backend yang mudah digunakan."
+      },
+      {
+        "id": "discount",
+        "name": "Fitur diskon/kupon",
+        "price": 1500000,
+        "details": "Menyediakan sistem kupon dan diskon untuk promosi dan peningkatan penjualan."
+      },
+      {
+        "id": "marketplace_integration",
+        "name": "Integrasi marketplace",
+        "price": 2000000,
+        "details": "Menghubungkan toko online dengan marketplace seperti Tokopedia dan Shopee."
+      },
+      {
+        "id": "report",
+        "name": "Laporan penjualan",
+        "price": 1000000,
+        "details": "Menyediakan laporan transaksi dan analisis penjualan untuk membantu pengambilan keputusan bisnis."
+      }
+    ]
+  },
+  "landingPageOffer": {
+    "benefits": [
+      {
+        "text": "Fully functional Landing Page",
+        "icon": "fa-check-circle"
+      },
+      {
+        "text": "SEO-optimized pages",
+        "icon": "fa-check-circle"
+      },
+      {
+        "text": "Documentation and user guide",
+        "icon": "fa-check-circle"
+      },
+      {
+        "text": "Analytics and reporting setup",
+        "icon": "fa-check-circle"
+      }
+    ],
+    "totalValue": {
+      "text": "Total Nilai",
+      "value": "Rp 110 Juta+",
+      "icon": "fa-money-bill"
+    },
+    "discountedPrice": {
+      "text": "Hari Ini",
+      "value": "Rp 22 Juta",
+      "icon": "fa-bolt"
+    }
+  },
+  "landingPageStructure": [
+    "Header: Headline + CTA + Gambar/Video",
+    "Tentang Produk/Layanan: Deskripsi + Gambar",
+    "Keunggulan: Fitur/Benefits + Ikon",
+    "Testimoni: Ulasan Pelanggan",
+    "Harga: Tabel Paket (jika ada)",
+    "Formulir Kontak: Lead Capture",
+    "Footer: Kontak + Media Sosial"
+  ],
+  "notes": [
+    "Hosting dan domain tidak termasuk dalam paket.",
+    "Revisi tambahan dikenakan biaya Rp 200.000 - Rp 350.000/revisi."
+  ],
+  "revisionCost": {
+    "min": 200000,
+    "max": 350000,
+    "unit": "per revisi"
+  }
+}

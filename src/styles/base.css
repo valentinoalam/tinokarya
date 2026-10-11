@@ -1,0 +1,222 @@
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  /* *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  } */
+
+  :root {
+    --background: hsl(0, 0%, 100%); /* White */
+    --foreground: hsl(210, 50%, 20%); /* Dark text on light */
+    
+    --card: hsl(0, 0%, 100%);
+    --card-foreground: hsl(210, 50%, 20%);
+    
+    --popover: hsl(0, 0%, 100%);
+    --popover-foreground: hsl(210, 50%, 20%);
+    
+    --primary: hsl(210, 70%, 50%); /* Medium blue */
+    --primary-foreground: hsl(210, 70%, 90%);
+    
+    --secondary: hsl(163, 50%, 70%); /* Green tint */
+    --secondary-foreground: hsl(210, 50%, 20%);
+    
+    --muted: hsl(210, 50%, 95%); /* Light blue-grey */
+    --muted-foreground: hsl(210, 30%, 40%);
+    
+    --accent: hsl(30, 70%, 70%); /* Warm orange */
+    --accent-foreground: hsl(0, 0%, 100%);
+     /* Primary (blue scale) */
+    --primary-50: hsl(210, 70%, 95%);
+    --primary-100: hsl(210, 70%, 90%);
+    --primary-200: hsl(210, 70%, 80%);
+    --primary-300: hsl(210, 70%, 70%);
+    --primary-400: hsl(210, 70%, 60%);
+    --primary-500: hsl(210, 70%, 50%); /* base */
+    --primary-600: hsl(210, 70%, 40%);
+    --primary-700: hsl(210, 70%, 30%);
+    --primary-800: hsl(210, 70%, 20%);
+    --primary-900: hsl(210, 70%, 10%);
+
+    /* Secondary (green scale) */
+    --secondary-50: hsl(163, 50%, 95%);
+    --secondary-100: hsl(163, 50%, 90%);
+    --secondary-200: hsl(163, 50%, 80%);
+    --secondary-300: hsl(163, 50%, 70%);
+    --secondary-400: hsl(163, 50%, 60%);
+    --secondary-500: hsl(163, 50%, 50%);
+    --secondary-600: hsl(163, 50%, 40%);
+    --secondary-700: hsl(163, 50%, 30%);
+    --secondary-800: hsl(163, 50%, 20%);
+    --secondary-900: hsl(163, 50%, 10%);
+
+    /* Accent (orange scale) */
+    --accent-50: hsl(30, 70%, 95%);
+    --accent-100: hsl(30, 70%, 90%);
+    --accent-200: hsl(30, 70%, 80%);
+    --accent-300: hsl(30, 70%, 70%);
+    --accent-400: hsl(30, 70%, 60%);
+    --accent-500: hsl(30, 70%, 50%);
+    --accent-600: hsl(30, 70%, 40%);
+    --accent-700: hsl(30, 70%, 30%);
+    --accent-800: hsl(30, 70%, 20%);
+    --accent-900: hsl(30, 70%, 10%);
+    --destructive: hsl(0, 70%, 55%); /* Red */
+    --destructive-foreground: hsl(0, 0%, 100%);
+    
+    --border: hsl(210, 30%, 85%);
+    --input: hsl(210, 30%, 90%);
+    --ring: hsl(210, 60%, 60%);
+    
+    /* Charts aligned with palette */
+    --chart-1: rgb(163, 220, 154); /* soft green */
+    --chart-2: rgb(222, 231, 145); /* yellow-green */
+    --chart-3: rgb(255, 249, 189); /* pale yellow */
+    --chart-4: rgb(255, 214, 186); /* soft orange */
+    --chart-5: hsl(30, 60%, 80%);  /* light orange */
+    
+    --radius: 0.5rem;
+
+    /* Accent colors */
+    --color-1: rgb(163, 220, 154);
+    --color-2: rgb(222, 231, 145);
+    --color-3: rgb(255, 249, 189);
+    --color-4: rgb(255, 214, 186);
+    --color-5: hsl(210, 60%, 80%); /* soft blue */
+    
+    /* Sidebar */
+    --sidebar-background: hsl(210, 50%, 95%);
+    --sidebar-foreground: hsl(210, 50%, 25%);
+    --sidebar-primary: hsl(210, 70%, 50%);
+    --sidebar-primary-foreground: hsl(0, 0%, 100%);
+    --sidebar-accent: hsl(30, 60%, 90%);
+    --sidebar-accent-foreground: hsl(210, 50%, 20%);
+    --sidebar-border: hsl(210, 20%, 85%);
+    --sidebar-ring: hsl(210, 60%, 60%);
+    --shiny-width: 1;
+  }
+
+  .dark {
+    --background: hsl(210, 50%, 10%); /* dark blue */
+    --foreground: hsl(0, 0%, 100%);
+    
+    --card: hsl(210, 50%, 15%);
+    --card-foreground: hsl(0, 0%, 100%);
+    
+    --popover: hsl(210, 50%, 15%);
+    --popover-foreground: hsl(0, 0%, 100%);
+    
+    --primary: hsl(210, 70%, 60%); /* brighter blue */
+    --primary-foreground: hsl(0, 0%, 100%);
+    
+    --secondary: hsl(163, 45%, 30%); /* deep green */
+    --secondary-foreground: hsl(0, 0%, 100%);
+    
+    --muted: hsl(210, 30%, 20%);
+    --muted-foreground: hsl(210, 20%, 70%);
+    
+    --accent: hsl(30, 65%, 55%); /* warm orange */
+    --accent-foreground: hsl(0, 0%, 100%);
+    
+    --destructive: hsl(0, 60%, 45%);
+    --destructive-foreground: hsl(0, 0%, 100%);
+    
+    --border: hsl(210, 20%, 30%);
+    --input: hsl(210, 20%, 30%);
+    --ring: hsl(210, 60%, 60%);
+    
+    /* Charts in darker mode */
+    --chart-1: hsl(163, 50%, 45%);
+    --chart-2: hsl(60, 55%, 50%);
+    --chart-3: hsl(50, 55%, 60%);
+    --chart-4: hsl(20, 65%, 55%);
+    --chart-5: hsl(30, 60%, 65%);
+    
+    --color-1: hsl(163, 50%, 45%);
+    --color-2: hsl(60, 55%, 50%);
+    --color-3: hsl(50, 55%, 60%);
+    --color-4: hsl(20, 65%, 55%);
+    --color-5: hsl(210, 60%, 65%);
+  }
+
+
+  html {
+    position: relative;
+    overflow-x: clip;
+  }
+
+  body {
+    /* margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh; */
+    font-family: "Nunito", Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    /* color-scheme: light dark; */
+    color: rgba(255, 255, 255, 0.87);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 1s ease;
+  }
+  
+  img {
+    max-width: none;
+  }
+
+  a {
+    font-weight: 500;
+    text-decoration: inherit;
+
+    /* &&:hover {
+      color: #1498b3;
+    } */
+  } 
+
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
+
+  #contact {
+    background-image: url("/bg/dark-tl.svg"), url("/bg/dark-tr.svg"), url("/bg/dark-bl.svg"), url("/bg/dark-br.svg");
+    background-position: top left, top right, bottom left, bottom right;
+    background-repeat: no-repeat;
+    background-size: 25em;
+    padding: 7em 0;
+  }
+  
+  /* @media (prefers-color-scheme: light) {
+    :root {
+      color: #213547;
+      background-color: #ffffff;
+    }
+    a:hover {
+      color: #747bff;
+    }
+  } */
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+}

@@ -1,0 +1,378 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --page-count: 5;
+  --page-scroll: 4;
+  --underline: rgba(64, 64, 64, 0.4);
+  --spine: #000;
+  --cover: #1a1a1a;
+  --bg: #4d4d4d;
+  --insert: #d9d9d9;
+  --page: #e6e6e6;
+  --book-bg: 40 30% 95%;
+  --page-bg: 36 100% 99%;
+  --page-text: 215 25% 27%;
+  --book-shadow: 215 25% 27%;
+  --book-spine: 25 86% 57%;
+
+  /* Warna teks & aksen */
+  --ink: #1f2937;
+  --ink-strong: #312e81;
+  --brand: #4f46e5;
+  --accent: #f97316;
+
+  /* Ukuran satu halaman buku (desktop: 2 halaman terbuka muat di layar) */
+  --ratio: 1.333;
+  --bw: min(40vw, calc(82dvh / var(--ratio)));
+  --bh: calc(var(--bw) * var(--ratio));
+}
+
+/* Layar lebih kecil dari desktop: tampil 1 sisi penuh, dinavigasi dengan tombol */
+@media (max-width: 899px) {
+  :root {
+    --ratio: 1.45;
+    --bw: min(92vw, calc(70dvh / var(--ratio)));
+  }
+}
+
+/* ---------- Panggung & buku ---------- */
+
+.book-stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  perspective: 2600px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Pembungkus yang digeser GSAP (xPercent) agar buku selalu di tengah layar.
+   Kotak ini = ukuran satu halaman; tepi kirinya adalah punggung buku. */
+.book-shifter {
+  position: relative;
+  width: var(--bw);
+  height: var(--bh);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.book {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.book__spine {
+  height: 100%;
+  left: -2%;
+  top: 0;
+  position: absolute;
+  background: var(--spine);
+  transform-origin: 0 50%;
+  width: 12px;
+  transform: translate3d(0, 0, -13px) scaleX(1) rotateY(0deg);
+}
+
+/* ---------- Lembar (sheet) ---------- */
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  perspective: 3200px;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  pointer-events: auto;
+}
+
+.book__page {
+  left: 0;
+  top: 3%;
+  height: 94%;
+  width: 94%;
+  border-radius: 0 5% 5% 0;
+  z-index: calc(var(--page-index) * 2);
+  transform-origin: 0% 50%;
+}
+
+.book__cover {
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--cover);
+}
+
+.page__half {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  color: var(--ink);
+  background: var(--page);
+  transform: rotateY(calc(var(--rotation) * 1deg)) translate3d(0, 0, calc((0.5 * var(--coefficient)) * 1px));
+  -webkit-clip-path: inset(0 0.5% 0 0.5%);
+  clip-path: inset(0 0.5% 0 0.5%);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.page__half--front {
+  --rotation: 0;
+  --coefficient: 0;
+  border-radius: 0 5% 5% 0;
+}
+
+.page__half--back {
+  --rotation: 180;
+  --coefficient: 2;
+  border-radius: 5% 0 0 5%;
+  left: 2%;
+}
+
+/* Sisi luar sampul: gelap dengan teks terang */
+.book__cover--front .page__half--front,
+.book__cover--back .page__half--back {
+  background: linear-gradient(155deg, #3730a3 0%, #1e1b4b 100%);
+  --ink: #e0e7ff;
+  --ink-strong: #ffffff;
+  --brand: #c7d2fe;
+}
+
+/* Bayangan lipatan dekat punggung buku */
+.book-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 7%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0));
+  pointer-events: none;
+  z-index: 2;
+}
+
+.page__half--back .book-shadow {
+  left: auto;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.page .page__number {
+  position: absolute;
+  bottom: 0.6rem;
+  color: #808080;
+  font-size: clamp(10px, 1.6vmin, 14px);
+  z-index: 3;
+}
+
+.page__half--front .page__number {
+  right: 1rem;
+}
+
+.page__half--back .page__number {
+  left: 1rem;
+}
+
+/* ---------- Isi halaman ---------- */
+
+/* Semua ukuran teks memakai satuan cq (container query) sehingga
+   isi selalu proporsional dengan ukuran halaman, di layar apa pun. */
+.page-content {
+  position: absolute;
+  inset: 0;
+  container-type: size;
+  z-index: 1;
+}
+
+.page-inner {
+  --fs: 3.5cqw;
+  --title-fs: 6.2cqw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 3cqw;
+  padding: 9cqw 9cqw 12cqw;
+  text-align: center;
+  overflow: hidden;
+}
+
+@media (max-width: 899px) {
+  .page-inner {
+    --fs: 4.1cqw;
+    --title-fs: 7cqw;
+  }
+}
+
+.page-title {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: var(--title-fs);
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--ink-strong);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.page-figure {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 16cqw;
+  width: 100%;
+}
+
+.page-body {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4cqw;
+}
+
+.page-text {
+  margin: 0;
+  font-size: var(--fs);
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+.page-text--strike {
+  text-decoration: line-through;
+  text-decoration-thickness: 0.12em;
+  text-decoration-color: var(--accent);
+  opacity: 0.65;
+}
+
+.page-text--quote {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--brand);
+}
+
+/* Halaman berdaftar: semua teks rata kiri agar rapi */
+.page-body:has(.page-bullet) .page-text {
+  text-align: left;
+}
+
+.page-bullet {
+  position: relative;
+  padding-left: 1.4em;
+}
+
+.page-bullet::before {
+  content: "";
+  position: absolute;
+  left: 0.2em;
+  top: 0.55em;
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.page-bullet + .page-bullet {
+  margin-top: -1cqw;
+}
+
+/* Halaman tanpa ilustrasi: isi di tengah secara vertikal */
+.page-inner:not(:has(.page-figure)) {
+  justify-content: center;
+}
+
+/* Sisi luar sampul: judul lebih besar (sisi dalam sampul mengikuti halaman biasa) */
+.book__cover--front .page__half--front .page-inner,
+.book__cover--back .page__half--back .page-inner {
+  --title-fs: 8.4cqw;
+  --fs: 4cqw;
+}
+
+/* ---------- Tombol navigasi (layar kecil) ---------- */
+
+.book-nav {
+  position: absolute;
+  left: 50%;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2000;
+}
+
+.book-nav__btn {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 14px;
+  min-height: 44px;
+  white-space: nowrap;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--brand);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+  cursor: pointer;
+}
+
+.book-nav__btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.book-nav__btn:disabled {
+  background: #a5a6c4;
+  box-shadow: none;
+  cursor: default;
+  opacity: 0.7;
+}
+
+.book-nav__count {
+  min-width: 3.5em;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  color: #4b5563;
+}
+
+/* ---------- Lainnya (tidak diubah) ---------- */
+
+.sticker {
+  height: 15%;
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  transform: rotate(-25deg);
+}
+
+.code {
+  line-height: 1.2;
+  font-family: monospace;
+  white-space: pre-line;
+  max-width: 100%;
+  max-height: 100%;
+  font-weight: bold;
+  color: #0f0f0f;
+  text-shadow: 2px 2px 0 #1c1c1c;
+  border-radius: 5%;
+  display: block;
+  overflow: hidden;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  height: 25%;
+}

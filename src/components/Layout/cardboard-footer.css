@@ -1,0 +1,320 @@
+/* ==========================================================================
+   Cardboard footer
+   Badan kardus yang terangkat dari bawah saat scroll di ujung halaman,
+   lalu bertemu "tutup" (navbar). Isinya dicetak satu warna tinta di badan kardus.
+   Token warna (--cb-*) dibagi dengan cardboard-nav.css.
+   ========================================================================== */
+
+.cb-footer {
+    --cb-flap: 14px;
+
+  --cb-base: #c49a63;
+  --cb-light: #dcbb8a;
+  --cb-ink: #3a2310;
+  --cb-ink-soft: rgba(58, 35, 16, 0.72);
+  --cb-score: rgba(72, 42, 12, 0.5);
+  --cb-chip: rgba(255, 243, 220, 0.38);
+  --cb-chip-hover: rgba(255, 243, 220, 0.62);
+  --cb-tile: rgba(60, 34, 8, 0.12);
+
+  /* bintik halus kertas */
+  --cb-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .27  0 0 0 0 .16  0 0 0 0 .06  1.4 0 0 0 -.38'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+  /* serat memanjang */
+  --cb-fibre: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='160'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.012 .55' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .33  0 0 0 0 .2  0 0 0 0 .07  1.6 0 0 0 -.55'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>");
+
+  --cb-lid-h: calc(4rem + var(--cb-flap, 14px));
+  --cb-print-ink: #2a1708;
+  position: relative;
+  color: var(--cb-print-ink);
+}
+.cb-paper {
+  background-color: var(--cb-base);
+  background-image:
+    var(--cb-grain),
+    var(--cb-fibre),
+    repeating-linear-gradient(90deg, rgba(85, 50, 15, 0.06) 0 2px, transparent 2px 7px),
+    radial-gradient(120% 90% at 18% 0%, rgba(255, 235, 195, 0.35), transparent 60%),
+    linear-gradient(180deg, var(--cb-light), var(--cb-base));
+  background-size: cover;
+}
+
+/* Fallback (tanpa JS / reduced motion): footer biasa di akhir halaman */
+.cb-footer-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+ 
+/* Mode terangkat: badan kardus tetap di layar, naik mengikuti scroll */
+.cb-footer-body.is-lifted {
+  position: fixed;
+  z-index: 55; /* di atas navbar (z-50) agar bisa menutupi flap tutup */
+  left: 0;
+  right: 0;
+  top: var(--cb-lid-h);
+  /* memanjang ke bawah layar: saat badan naik menutupi flap, tidak ada celah di bawah */
+  bottom: calc(-1 * (var(--cb-flap, 14px) + 4px));
+  visibility: hidden; /* ditampilkan oleh GSAP saat progres > 0 */
+  will-change: transform;
+}
+ 
+/* Jarak scroll ekstra di ujung halaman; makin pendek = badan makin cepat naik */
+.cb-footer-track {
+  height: 80svh;
+  pointer-events: none;
+}
+ 
+/* ---------- Badan kardus ---------- */
+ 
+/* Tepi atas badan: penampang kardus bergelombang. Rongga di antara liner dan
+   gelombang (flute) diberi bayangan: gelap di dekat liner, terang ke arah gelombang. */
+.cb-rim {
+  position: relative;
+  flex: 0 0 auto;
+  height: 18px;
+  background-color: #a97c47;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='18' viewBox='0 0 24 18'><defs><linearGradient id='u' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%231e0f03' stop-opacity='.58'/><stop offset='1' stop-color='%231e0f03' stop-opacity='.08'/></linearGradient><linearGradient id='l' x1='0' y1='1' x2='0' y2='0'><stop offset='0' stop-color='%231e0f03' stop-opacity='.52'/><stop offset='1' stop-color='%231e0f03' stop-opacity='.06'/></linearGradient><linearGradient id='t' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23e3c590'/><stop offset='1' stop-color='%23c39659'/></linearGradient></defs><rect width='24' height='18' fill='%23a97c47'/><path d='M0 3H24V9Q18 21 12 9Q6 -3 0 9Z' fill='url(%23u)'/><path d='M0 9Q6 -3 12 9T24 9V15H0Z' fill='url(%23l)'/><path d='M0 9Q6 -3 12 9T24 9' fill='none' stroke='%239a6c3b' stroke-width='2'/><path d='M0 8.2Q6 -3.8 12 8.2T24 8.2' fill='none' stroke='%23e8cc9a' stroke-width='.8' opacity='.75'/><rect width='24' height='3' fill='url(%23t)'/><rect y='15' width='24' height='3' fill='url(%23t)'/><path d='M0 3.4H24M0 14.6H24' stroke='%234a2c0e' stroke-opacity='.55' stroke-width='.8'/></svg>");
+  background-repeat: repeat-x;
+  background-size: 24px 18px;
+  /* patokan ke bawah: saat tinggi menyusut, bagian atas gambar yang terpotong,
+     sehingga penampang tampak tertutup navbar dari atas */
+  background-position: left bottom;
+  overflow: hidden;
+  box-shadow: 0 -6px 14px -4px rgba(40, 22, 5, 0.45);
+}
+
+ 
+/* bayangan tambahan di atas penampang: tutup menimpa bagian atas, sudut lebih gelap,
+   dan variasi tipis agar rongga tidak terlihat seragam */
+.cb-rim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(30, 15, 3, 0.35), rgba(30, 15, 3, 0) 55%),
+    linear-gradient(90deg, rgba(30, 15, 3, 0.28), transparent 5%, transparent 95%, rgba(30, 15, 3, 0.28)),
+    repeating-linear-gradient(90deg, transparent 0, rgba(30, 15, 3, 0.1) 55px, transparent 110px);
+}
+ 
+.cb-footer-face {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 -40px 50px -30px rgba(60, 34, 8, 0.4);
+}
+ 
+/* bayangan di bawah tepi potong: ketebalan kardus menimpa permukaan badan */
+.cb-footer-face::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 14px;
+  background: linear-gradient(180deg, rgba(30, 15, 3, 0.38), transparent);
+  pointer-events: none;
+}
+ 
+/* garis lipat vertikal di dekat tepi, seperti sudut badan kardus */
+.cb-seam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-left: 1.5px dashed var(--cb-score);
+  box-shadow: 1px 0 0 rgba(255, 236, 200, 0.4);
+  pointer-events: none;
+}
+.cb-seam-l { left: clamp(0.75rem, 2.5vw, 2.25rem); }
+.cb-seam-r { right: clamp(0.75rem, 2.5vw, 2.25rem); }
+ 
+.cb-footer-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+ 
+.is-lifted .cb-footer-scroll {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + var(--cb-flap, 14px) + 4px);
+}
+ 
+/* ---------- Cetakan tinta ---------- */
+ 
+/* Semua isi dicetak satu warna (filter #cb-ink) dan "meresap" ke kardus */
+.cb-print {
+  --cb-logo-scale: 1.9;
+  position: relative;
+  padding: 1.5rem clamp(1.5rem, 6vw, 6rem) 2rem;
+  filter: url(#cb-ink);
+  mix-blend-mode: multiply;
+  color: var(--cb-print-ink);
+}
+@media (min-width: 768px) { .cb-print { --cb-logo-scale: 2.8; } }
+@media (min-width: 1280px) { .cb-print { --cb-logo-scale: 3.6; } }
+ 
+.cb-print a {
+  color: inherit;
+  text-decoration: none;
+}
+.cb-print a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+.cb-print a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+ 
+.cb-print-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+ 
+/* cap "THIS SIDE UP" */
+.cb-this-up {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border: 3px solid currentColor;
+  border-radius: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.cb-this-up .arrows { display: inline-flex; }
+ 
+.cb-stamp {
+  width: 5.5rem;
+  height: 5.5rem;
+  flex-shrink: 0;
+}
+@media (max-width: 640px) { .cb-stamp { width: 4rem; height: 4rem; } }
+ 
+/* logo besar di tengah badan */
+.cb-print-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(7rem, 24svh, 13rem);
+  overflow: visible;
+}
+.cb-print-logo > a {
+  display: inline-block;
+  transform: scale(var(--cb-logo-scale));
+  transform-origin: center;
+}
+ 
+.cb-print-tagline {
+  max-width: 36ch;
+  margin: 0 auto;
+  text-align: center;
+  font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+ 
+/* kotak "isi" berisi tautan, seperti tabel spesifikasi yang dicetak */
+.cb-contents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2.5rem;
+  margin-top: 1.75rem;
+  padding: 1rem 1.25rem 1.1rem;
+  border: 3px solid currentColor;
+  border-radius: 0.35rem;
+}
+.cb-col { min-width: 8.5rem; }
+.cb-col h3 {
+  margin: 0 0 0.45rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1.5px dashed currentColor;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.cb-col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cb-col li {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+ 
+.cb-print-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  margin-top: 1.75rem;
+}
+ 
+/* ikon penanganan barang */
+.cb-marks { display: flex; gap: 0.75rem; }
+.cb-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.cb-mark-box {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border: 3px solid currentColor;
+  border-radius: 0.3rem;
+}
+ 
+.cb-print-legal {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+ 
+.cb-barcode-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+.cb-barcode { width: 7.5rem; height: 2.75rem; }
+.cb-barcode-num {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+}
+ 
+/* ---------- Aksesibilitas gerak ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cb-footer-body.is-lifted { will-change: auto; }
+}
+ 
