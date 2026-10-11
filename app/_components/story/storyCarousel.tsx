@@ -100,26 +100,22 @@ const StoryCarousel = forwardRef<HTMLDivElement, CarouselProps>(({ slides, class
         return (
           (<CarouselItem key={index} className="self-center">
             {isActive ? (
-              <NeonGradientCard borderRadius={6} className="current w-full bg-none scale-125 h-96 shadow-emerald-400 shadow-md">
-                <CardHeader className="p-2 pb-1 text-center">
-                  <CardTitle className='font-merriweather text-center'>{slide.judul}</CardTitle>
-                  {/* absolute -top-0 -left-5 w-max px-2 bg-slate-50 rounded-3xl text-lg  */}
-                </CardHeader>
-                <CardContent className='py-2 h-1/2 relative m-5'>
+              <NeonGradientCard borderRadius={6} className="current w-full bg-none scale-125 h-max shadow-emerald-400 shadow-md">
+                
+                <CardContent className='h-96 px-0 overflow-visible relative mb-5'>
                   <Image
                     src={slide.gambar}
-                    alt={slide.judul}
-                    fill
-                    className="absolute w-full h-auto aspect-16/11 object-cover overflow-hidden rounded-lg"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    alt={slide.judul?? `cover-image-${index}`}
+                    width={465} height={382}
+                    className="w-full h-auto aspect-auto object-top rounded-lg top-1 mask-b-from-95%"
                     quality={75}
                     priority
                     />
                 </CardContent>
-                <CardFooter className="relative place-self-center z-60 -mt-8 border-t-2 w-[110%] bg-inherit border-slate-900 text-slate-900 shadow-md rounded-3xl hover:text-black">
+                {slide.cerita &&<CardFooter className="absolute bottom-0 place-self-center z-60 -mt-8 border-t-2 w-[110%] bg-white/90 border-slate-900 text-slate-950 shadow-md rounded-3xl hover:text-black">
                  {/* absolute -bottom-16 left-6 w-[300px] p-4 bg-inherit border-slate-900 text-slate-900 border shadow-lg rounded-3xl hover:text-black hover:shadow-xl */}
                   <CardDescription className='text-xs pt-6'>{slide.cerita}</CardDescription>
-                </CardFooter>
+                </CardFooter>}
               </NeonGradientCard>
             ) : (
               <Card className={`h-96 bg-opacity-80 blur-xs bg-transparent ${opacity===0? 'hidden': 'opacity-50'}`}>

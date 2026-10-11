@@ -43,7 +43,7 @@ export const caseStudies: CaseStudy[] = [
       "Website layanan cuci mobil dengan booking online, pengisian formulir otomatis, dan caching bertingkat agar kuota Google Sheets API tetap hemat.",
     category: "Booking layanan",
     stack: ["Next.js", "Google Sheets API", "Caching bertingkat", "WhatsApp"],
-    websiteUrl: "https://example.com", // TODO: ganti dengan URL Shine Carwash
+    websiteUrl: "https://carwash-tino.vercel.app/", // TODO: ganti dengan URL Shine Carwash
     image:
       "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=1600&q=80",
     color: "#C9DFF5",
@@ -182,7 +182,7 @@ export const caseStudies: CaseStudy[] = [
       "Website barbershop dengan dua alur transaksi terpisah, booking jadwal barber dan toko produk perawatan rambut, dalam satu ekosistem Next.js.",
     category: "Booking layanan + e-commerce",
     stack: ["Next.js", "Server validation", "Cart & checkout", "Payment gateway"],
-    websiteUrl: "https://example.com", // TODO: ganti dengan URL website barbershop
+    websiteUrl: "https://barbershop-tino.vercel.app", // TODO: ganti dengan URL website barbershop
     image:
       "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1600&q=80",
     color: "#F7E0C8",
