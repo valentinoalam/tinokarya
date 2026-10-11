@@ -3,7 +3,7 @@
 
 .grid {
   display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 4rem); align-items: center;
-  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 7vw, 6rem);
+  /* padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 7vw, 6rem); */
 }
 .title {
   font-size: clamp(2.5rem, 6.2vw, 4.6rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.04;
@@ -20,10 +20,10 @@
   /* padding: 0.08em 0.22em 0.12em; margin-inline: 0.06em; */
   vertical-align: -0.1em; line-height: 1;
 }
-.logo { display: block; height: 0.9em; width: auto; }
+.logo { display: block; height: 0.8em; width: auto; }
 
-.lead { font-size: clamp(1.1rem, 2vw, 1.3rem); margin-top: 1.4rem; max-width: 34ch; font-weight: 500; }
-.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+.lead { font-size: clamp(1.1rem, 2vw, 1.3rem); flex-grow:1; margin-top: 1.4rem; max-width: 34ch; font-weight: 500; }
+.actions { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem;  justify-content: center }
 .note { margin: 1.25rem 0 0; font-size: .82rem; max-width: none; }
 
 @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }

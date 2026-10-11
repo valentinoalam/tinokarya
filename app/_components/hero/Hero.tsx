@@ -76,19 +76,21 @@ export default function Hero() {
               <span className={styles.chip} data-hero="logo">
                 <span className="sr-only">Google</span>
                 <GoogleLogo className={styles.logo} />
-              </span>
+              </span>{" "}
               {/* <span className={styles.word}>
                 <span className={styles.wordInner} data-hero="word">.</span>
               </span>{" "} */}
               <Words text="Pastikan usaha Anda bisa ditemukan." />
             </h1>
-            <p className={styles.lead} data-hero="lead">
-              Website resmi berisi informasi usaha: rumah digital yang menjelaskan siapa Anda, apa yang
-              Anda tawarkan, dan apa yang membedakan Anda dari kompetitor.
-            </p>
-            <div className={styles.actions} data-hero="actions">
-              <Button variant="hero" wa>Konsultasi lewat WhatsApp</Button>
-              <Button variant="hero-ghost" href="#manfaat">Lihat manfaatnya</Button>
+            <div className="flex flex-row">
+              <p className={styles.lead} data-hero="lead">
+                Website resmi berisi informasi usaha: rumah digital yang menjelaskan siapa Anda, apa yang
+                Anda tawarkan, dan apa yang membedakan Anda dari kompetitor.
+              </p>
+              <div className={styles.actions} data-hero="actions">
+                <Button className="text-center w-full bg-green-500 border-accent-100 border h-max p-1 rounded-xl" variant="hero" wa>Konsultasi lewat WhatsApp</Button>
+                <Button className="text-center w-max border bg-gray-100 h-max p-1 rounded-xl" variant="hero-ghost" href="#manfaat">Lihat manfaatnya</Button>
+              </div>
             </div>
           </div>
 

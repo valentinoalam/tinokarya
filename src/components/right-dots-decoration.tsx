@@ -2,7 +2,7 @@ import React from 'react'
 
 const RightDotsDecoration = () => {
   return (
-    <div className='absolute -top-6 right-0'>
+    <div className='absolute -top-6 left-1/5'>
     <span className="absolute right-0 top-7">
         <svg
         width="77"

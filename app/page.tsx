@@ -6,7 +6,7 @@ import Packages from "./_components/packages/Packages";
 import Faq from "./_components/faq/Faq";
 import Cta from "./_components/cta/Cta";
 import BranchStorySection from "./_components/storye/BranchStorySection";
-import StudyCaseSection from "./_components/Portfolio/view";
+import ShowcaseSection from "./_components/Portfolio/showcase-section";
 import Pain from "./_components/Pain/view";
 import Story from "./_components/story/storySection";
 import About from "./_components/About/view";
@@ -28,7 +28,7 @@ export default function Page() {
           <BranchStorySection />
         </div>
         <Compare />
-        <StudyCaseSection />
+        <ShowcaseSection />
         <Packages />
         <Faq />
         <Cta />

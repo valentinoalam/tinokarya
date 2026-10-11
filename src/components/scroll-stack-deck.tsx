@@ -17,63 +17,14 @@ export interface ProjectItem {
   title: string;
   description: string;
   image: string;
-  link?: string;
   color: string;
+  /** Halaman studi kasus internal, dibuka di tab baru saat kartu diklik. */
+  href: string;
+  /** Website live proyek, dibuka di tab baru lewat tombol terpisah. */
+  websiteUrl?: string;
+  tags?: string[];
   textColor?: string;
 }
-
-export const DEFAULT_PROJECTS: ProjectItem[] = [
-  {
-    id: 1,
-    tabTitle: "01 · Loom",
-    title: "Loom: A quieter workspace for deep focus teams",
-    description:
-      "An uncluttered collaboration suite built around calm layouts, soft surfaces, and intentional empty space so teams can think without visual noise.",
-    image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80",
-    color: "#C9DFF5",
-  },
-  {
-    id: 2,
-    tabTitle: "02 · Meridian",
-    title: "Meridian: Mapping brand systems that scale",
-    description:
-      "A living token library and component kit that keeps product, marketing, and docs speaking the same visual language across every surface.",
-    image:
-      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1600&q=80",
-    color: "#C8EBD8",
-  },
-  {
-    id: 3,
-    tabTitle: "03 · Drift",
-    title: "Drift: Editorial storytelling for modern labels",
-    description:
-      "A scrolling magazine experience for independent artists. Long-form interviews, soft typography, and photography that feels like a late-night listen.",
-    image:
-      "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1600&q=80",
-    color: "#F2D4E4",
-  },
-  {
-    id: 4,
-    tabTitle: "04 · Harbor",
-    title: "Harbor: Booking that feels like hospitality",
-    description:
-      "A reservation flow redesigned around trust cues, soft color, and clear hierarchy, so guests feel welcomed before they ever arrive.",
-    image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80",
-    color: "#F7E0C8",
-  },
-  {
-    id: 5,
-    tabTitle: "05 · Northline",
-    title: "Northline: Analytics without the overwhelm",
-    description:
-      "A metrics dashboard that leads with narrative charts and muted accents, helping operators spot what matters without drowning in widgets.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
-    color: "#DDD4F2",
-  },
-];
 
 interface AnimatedCardProps {
   project: ProjectItem;
@@ -106,11 +57,7 @@ function buildCardKeyframes(index: number, totalCards: number) {
   }
 
   if (index === 0) {
-    return {
-      steps,
-      y: yValues,
-      scale: scaleValues,
-    };
+    return { steps, y: yValues, scale: scaleValues };
   }
 
   const entryStart = (index - 1) / numTransitions;
@@ -139,11 +86,7 @@ function buildCardKeyframes(index: number, totalCards: number) {
     }
   }
 
-  return {
-    steps: fullSteps,
-    y: fullY,
-    scale: fullScale,
-  };
+  return { steps: fullSteps, y: fullY, scale: fullScale };
 }
 
 function AnimatedCard({
@@ -169,72 +112,112 @@ function AnimatedCard({
       }}
       className="absolute inset-x-0 top-0 w-full select-none"
     >
-      <a
-        href={project.link ?? "#"}
-        target={project.link ? "_blank" : undefined}
-        rel={project.link ? "noopener noreferrer" : undefined}
-        className="group block cursor-pointer text-inherit no-underline outline-none"
-        aria-label={`Open ${project.title}`}
-      >
-        <article className="relative box-border w-full pt-14">
-          <div
-            style={{ backgroundColor: project.color }}
-            className="absolute left-0 top-0 flex h-12 w-44 items-center rounded-t-2xl px-4 text-base font-semibold tracking-tight text-black shadow-[inset_0_-1px_0_rgba(0,0,0,0.04)] sm:h-14 sm:w-60 sm:px-6"
-          >
-            <span className="truncate">{project.tabTitle}</span>
-          </div>
+      {/*
+        Pola "stretched link": satu <a> utama menutupi seluruh kartu lewat
+        ::after, sedangkan link website berada di atasnya (relative z-10).
+        Dengan begitu tidak ada <a> bersarang (HTML tidak valid).
+      */}
+      <article className="group relative box-border w-full pt-14">
+        <div
+          style={{ backgroundColor: project.color }}
+          className="absolute left-0 top-0 flex h-12 w-44 items-center rounded-t-2xl px-4 text-base font-semibold tracking-tight text-black shadow-[inset_0_-1px_0_rgba(0,0,0,0.04)] sm:h-14 sm:w-60 sm:px-6"
+        >
+          <span className="truncate">{project.tabTitle}</span>
+        </div>
 
-          <div
-            style={{ backgroundColor: project.color }}
-            className="relative grid min-h-[28rem] grid-cols-1 items-center gap-6 overflow-hidden rounded-b-2xl rounded-tr-2xl p-6 shadow-[0_4px_8px_-4px_rgba(0,0,0,0.12),inset_0_-2px_4px_-2px_rgba(0,0,0,0.25)] sm:p-8 md:min-h-[33rem] md:grid-cols-[minmax(0,1.12fr)_minmax(16rem,0.88fr)] md:gap-14 md:p-8"
-          >
-            <div className="z-10 flex flex-col items-start gap-3.5">
-              <h3 className="m-0 text-2xl font-medium leading-tight tracking-tight text-black sm:text-3xl">
+        <div
+          style={{ backgroundColor: project.color }}
+          className="relative grid min-h-[28rem] grid-cols-1 items-center gap-6 overflow-hidden rounded-b-2xl rounded-tr-2xl p-6 shadow-[0_4px_8px_-4px_rgba(0,0,0,0.12),inset_0_-2px_4px_-2px_rgba(0,0,0,0.25)] sm:p-8 md:min-h-[33rem] md:grid-cols-[minmax(0,1.12fr)_minmax(16rem,0.88fr)] md:gap-14 md:p-8"
+        >
+          <div className="z-10 flex flex-col items-start gap-3.5">
+            {project.tags && project.tags.length > 0 ? (
+              <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
+                {project.tags.map((tag) => (
+                  <li
+                    key={tag}
+                    className="rounded-full bg-black/[0.07] px-3 py-1 text-xs font-medium text-black/70"
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
+            <h3 className="m-0 text-2xl font-medium leading-tight tracking-tight text-black sm:text-3xl">
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-inherit no-underline outline-none after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-black"
+              >
                 {project.title}
-              </h3>
+                <span className="sr-only"> (studi kasus, buka di tab baru)</span>
+              </a>
+            </h3>
 
-              <p className="m-0 text-base font-normal leading-snug tracking-normal text-black/60 sm:text-lg">
-                {project.description}
-              </p>
-            </div>
+            <p className="m-0 text-base font-normal leading-snug tracking-normal text-black/60 sm:text-lg">
+              {project.description}
+            </p>
 
-            <div className="relative h-60 w-full overflow-hidden rounded-xl bg-white/25 sm:h-72 md:h-96 lg:h-[25rem]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={project.image}
-                alt={project.title}
-                decoding="async"
-                loading={index === 0 ? "eager" : "lazy"}
-                className="block h-full w-full rounded-xl object-cover transition-transform duration-500 will-change-transform group-hover:scale-105"
-              />
+            <div className="mt-2 flex flex-wrap items-center gap-3">
+              <span
+                aria-hidden="true"
+                className="inline-flex items-center rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors group-hover:bg-neutral-800"
+              >
+                Baca studi kasus
+              </span>
+
+              {project.websiteUrl ? (
+                <a
+                  href={project.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative z-10 inline-flex items-center rounded-full border border-black/25 px-5 py-2.5 text-sm font-medium text-black no-underline transition-colors hover:bg-black/[0.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                >
+                  Kunjungi website
+                  <span className="sr-only"> (buka di tab baru)</span>
+                </a>
+              ) : null}
             </div>
           </div>
-        </article>
-      </a>
+
+          <div className="relative h-60 w-full overflow-hidden rounded-xl bg-white/25 sm:h-72 md:h-96 lg:h-[25rem]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={project.image}
+              alt=""
+              decoding="async"
+              loading={index === 0 ? "eager" : "lazy"}
+              className="block h-full w-full rounded-xl object-cover transition-transform duration-500 will-change-transform group-hover:scale-105"
+            />
+          </div>
+        </div>
+      </article>
     </motion.div>
   );
 }
 
 export interface ScrollStackDeckProps {
-  projects?: ProjectItem[];
+  projects: ProjectItem[];
   title?: string;
   subtitle?: string;
   scrollIndicatorText?: string;
   className?: string;
   showFooter?: boolean;
+  /** Aktifkan hanya jika deck dipakai sebagai halaman penuh. */
   enableLenis?: boolean;
   /** Nested overflow parent. Omit on a full-page landing (window + Lenis). */
   container?: RefObject<HTMLElement | null>;
 }
 
 export function ScrollStackDeck({
-  projects = DEFAULT_PROJECTS,
-  title = "Selected work",
-  subtitle = "Five recent builds: soft interfaces, clear systems, and product stories that hold up under a slow scroll.",
-  scrollIndicatorText = "Scroll",
+  projects,
+  title = "",
+  subtitle = "",
+  scrollIndicatorText = "",
   className = "",
-  showFooter = true,
-  enableLenis = true,
+  showFooter = false,
+  enableLenis = false,
   container,
 }: ScrollStackDeckProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -281,49 +264,56 @@ export function ScrollStackDeck({
 
   return (
     <div
-      className={`min-h-screen w-full bg-[#F4F6F8] font-sans text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white ${className}`}
+      className={`w-full bg-[#F4F6F8] font-sans text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white ${className}`}
     >
       {showIntro ? (
-        <section className="flex w-full flex-col items-center justify-center px-4 py-16 text-center">
+        <div className="flex w-full flex-col items-center justify-center px-4 py-16 text-center">
           <div className="flex max-w-3xl flex-col items-center gap-5">
             <div className="flex flex-col items-center gap-2.5">
-              <h1 className="m-0 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
-                {title}
-              </h1>
-              <p className="m-0 max-w-2xl text-xl font-normal leading-relaxed tracking-tight text-neutral-600 sm:text-2xl">
-                {subtitle}
-              </p>
+              {title ? (
+                <h2 className="m-0 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
+                  {title}
+                </h2>
+              ) : null}
+              {subtitle ? (
+                <p className="m-0 max-w-2xl text-xl font-normal leading-relaxed tracking-tight text-neutral-600 sm:text-2xl">
+                  {subtitle}
+                </p>
+              ) : null}
             </div>
 
-            <div className="mt-2 flex items-center justify-center gap-2.5">
-              <span className="text-lg font-normal leading-relaxed tracking-tight text-neutral-600 sm:text-xl">
-                {scrollIndicatorText}
-              </span>
-              <motion.svg
-                animate={{ y: [0, 5, 0] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 1.8,
-                  ease: "easeInOut",
-                }}
-                className="h-6 w-6 text-black"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M12 4.75v13.5M6.75 13.75l5.25 5.5 5.25-5.5" />
-              </motion.svg>
-            </div>
+            {scrollIndicatorText ? (
+              <div className="mt-2 flex items-center justify-center gap-2.5">
+                <span className="text-lg font-normal leading-relaxed tracking-tight text-neutral-600 sm:text-xl">
+                  {scrollIndicatorText}
+                </span>
+                <motion.svg
+                  animate={{ y: [0, 5, 0] }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 1.8,
+                    ease: "easeInOut",
+                  }}
+                  className="h-6 w-6 text-black"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 4.75v13.5M6.75 13.75l5.25 5.5 5.25-5.5" />
+                </motion.svg>
+              </div>
+            ) : null}
           </div>
-        </section>
+        </div>
       ) : null}
 
       <section
         ref={containerRef}
-        aria-label="Stacked project showcase"
+        aria-label="Showcase karya"
         className="relative w-full"
         style={{ height: `${projects.length * 110}vh` }}
       >
@@ -344,10 +334,7 @@ export function ScrollStackDeck({
 
       {showFooter ? (
         <footer className="flex h-[50vh] flex-col items-center justify-center gap-2 text-sm text-neutral-500">
-          <p>shadcnlabs</p>
-          <p className="text-xs text-neutral-400">
-            Soft systems · product craft · motion
-          </p>
+          <p>Portofolio</p>
         </footer>
       ) : null}
     </div>

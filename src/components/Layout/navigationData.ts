@@ -189,7 +189,7 @@ export const landingPageData: NavPageItem[] = [
   },
   {
     label: "Studi Kasus",
-    href: "#study-case", // Mengarah ke komponen <StudyCaseSection />
+    href: "#karya", // Mengarah ke komponen <StudyCaseSection />
     description: "Kisah sukses nyata dari hasil pembuatan website & landing page",
     icon: "💡",
   },
