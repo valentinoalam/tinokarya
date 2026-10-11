@@ -15,7 +15,7 @@ export default function Page() {
   return (
     <>
       <Hero />
-      <main className="mx-5 flex flex-col gap-18">
+      <main className="mx-5 mt-16 flex flex-col gap-18">
         <Intro />
         <div className="container relative mx-auto h-max px-6 py-20" >
           <About />

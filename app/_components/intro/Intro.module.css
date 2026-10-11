@@ -3,5 +3,5 @@
   display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center;
 }
 .copy { margin-top: 2rem; }
-.copy p { color: var(--muted); }
+.copy p { color: var(--color-muted-foreground); }
 @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }

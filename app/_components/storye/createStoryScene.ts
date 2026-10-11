@@ -91,12 +91,12 @@ export function createStoryScene(o: StoryOptions): () => void {
   }
   const scr = (txt: string, sub: string, w = 512, h = 320) => CT(w, h, (x) => { x.fillStyle = "#202022"; x.fillRect(0, 0, w, h); x.fillStyle = "#f1ece3"; x.textAlign = "center"; x.textBaseline = "alphabetic"; x.font = `600 46px ${F.sans}`; x.fillText(txt, w / 2, h / 2 - 10); x.fillStyle = "#d9622b"; x.font = `500 30px ${F.sans}`; x.fillText(sub, w / 2, h / 2 + 50); }).t;
   const root = G();
-
+ 
   /* ---- ground ---- */
   const gG = G(root);
   B(gG, 64, .5, 46, m.conc, 0, -.5, -8); B(gG, 64, .02, 2.5, m.pave, 0, 0, 3.75); B(gG, 64, .02, 3.5, m.road, 0, 0, 6.75); B(gG, 64, .02, 2.7, m.pave, 0, 0, -8.85); B(gG, 64, .02, 3, m.road, 0, 0, -6);
   for (let x = -27; x <= 27; x += 3) { B(gG, 1.2, .025, .1, m.off, x, 0, 6.75); B(gG, 1.2, .025, .1, m.off, x, 0, -6); }
-
+ 
   /* ---- shop (cloned into branches) ---- */
   const shop = G(root), gL = G(shop);
   B(gL, 6, .08, 4, m.fl, 0, 0, .5); B(gL, .15, 1.7, 4, m.off, -3.05, 0, .5); B(gL, 6.2, 1.7, .15, m.off, 0, 0, -1.55);
@@ -107,7 +107,7 @@ export function createStoryScene(o: StoryOptions): () => void {
   PL(gL, 2.4, .4, TXT("Toko Rina", "#efe6d2", "#3b3128", `600 70px ${F.hand}`, 512, 90), 0, 2.55, 2.64);
   B(gL, .6, .8, .05, m.dw, -1.8, 0, 3.2).rotation.y = .3; PL(gL, .5, .62, TXT("Buka!", "#efe6d2", "#3b3128", `600 64px ${F.hand}`, 200, 250), -1.8, .48, 3.23, .3);
   B(gL, 2.2, .5, .8, m.wood, -1.2, FL, 1.2); for (let i = 0; i < 6; i++) prod(gL, -2 + i * .32, FL + .5, 1.2 + (i % 2 ? .15 : -.15), i);
-
+ 
   // stage 2a — branded facade
   const gSt = G(shop);
   B(gSt, 6.4, .9, .4, m.ch, 0, 2.8, 2.45); B(gSt, 6.4, .06, .42, m.acc, 0, 2.74, 2.45);
@@ -118,7 +118,7 @@ export function createStoryScene(o: StoryOptions): () => void {
   [-2.6, 2.7].forEach((x) => { C(gSt, .2, .3, m.ch, x, .02, 3.15, .16); const s = new T.Mesh(new T.SphereGeometry(.22, 14, 10), M(0x5d7355, .9)); s.position.set(x, .5, 3.15); s.castShadow = true; gSt.add(s); });
   [[-2.4, .2], [-1.8, .35], [-1.2, .5]].forEach((a, i) => { B(gSt, .5, a[1], .5, m.off, a[0], FL, 2.1); prod(gSt, a[0], FL + a[1], 2.1, i + 1); });
   fin(gSt);
-
+ 
   // stage 2b — interior branding
   const gBr = G(shop), LT: T.PointLight[] = [];
   B(gBr, 3.4, .02, 2.4, M(0xe6dccb, .95), .1, FL, .8); B(gBr, 3.4, .025, .3, M(0xc9774a, .95), .1, FL, .8);
@@ -131,7 +131,7 @@ export function createStoryScene(o: StoryOptions): () => void {
   LT.push(new T.PointLight(0xffd9a8, 0, 6, 2), new T.PointLight(0xffd9a8, 0, 6, 2)); LT[0].position.set(-1.2, 1.5, 1); LT[1].position.set(1.6, 1.5, 1); LT.forEach((l) => sc.add(l));
   const ped = G(gBr); C(ped, .38, .4, m.off, .7, FL, 1.45); B(ped, .4, .3, .3, m.card, .62, FL + .4, 1.45); B(ped, .4, .04, .31, m.acc, .62, FL + .58, 1.45); B(ped, .3, .22, .25, m.card, .82, FL + .7, 1.45); C(ped, .1, .2, M(0xe8dcc6), .9, FL + .4, 1.55); fin(ped);
   person(gBr, .2, 1.95, 4, 3); person(gBr, -.5, -.9, 0, .4); fin(gBr);
-
+ 
   // stage 3a — checkout
   const gCk = G(shop);
   const cb = B(gCk, 2.2, .55, .8, m.ch, 1.6, FL, .3), ct = B(gCk, 2.3, .05, .9, m.dw, 1.6, FL + .55, .3); cb.userData.o = ct.userData.o = [3, 0, 0];
@@ -143,7 +143,7 @@ export function createStoryScene(o: StoryOptions): () => void {
   const qrT = CT(128, 128, (x) => { x.fillStyle = "#fff"; x.fillRect(0, 0, 128, 128); x.fillStyle = "#111"; for (let i = 0; i < 21; i++) for (let j = 0; j < 21; j++) if (!((i < 8 && j < 8) || (i > 12 && j < 8) || (i < 8 && j > 12)) && Math.abs(Math.sin(i * 7.3 + j * 3.1) * 100 % 2) > 1) x.fillRect(10 + i * 5.3, 10 + j * 5.3, 5.3, 5.3); [[10, 10], [10, 87], [87, 10]].forEach((a) => { x.fillRect(a[0], a[1], 37, 37); x.fillStyle = "#fff"; x.fillRect(a[0] + 5, a[1] + 5, 27, 27); x.fillStyle = "#111"; x.fillRect(a[0] + 11, a[1] + 11, 15, 15); }); });
   const qr = G(gCk); B(qr, .28, .34, .03, m.off, 1.7, FL + .6, .62); PL(qr, .24, .24, qrT.t, 1.7, FL + .8, .636, 0, .4); qr.userData.o = up;
   person(gCk, 1.4, 1.15, 5, Math.PI); person(gCk, 1.0, -.45, 2, Math.PI); fin(gCk);
-
+ 
   // stage 3b — computer + customer data
   const gCp = G(shop); let dg = 0;
   const dash = CT(512, 300, (x, w, h) => {
@@ -161,7 +161,7 @@ export function createStoryScene(o: StoryOptions): () => void {
   B(gCp, .45, .95, .5, m.ch, 2.85, FL, -1.2); for (let i = 0; i < 4; i++) B(gCp, .32, .025, .01, m.led, 2.85, FL + .2 + i * .17, -.945);
   PL(gCp, .4, .1, TXT("DATA PELANGGAN", "#2c2c2f", "#bdb8ab", `600 46px ${F.sans}`, 512, 128), 2.85, FL + 1.02, -.94);
   person(gCp, .55, -.85, 1, -1.1); fin(gCp);
-
+ 
   // stage 4 — take-away annex
   const gTS = G(shop); gTS.position.x = 3; B(gTS, 3.4, .08, 4, m.conc, 1.7, 0, .5); B(gTS, 3.4, 1.7, .15, m.off, 1.7, 0, -1.55); B(gTS, .15, 1.7, 4, m.off, 3.35, 0, .5);
   const gTa = G(shop);
@@ -180,16 +180,16 @@ export function createStoryScene(o: StoryOptions): () => void {
   B(sco, .5, .45, .45, m.off, -.55, .4, 0); B(sco, .52, .08, .46, m.acc, -.55, .62, 0);
   const rd = person(sco, -.05, 0, 5); rd.position.y = .32; sco.userData.o = [8, 0, 0];
   fin(gTa);
-
+ 
   /* ---- branches ---- */
   const BR = [[-12, -1], [11.5, -1], [-6, -12.5], [6.5, -12.5]];
   const BW = BR.map((a) => { const w = G(root); w.position.set(a[0], 0, a[1]); w.add(shop.clone()); w.visible = false; return w; });
-
+ 
   /* ---- life ---- */
   const gLife = G(root);
   const walkers = [[-7, 4.1, 1, .55], [-2, 4.5, 3, -.45], [3, 4.2, 0, .5], [9, 4.7, 5, -.6]].map((a) => ({ g: person(gLife, a[0], a[1], a[2]), v: a[3], i: a[2] }));
   const idle = [person(gLife, -1.2, 2.0, 2), person(gLife, 1.6, 3.6, 4)];
-
+ 
   /* ---- data lines ---- */
   const gD = G(root), LN: Line[] = [];
   const lines: Array<[V3[], number, number, number]> = [
@@ -205,7 +205,7 @@ export function createStoryScene(o: StoryOptions): () => void {
     const pu = new T.Mesh(new T.SphereGeometry(r * 3, 10, 8), new T.MeshBasicMaterial({ color: 0xffe0c8 }));
     gD.add(l1, l2, pu); LN.push({ cu, g1, g2, pu, a: a[1], b: a[2], n: (g1.index as T.BufferAttribute).count });
   });
-
+ 
   /* ---- animation ---- */
   const ss = (p: number, a: number, b: number) => Math.min(1, Math.max(0, (p - a) / (b - a))), eo = (t: number) => 1 - Math.pow(1 - t, 3), eb = (t: number) => 1 + 2.5 * Math.pow(t - 1, 3) + 1.5 * Math.pow(t - 1, 2);
   function stag(g: T.Object3D, t: number, off: V3) {
@@ -231,21 +231,21 @@ export function createStoryScene(o: StoryOptions): () => void {
   const onMove = (e: PointerEvent) => { tx = e.clientX / innerWidth - .5; ty = e.clientY / innerHeight - .5; };
   addEventListener("pointermove", onMove);
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let idx = -1, P = 0, last = performance.now(), time = 0, dgT = 0, raf = 0, dead = false;
-
+  let idx = -1, lgK = -1, P = 0, last = performance.now(), time = 0, dgT = 0, raf = 0, dead = false;
+ 
   function frame(now: number) {
     if (dead) return; raf = requestAnimationFrame(frame);
-    const dt = Math.min(.05, (now - last) / 1000); last = now; time += dt;
+    const dt = Math.min(.05, Math.max(0, (now - last) / 1000)); // rAF timestamp can precede performance.now() on the first frame → clamp to >= 0 last = now; time += dt;
     const tg = o.getProgress(); P = reduce ? tg : P + (tg - P) * Math.min(1, dt * 5); const p = P;
     let ni = 0; STAGE_THRESHOLDS.forEach((t, i) => { if (p >= t - .001) ni = i; }); if (ni !== idx) { idx = ni; o.onStage(ni); }
     // let k = 0; LEGEND_THRESHOLDS.forEach((t, i) => { if (p >= t - .001) k = i; }); if (k !== lgK) { lgK = k; o.onLegend(k); }
-
+ 
     stag(gSt, ss(p, .2, .3), [0, 2.2, 0]); stag(gBr, ss(p, .3, .4), [0, 1.6, 0]); stag(gCk, ss(p, .4, .5), [0, -.4, 0]); stag(gCp, ss(p, .5, .6), [0, -.5, 0]);
     const ta = ss(p, .6, .69); gTS.visible = ta > 0; gTS.scale.x = Math.max(eo(ta), .001); stag(gTa, ss(p, .65, .78), [0, 1.2, 0]);
     BW.forEach((w, i) => { const t = ss(p, .78 + i * .025, .86 + i * .025); w.visible = t > 0; const e = Math.max(eb(t), .001) * .8; w.scale.set(e, e, e); w.position.y = -(1 - eo(t)) * 1.5; });
     const bt = ss(p, .3, .4); LT.forEach((l) => (l.intensity = bt * 1.3 * PLS));
     const on = ss(p, .52, .6); scM.emissiveIntensity = on * .9; dg = eo(ss(p, .52, .8)); dgT += dt; if (on > 0 && dgT > .12) { dgT = 0; dash.r(); }
-    LN.forEach((l, i) => { const t = ss(p, l.a, l.b), c = Math.floor(t * l.n / 3) * 3; l.g1.setDrawRange(0, c); l.g2.setDrawRange(0, c); l.pu.visible = t >= 1; if (t >= 1) l.pu.position.copy(l.cu.getPoint((time * (p > .92 ? .3 : .2) + i * .27) % 1)); });
+    LN.forEach((l, i) => { const t = ss(p, l.a, l.b), c = Math.floor(t * l.n / 3) * 3; l.g1.setDrawRange(0, c); l.g2.setDrawRange(0, c); l.pu.visible = t >= 1; if (t >= 1) l.pu.position.copy(l.cu.getPoint(((time * (p > .92 ? .3 : .2) + i * .27) % 1 + 1) % 1)); });
     walkers.forEach((w) => { const g = w.g; g.position.x += w.v * dt; if (g.position.x > 14) g.position.x = -14; if (g.position.x < -14) g.position.x = 14; g.position.y = Math.abs(Math.sin(time * 6 + w.i)) * .03; g.rotation.y = w.v > 0 ? 1.57 : -1.57; });
     idle.forEach((g, i) => { g.rotation.y = Math.sin(time * .6 + i) * .4 + Math.PI; g.position.y = Math.sin(time * 1.4 + i) * .01; });
     mx += (tx - mx) * .04; my += (ty - my) * .04;
@@ -256,7 +256,7 @@ export function createStoryScene(o: StoryOptions): () => void {
   Promise.all([`600 20px ${F.sans}`, `400 40px ${F.serif}`, `italic 400 40px ${F.serif}`, `600 40px ${F.hand}`].map((f) => document.fonts.load(f)))
     .then(() => { if (!dead) TX.forEach((r) => r()); }).catch(() => {});
   raf = requestAnimationFrame(frame);
-
+ 
   /* ---- cleanup ---- */
   return () => {
     dead = true; cancelAnimationFrame(raf); ro.disconnect(); removeEventListener("pointermove", onMove);
@@ -269,3 +269,4 @@ export function createStoryScene(o: StoryOptions): () => void {
     R.dispose();
   };
 }
+ 

@@ -189,7 +189,7 @@ function AnimatedCard({
               alt=""
               decoding="async"
               loading={index === 0 ? "eager" : "lazy"}
-              className="block h-full w-full rounded-xl object-cover transition-transform duration-500 will-change-transform group-hover:scale-105"
+              className="block work-item h-full w-full rounded-xl object-cover transition-transform duration-500 will-change-transform group-hover:scale-105"
             />
           </div>
         </div>
