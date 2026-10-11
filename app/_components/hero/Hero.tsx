@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
-import Button from "../ui/Button";
+import Button from "../../../src/components/buttons/Button";
 import GoogleLogo from "./GoogleLogo";
 import MapLens from "./MapLens";
 import styles from "./Hero.module.css";

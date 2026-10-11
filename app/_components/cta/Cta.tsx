@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import Button from "../ui/Button";
+import Button from "../../../src/components/buttons/Button";
 import styles from "./Cta.module.css";
 import { MessageCircle } from "lucide-react";
 
