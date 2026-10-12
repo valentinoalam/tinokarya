@@ -10,7 +10,7 @@ import ShowcaseSection from "./_components/Portfolio/showcase-section";
 import Pain from "./_components/Pain/view";
 import Story from "./_components/story/storySection";
 import About from "./_components/About/view";
-import InteractiveBook from "@/components/interactiveBook/ebook2";
+import InteractiveBook from "@/components/interactiveBook/InteractiveBook";
 export default function Page() {
   return (
     <>

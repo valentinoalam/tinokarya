@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef, useCallback } from "react"
 import type React from "react"
 import "./cardboard-nav.css"
+import "./landing-fold.css"
 
 import { usePathname } from "next/navigation"
 import { gsap } from "gsap"
@@ -9,7 +10,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Menu, X, Sparkles, ChevronRight, ChevronLeft, ChevronDown, Home } from "lucide-react"
 import { ShinyButton } from "@/components/ui/shiny-button"
 import Logo from "../logo/Logo"
-import { defaultNavData, flattenDefaultNavForMobile } from "./navigationData"
+import { defaultNavData, flattenDefaultNavForMobile, landingPageData } from "./navigationData"
 import { type NavItem, NavLink } from "./navigationMenu"
 
 import Link from "next/link"
@@ -21,6 +22,7 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { Separator } from "../ui/separator"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -32,7 +34,7 @@ const DockNavigation = dynamic(() => import("./dockNav"), {
 interface MobileNavItem {
   label: string
   href?: string
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>> | null
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>> | string | null
   children?: MobileNavItem[]
   type?: "dropdown" | "featured" | "button" | "link"
   description?: string
@@ -123,9 +125,9 @@ export default function Navbar() {
   const buttonItems = navigationData.filter(item => item.type === "button")
 
   const closeMobileMenu = () => {
-    setIsOpen(false)
+    const t = setTimeout(() =>  setIsOpen(false), 900)
+    return () => clearTimeout(t)
   }
-
   async function handleNavChange(item: MobileNavItem[]) {
     setCurrentLevel(item)
     setNavHistory([])
@@ -260,14 +262,6 @@ export default function Navbar() {
     setCurrentLevel(items)
   }
 
-  const navigateBack = () => {
-    if (navHistory.length > 0) {
-      const previousLevel = navHistory[navHistory.length - 1]
-      setCurrentLevel(previousLevel)
-      setNavHistory(prev => prev.slice(0, -1))
-    }
-  }
-
   const handleMobileLinkClick = (item: MobileNavItem) => {
     if (!useFlatNavigation && item.children && item.children.length > 0) {
       // Navigate to submenu - only in multi-level mode
@@ -277,12 +271,6 @@ export default function Navbar() {
       closeMobileMenu()
       resetMobileNav()
     }
-  }
-
-  // Handle switch change
-  const handleSwitchChange = (checked: boolean) => {
-    setUseFlatNavigation(checked)
-    setNavHistory([])
   }
 
   const renderMobileItem = (item: MobileNavItem) => {
@@ -332,9 +320,9 @@ export default function Navbar() {
                 />
               </div>
             )}
-            {item.icon && !item.image && (
+            {item.icon && (
               <div className="cb-tile">
-                <item.icon className="w-4 h-4" />
+                {typeof item.icon === "string"? item.icon : <item.icon className="w-4 h-4" />}
               </div>
             )}
             <div className="flex flex-col flex-1 min-w-0">
@@ -443,63 +431,18 @@ export default function Navbar() {
       >
         {/* Lipatan 1: judul + mode */}
         <div className="cb-fold" style={foldDelay(0, 0.24)}>
-          <Face>
-            <div className="flex items-center justify-between px-4 py-3">
-              <div className="flex items-center gap-2 font-bold text-lg">
-                <Sparkles className="w-5 h-5 fill-accent" />
-                Menu
-              </div>
-              <div className="flex items-center gap-2">
-                <Label htmlFor="nav-mode" className="text-xs whitespace-nowrap">
-                  {useFlatNavigation? "Flat Nav": "Multilevel Nav"}
-                </Label>
-                <Switch
-                  id="nav-mode"
-                  checked={useFlatNavigation}
-                  onCheckedChange={handleSwitchChange}
-                  className="scale-75"
-                />
-              </div>
-            </div>
-          </Face>
+          
 
           {/* Lipatan 2: breadcrumb + daftar */}
           <div className="cb-fold" style={foldDelay(0.22, 0.12)}>
+            {isDefaultRoute && (
+              <LandingFold
+                items={landingPageData as MobileNavItem[]}
+                onNavigate={closeMobileMenu}
+                menuOpen={isOpen}
+              />
+            )}
             <Face className="cb-crease" clip={hasActions ? undefined : "cb-clip-end"}>
-              {!useFlatNavigation && navHistory.length > 0 && (
-                <div className="flex items-center gap-2 px-3 py-2">
-                  <button
-                    onClick={navigateBack}
-                    className="cb-chip flex items-center gap-1 px-3 py-1.5 text-sm font-bold"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                    Back
-                  </button>
-
-                  {navHistory.length === 1 ? (
-                    <button
-                      onClick={resetMobileNav}
-                      className="cb-chip flex items-center gap-2 px-3 py-1.5 text-sm font-bold"
-                    >
-                      <Home className="w-4 h-4" />
-                      Main Menu
-                    </button>
-                  ) : (
-                    <div className="cb-ink-soft text-sm">Level {navHistory.length + 1}</div>
-                  )}
-                </div>
-              )}
-
-              {/* <div className="px-4 pt-3 pb-1">
-                <div className="text-xs font-bold">
-                  {useFlatNavigation ? "Flat Navigation Mode" : "Multi-level Navigation Mode"}
-                </div>
-                <div className="cb-ink-soft text-xs">
-                  {useFlatNavigation
-                    ? "All items shown in a single list"
-                    : "Navigate through categories with hierarchy"}
-                </div>
-              </div> */}
 
               <div className="cb-m-scroll">
                 <div className="p-3 space-y-2">
@@ -512,23 +455,14 @@ export default function Navbar() {
                       {renderMobileItem(item)}
                     </div>
                   ))}
-
-                  {/* Show home button when in submenu - multi-level mode only */}
-                  {!useFlatNavigation && navHistory.length > 0 && (
-                    <button
-                      onClick={resetMobileNav}
-                      className="cb-chip flex items-center gap-3 w-full px-3 py-3 text-base font-bold mt-3"
-                    >
-                      <Home className="w-5 h-5" />
-                      Return to Main Menu
-                    </button>
-                  )}
+                  
                 </div>
               </div>
             </Face>
-
+            
             {/* Lipatan 3: tombol aksi (flap ujung kardus) */}
             {hasActions && (
+              
               <div className="cb-fold" style={foldDelay(0.44, 0)}>
                 <Face className="cb-crease" clip="cb-clip-end" bodyClassName="pb-3">
                   <div className="p-4 space-y-2">
@@ -747,6 +681,74 @@ function CardboardDesktopMenu({ items, className }: { items: NavItem[]; classNam
         })}
       </ul>
     </nav>
+  )
+}
+
+// Navigasi landing page di mobile: satu lipatan kertas yang membuka/menutup ke bawah.
+// Tiap item menempati satu baris penuh (tanpa ikon).
+function LandingFold({
+  items,
+  onNavigate,
+  menuOpen,
+}: {
+  items: MobileNavItem[]
+  onNavigate: () => void
+  menuOpen: boolean
+}) {
+  const [open, setOpen] = useState(false)
+
+  // Setelah menu mobile selesai menutup, kembalikan lipatan ke keadaan tertutup
+  // (ditunda agar tidak berebut animasi dengan penutupan menu utama)
+  useEffect(() => {
+    if (!menuOpen) setOpen(false)
+  }, [menuOpen])
+
+  const links = items.filter(item => !!item.href)
+  if (links.length === 0) return null
+
+  return (
+    <>
+      <Face>
+        <button
+          type="button"
+          className="lp-head"
+          aria-expanded={open}
+          aria-controls="cb-landing-fold"
+          onClick={() => setOpen(v => !v)}
+        >
+          <span className="font-bold text-base">Landing Page</span>
+          <span className="flex items-center gap-2">
+            <span className="cb-ink-soft text-xs">{links.length} bagian</span>
+            <ChevronDown className="lp-chev w-4 h-4" />
+          </span>
+        </button>
+      </Face>
+
+      <div id="cb-landing-fold" className="lp-fold cb-paper" data-open={open} aria-hidden={!open}>
+        <div className="lp-fold-inner">
+          <Face className="cb-crease">
+            <div className="lp-list">
+              {links.map((item, j) => (
+                <div
+                  key={`${item.label}-${j}`}
+                  className="lp-item"
+                  style={{ "--i": j } as React.CSSProperties}
+                >
+                  <MobileNavLink
+                    href={item.href as string}
+                    onClick={onNavigate}
+                    className="cb-chip lp-chip justify-around"
+                  >
+                    <span >{item.label}</span>
+                    {/* {typeof item.icon === "string" && <span className="w-1/2 "> {item.icon}</span>} */}
+                  </MobileNavLink>
+                </div>
+              ))}
+            </div>
+          </Face>
+        </div>
+      </div>
+    </>
   )
 }
 

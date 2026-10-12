@@ -1,0 +1,111 @@
+/* ===== Landing Page: satu lipatan kertas di menu mobile =====
+   Tanpa transform 3D agar tidak berbenturan dengan animasi lipat menu utama (.cb-fold). */
+
+/* Header */
+.lp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 42px;
+  padding: 0.375rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.lp-chev {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.lp-head[aria-expanded="true"] .lp-chev {
+  transform: rotate(180deg);
+}
+
+/* Lipatan: tinggi, geser kertas, dan bayangan memakai durasi + easing yang SAMA,
+   sehingga item menu di bawahnya bergeser mengikuti tanpa terlihat lepas. */
+.lp-fold {
+  --lp-dur: 0.4s;
+  --lp-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden; /* tidak bisa difokus saat tertutup */
+  transition:
+    grid-template-rows var(--lp-dur) var(--lp-ease),
+    visibility 0s linear var(--lp-dur);
+}
+.lp-fold[data-open="true"] {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition:
+    grid-template-rows var(--lp-dur) var(--lp-ease),
+    visibility 0s;
+}
+.lp-fold-inner {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Kertas meluncur keluar dari bawah header saat terbuka */
+.lp-fold-inner > * {
+  transform: translateY(-30%);
+  opacity: 0;
+  transition:
+    transform var(--lp-dur) var(--lp-ease),
+    opacity calc(var(--lp-dur) * 0.7) linear;
+}
+.lp-fold[data-open="true"] .lp-fold-inner > * {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Bayangan lipatan di sisi atas, memudar saat terbuka */
+.lp-fold-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent 60%);
+  opacity: 1;
+  transition: opacity var(--lp-dur) linear;
+}
+.lp-fold[data-open="true"] .lp-fold-inner::after {
+  opacity: 0;
+}
+
+/* Daftar: satu item = satu baris penuh */
+.lp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.375rem 0.5rem;
+}
+.lp-item {
+  opacity: 0;
+  transition: opacity 0.12s linear; /* menutup: hilang cepat bersamaan */
+}
+.lp-fold[data-open="true"] .lp-item {
+  opacity: 1;
+  /* membuka: muncul berurutan dari atas */
+  transition: opacity 0.25s linear calc(var(--i) * 40ms + 0.1s);
+}
+.lp-chip {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-fold,
+  .lp-fold-inner > *,
+  .lp-fold-inner::after,
+  .lp-item,
+  .lp-chev {
+    transition: none !important;
+  }
+}

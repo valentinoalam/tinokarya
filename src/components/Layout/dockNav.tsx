@@ -12,9 +12,6 @@ import useScrollContext from "@/hooks/useScrollTracking"
 
 const DockNav = ({ className, isDefaultRoute }: { className?: string; isDefaultRoute: boolean }) => {
   const { isOut1stScreen, scrollY } = useScrollContext()
-  useEffect(() => {
-    console.log("[v0] DockNav scroll values:", scrollY, isOut1stScreen)
-  }, [scrollY, isOut1stScreen])
 
   if (!isDefaultRoute) {
     return null

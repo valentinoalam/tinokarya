@@ -180,6 +180,7 @@
   transition: transform 0.5s cubic-bezier(0.5, 0, 0.9, 0.5);
   transition-delay: var(--dc, 0s);
 }
+
 [data-cb-open="true"] .cb-fold {
   transform: rotateX(0deg);
   transition-duration: 0.6s;
@@ -283,6 +284,7 @@
   right: 1.125rem;
   top: calc(100% - 2px);
 }
+
 .cb-m-scroll {
   max-height: min(50dvh, 26rem);
   overflow-y: auto;

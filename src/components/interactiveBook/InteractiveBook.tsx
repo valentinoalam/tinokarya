@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Page from './page';
 import './InteractiveBook.css';
+import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 
 // Harus sama dengan jumlah lembar di pageContents (page.tsx)
 const TOTAL_PAGES = 5;
+
+const NEW_LINE = "“Kami memahami masalah Anda, dan kami memiliki sesuatu yang dapat membantu.”";
 
 // "View" = sisi buku yang sedang dilihat. Urutannya:
 // 0 = sampul depan (kanan), 1 = sisi kiri setelah sampul dibuka, 2 = sisi kanan lembar berikutnya, dst.
@@ -17,6 +19,9 @@ const COMPACT_QUERY = '(max-width: 899px)';
 type Mode = 'wide' | 'compact';
 
 const InteractiveBook = () => {
+  const root = useRef<HTMLElement>(null);
+  const oldRef = useRef<HTMLParagraphElement>(null);
+  const newRef = useRef<HTMLParagraphElement>(null);
   const shifterRef = useRef<HTMLDivElement | null>(null);
   const pagesRef = useRef<(HTMLDivElement | null)[]>([]);
   const isFirstRun = useRef(true);
@@ -27,6 +32,34 @@ const InteractiveBook = () => {
   // Jumlah lembar yang sudah dibalik pada view ini
   const turned = Math.ceil(view / 2);
 
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add(MOTION_OK, () => {
+        // 1) Kalimat lama dicoret saat masuk layar.
+        gsap.fromTo(
+          oldRef.current,
+          { textDecorationColor: "rgba(18,33,58,0)" },
+          {
+            textDecorationColor: "rgba(18,33,58,0.9)", duration: 0.9, ease: "power2.inOut",
+            scrollTrigger: { trigger: oldRef.current, start: "top 80%", toggleActions: "play none none reverse" },
+          }
+        );
+
+        // 2) Kalimat baru "menyala" kata demi kata mengikuti scroll.
+        gsap.fromTo(
+          "[data-word]",
+          { opacity: 0.15 },
+          {
+            opacity: 1, ease: "none", stagger: 0.12,
+            scrollTrigger: { trigger: newRef.current, start: "top 82%", end: "bottom 50%", scrub: true },
+          }
+        );
+      });
+      return () => mm.revert();
+    },
+    { scope: root }
+  );
   // Deteksi layar: lebar (2 halaman) atau ringkas (1 halaman + tombol)
   useEffect(() => {
     const mq = window.matchMedia(COMPACT_QUERY);
@@ -109,7 +142,18 @@ const InteractiveBook = () => {
   }, [goNext, goPrev]);
 
   return (
-    <div className="book-stage">
+    <section className="book-stage" ref={root}>
+      <div className="wrap lg:w-1/2 absolute left-0 -top-3">
+        <h2 style={{ fontSize: "clamp(1.9rem, 4.2vw, 2.8rem)"}} className='max-w-[20ch] mb-8' data-reveal>Website bisa bercerita, bukan hanya menjual.</h2>
+        <p className="hidden md:inline font-display tracking-wide font-medium leading-4 line-through decoration-3 text-blue-950 mx-2 max-w-[24ch]" style={{fontSize: "clamp(1.4rem, 3vw, 1.6rem)"}} ref={oldRef}>“Ini produk kami. Silakan beli.”</p>
+        <p className="hidden md:inline font-display tracking-wide font-extrabold leading-18 mt-4" style={{fontSize: "clamp(1.9rem, 4.6vw, 3.3rem)"}} ref={newRef}>
+          {NEW_LINE.split(" ").map((w, i) => (
+            <span key={i}>
+              <span data-word>{w}</span>{" "}
+            </span>
+          ))}
+        </p>
+      </div>
       <div ref={shifterRef} className="book-shifter">
         <div className="book">
           <div className="book__spine"></div>
@@ -151,7 +195,7 @@ const InteractiveBook = () => {
           </button>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
