@@ -73,7 +73,7 @@ export default abstract class BaseScene extends Phaser.Scene {
     (this.player.body as Phaser.Physics.Arcade.Body).setSize(16, 12).setOffset(4, 20);
     this.physics.add.collider(this.player, this.solids);
 
-    this.keys = this.input.keyboard!.addKeys(
+    this.keys = this.input?.keyboard?.addKeys(
       'W,A,S,D,UP,DOWN,LEFT,RIGHT,E,SPACE,ENTER',
     ) as Record<string, Phaser.Input.Keyboard.Key>;
 

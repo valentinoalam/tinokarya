@@ -435,13 +435,19 @@ export default function Navbar() {
 
           {/* Lipatan 2: breadcrumb + daftar */}
           <div className="cb-fold" style={foldDelay(0.22, 0.12)}>
-            {isDefaultRoute && (
+            {isDefaultRoute ? 
               <LandingFold
                 items={landingPageData as MobileNavItem[]}
                 onNavigate={closeMobileMenu}
                 menuOpen={isOpen}
               />
-            )}
+              : <Face>
+                <MobileNavLink
+                  href="/"
+                  onClick={closeMobileMenu}
+                  className="cb-chip group flex items-center gap-3 w-full px-4 py-3 text-left"
+                >Home</MobileNavLink></Face>
+              }
             <Face className="cb-crease" clip={hasActions ? undefined : "cb-clip-end"}>
 
               <div className="cb-m-scroll">

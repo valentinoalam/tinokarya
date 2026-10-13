@@ -69,8 +69,8 @@ export const infos: Record<string, Info> = {
   sign: {
     title: '🪧 Papan Petunjuk',
     body: [
-      'Gerak: WASD atau tombol panah. Interaksi: E, Spasi, atau Enter.',
-      'Misi: ambil uang di rumah? Tidak perlu, dompet sudah terisi. Pergilah ke Indomaret di ujung kanan jalan dan bayar listrik.',
+      'Gerak: tombol panah. Interaksi: Enter. Menu Misi & Tas: Shift. Bunyikan lonceng: Spasi. Tutup dialog: Esc.',
+      'Misi: pergi ke Indomaret di ujung kanan jalan dan bayar listrik di kasir.',
       'Kamu juga bisa belanja: setiap barang di rak adalah salah satu proyek saya.',
     ],
   },

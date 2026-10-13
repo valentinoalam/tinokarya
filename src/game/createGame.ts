@@ -11,6 +11,7 @@ export function createGame(parent: HTMLElement, keyboardTarget: HTMLElement) {
     width: 640,
     height: 480,
     backgroundColor: '#10242b',
+    pixelArt: true,
     roundPixels: true,
     physics: { default: 'arcade', arcade: { debug: false } },
     scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },

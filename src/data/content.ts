@@ -48,14 +48,14 @@ export const infos: Record<string, Info> = {
   shelf: {
     title: '📚 Pendidikan & Pengalaman',
     body: [
-      '2018–2022 · S1 Teknik Informatika, Universitas Contoh.',
-      '2022–sekarang · Frontend Developer di Perusahaan Contoh.',
+      '2018–2022 · S1 Teknik Lukis, Universitas Seni Ih.',
+      '2022–sekarang · Frontend Developer di Perusahaan front-store.',
     ],
   },
   trophy: {
     title: '🏆 Pencapaian',
     body: [
-      'Juara 2 Hackathon Contoh 2023.',
+      'Juara 2 Hackathon Keliling Kamar 2023.',
       'Kontributor open source dengan 500+ bintang di GitHub.',
     ],
   },
