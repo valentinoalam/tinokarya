@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
 import { Check, X, Search, BookOpen, HelpCircle, ChevronRight, MessageCircle } from "lucide-react";
 
 const WA_NUMBER = "6281234567890"; // samakan dengan page.tsx
@@ -18,6 +18,7 @@ export function Dialog({
   children: ReactNode;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
+  const tid = useId();
   useEffect(() => {
     const d = ref.current;
     if (!d) return;
@@ -30,11 +31,11 @@ export function Dialog({
       ref={ref}
       onClose={onClose}
       onClick={(e) => e.target === ref.current && onClose()}
-      aria-labelledby="dlg-title"
+      aria-labelledby={tid}
       className="m-auto w-[min(680px,calc(100vw-2rem))] max-h-[85vh] rounded-2xl bg-white p-0 text-[#14202B] shadow-2xl backdrop:bg-[#14202B]/60"
     >
       <div className="flex items-start justify-between gap-4 border-b border-[#14202B]/10 p-5 sm:p-6">
-        <h2 id="dlg-title" className="text-xl font-bold leading-snug sm:text-2xl" style={{ fontFamily: "var(--font-display)" }}>
+        <h2 id={tid} className="text-xl font-bold leading-snug sm:text-2xl" style={{ fontFamily: "var(--font-display)" }}>
           {title}
         </h2>
         <button
@@ -216,7 +217,7 @@ export function HelpCenter() {
               ["faq", "FAQ", HelpCircle],
             ] as const
           ).map(([k, label, Icon]) => (
-            <button
+            <button suppressHydrationWarning
               key={k}
               role="tab"
               aria-selected={tab === k}
@@ -229,7 +230,7 @@ export function HelpCenter() {
             </button>
           ))}
         </div>
-        <label className="relative min-w-[220px] flex-1 sm:max-w-sm">
+        <label className="relative min-w-55 flex-1 sm:max-w-sm">
           <span className="sr-only">Cari di pusat bantuan</span>
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#4A5968]" aria-hidden />
           <input
