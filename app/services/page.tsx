@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
-import { Check, Minus, Plus, Zap, MessageCircle } from "lucide-react";
+import { Check, Minus, Plus, Zap, MessageCircle, ClipboardList } from "lucide-react";
+import { HelpCenter, ScopeDialog } from "./knowledge";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display" });
 const body = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
@@ -189,6 +190,7 @@ export default function PricingPage() {
   const [qty, setQty] = useState<Record<string, number>>({});
   const [express, setExpress] = useState(false);
   const [complexity, setComplexity] = useState(50); // 0–100 untuk titik estimasi
+  const [scopeOpen, setScopeOpen] = useState(false);
 
   const packages = kind === "landing" ? LANDING : STORE;
   const pkg = packages.find((p) => p.id === sel[kind])!;
@@ -550,13 +552,23 @@ export default function PricingPage() {
               >
                 <MessageCircle className="h-5 w-5" aria-hidden /> Kirim estimasi lewat WhatsApp
               </a>
+              <button
+                onClick={() => setScopeOpen(true)}
+                className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold ring-1 ring-[#14202B]/20 transition hover:bg-[#14202B]/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2F5BFF]"
+              >
+                <ClipboardList className="h-5 w-5" aria-hidden /> Lihat ruang lingkup proyek
+              </button>
               <p className="mt-3 text-xs text-[#4A5968]">
                 Angka final ditentukan setelah diskusi kebutuhan. Estimasi ini belum termasuk biaya pihak ketiga seperti domain dan hosting.
               </p>
             </div>
           </aside>
         </div>
+
+        <HelpCenter />
       </div>
+
+      <ScopeDialog open={scopeOpen} onClose={() => setScopeOpen(false)} pkgId={pkg.id} pkgName={pkg.name} />
     </main>
   );
 }
