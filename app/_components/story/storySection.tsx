@@ -72,10 +72,10 @@ const Pain = () => {
       const direction = currentIndex > previousIndex ? "right" : "left";
       const slideDistance = halfWidth;
 
-      gsap.set(previousContent, {
-        x: 0,
-        opacity: 1,
-      });
+      // gsap.set(previousContent, {
+      //   x: 0,
+      //   opacity: 1,
+      // });
       // Slide out the previous content
       const outAnimation = gsap.to(previousContent, {
         x: direction === "right" ? `-${slideDistance}px` : `${slideDistance}px`,
@@ -124,7 +124,7 @@ const Pain = () => {
   };
   
   return (
-    <div ref={sectionRef} className="overflow-y-visible overflow-x-hidden z-10 space-y-11">
+    <div ref={sectionRef} className="overflow-y-visible overflow-x-hidden no-scrollbar pt-10 z-10 space-y-11">
       <Tabs defaultValue={cerita_bergambar[0].judul} className="w-full space-y-6 container relative mx-auto">
         <TabsList className="bg-transparent w-full grid-cols-4 gap-4 justify-evenly flex">
           {cerita_bergambar.map((cerita, index) => (
@@ -134,7 +134,8 @@ const Pain = () => {
           ))}
         </TabsList>
         {cerita_bergambar.map((cerita, index) => (
-          <TabsContent key={index} value={cerita.judul} className={`relative h-112.5 py-9 rounded-2xl border-2 border-yellow-500/20 ${getBackgroundColor(currentIndex)} transition-colors delay-1000 duration-1000`}>
+          <TabsContent key={index} value={cerita.judul} className="relative h-112.5 py-9 overflow-y-visible">
+            <div className={`absolute h-full w-full rounded-2xl top-0 mask-radial-[50%_90%] mask-radial-from-80% mask-radial-at-center ${getBackgroundColor(currentIndex)} transition-colors delay-1000 duration-1000`} />
             {/* Previous Content */}
             {previousIndex !== index && (
               <StoryCarousel ref={previousContentRef} slides={cerita_bergambar[previousIndex].slides} />

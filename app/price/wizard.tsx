@@ -6,6 +6,7 @@ import { Dialog } from "./knowledge";
 
 const WA_NUMBER = "6281234567890"; // samakan dengan page.tsx
 const EXPRESS_RATE = 0.3;
+export const UMKM_RATE = 0.5;
 
 /* ---------- Tooltip (muncul saat hover, fokus keyboard, atau tap) ---------- */
 export function Tip({
@@ -72,6 +73,7 @@ export const TIPS: Record<string, string> = {
   "store:n8n": "Setiap order atau lead baru dikirim sebagai notifikasi ke WhatsApp admin, Telegram, atau dicatat di Google Sheets.",
   "store:i18n": "Penerjemahan dan penyiapan seluruh halaman untuk satu bahasa tambahan. Dihitung per bahasa.",
   "store:seo": "Riset kata kunci dan penulisan konten profil serta deskripsi produk agar lebih mudah ditemukan di Google.",
+  umkm: "Diskon 50% dari total biaya proyek untuk usaha mikro, kecil, dan menengah. Dibuktikan dengan dokumen usaha seperti NIB atau profil usaha yang bisa diverifikasi.",
   complexity: "Geser untuk menentukan titik estimasi di dalam kisaran harga. Semakin banyak halaman, interaksi, atau integrasi, semakin ke kanan.",
   dp: "Pembayaran awal 50% sebelum proyek dimulai, sekaligus mengamankan jadwal pengerjaan.",
   pelunasan: "50% sisanya dibayar setelah proyek selesai diuji dan siap go-live.",
@@ -84,6 +86,24 @@ export const TIPS: Record<string, string> = {
   "spec:Laporan": "Ringkasan penjualan yang bisa dilihat atau diekspor untuk keperluan keuangan.",
   "spec:Support": "Masa bantuan perbaikan dan pendampingan setelah toko go-live.",
 };
+
+export function UmkmToggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) {
+  return (
+    <label
+      className={`flex cursor-pointer items-start gap-3 rounded-xl p-3.5 transition ${
+        checked ? "bg-[#1FA37F]/10 ring-2 ring-[#1FA37F]" : "ring-1 ring-[#14202B]/15 hover:ring-[#1FA37F]/60"
+      }`}
+    >
+      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-4 w-4 accent-[#1FA37F]" />
+      <span className="text-sm">
+        <span className="flex items-center gap-1.5 font-semibold">
+          Usaha saya UMKM, diskon 50% <InfoTip text={TIPS.umkm} align="left" />
+        </span>
+        <span className="block text-[#4A5968]">Berlaku untuk total biaya proyek. Perlu verifikasi dokumen usaha.</span>
+      </span>
+    </label>
+  );
+}
 
 /* ---------- Data wizard ---------- */
 type Kind = "landing" | "store";
@@ -144,13 +164,14 @@ export function QuoteWizard({
   landing: P[];
   store: P[];
   addons: Record<Kind, A[]>;
-  onApply: (kind: Kind, pkgId: string, qty: Record<string, number>, express: boolean, complexity: number) => void;
+  onApply: (kind: Kind, pkgId: string, qty: Record<string, number>, express: boolean, complexity: number, umkm: boolean) => void;
 }) {
   const [step, setStep] = useState(0);
   const [kind, setKind] = useState<Kind | null>(null);
   const [level, setLevel] = useState<number | null>(null);
   const [feats, setFeats] = useState<string[]>([]);
   const [urgent, setUrgent] = useState(false);
+  const [umkm, setUmkm] = useState(false);
 
   const k: Kind = kind ?? "landing";
   const steps = k === "store" ? ["Jenis", "Skala", "Fitur", "Hasil"] : ["Jenis", "Skala", "Fitur", "Waktu", "Hasil"];
@@ -182,14 +203,20 @@ export function QuoteWizard({
       max *= 1 + EXPRESS_RATE;
     }
     const frac = Math.min(1, 0.15 + 0.1 * picked.length);
-    return { pkg, min, max, est: min + (max - min) * frac, frac, lines, qty, express, raisedBy };
-  }, [k, level, feats, urgent, landing, store, addons]);
+    const estGross = min + (max - min) * frac;
+    if (umkm) {
+      min *= 1 - UMKM_RATE;
+      max *= 1 - UMKM_RATE;
+    }
+    return { pkg, min, max, est: min + (max - min) * frac, estGross, frac, lines, qty, express, raisedBy };
+  }, [k, level, feats, urgent, umkm, landing, store, addons]);
 
   const wa = encodeURIComponent(
     [
       `Halo, saya sudah mencoba kalkulator estimasi dan hasilnya paket *${r.pkg.name}*.`,
       r.lines.length ? `Tambahan: ${r.lines.map((l) => l.name).join(", ")}` : "",
       r.express ? "Express delivery: ya" : "",
+      umkm ? "Diskon UMKM 50%: ya (siap kirim dokumen usaha)" : "",
       `Kisaran: ${range(r.min, r.max, r.pkg.open)}`,
     ]
       .filter(Boolean)
@@ -202,6 +229,7 @@ export function QuoteWizard({
     setLevel(null);
     setFeats([]);
     setUrgent(false);
+    setUmkm(false);
   };
 
   const Choice = ({ on, onClick, title, hint }: { on: boolean; onClick: () => void; title: string; hint: string }) => (
@@ -229,7 +257,7 @@ export function QuoteWizard({
         ))}
       </div>
 
-      <div className="mt-6 min-h-[260px]">
+      <div className="mt-6 min-h-65">
         {step === 0 && (
           <>
             <h3 className="mb-4 text-lg font-bold">Website apa yang Anda butuhkan?</h3>
@@ -309,10 +337,16 @@ export function QuoteWizard({
                 Paket dinaikkan dari pilihan skala Anda karena fitur: {r.raisedBy.join(", ")}.
               </p>
             )}
+            <div className="mt-4">
+              <UmkmToggle checked={umkm} onChange={setUmkm} />
+            </div>
             <p className="mt-4 text-3xl font-bold tabular-nums" style={{ fontFamily: "var(--font-display)" }}>
               {idr(r.est)}
             </p>
-            <p className="text-sm text-[#4A5968]">Kisaran {range(r.min, r.max, r.pkg.open)}</p>
+            <p className="text-sm text-[#4A5968]">
+              Kisaran {range(r.min, r.max, r.pkg.open)}
+              {umkm && <span className="ml-2 line-through">{idr(r.estGross)}</span>}
+            </p>
 
             <ul className="mt-4 space-y-2 border-t border-[#14202B]/10 pt-4 text-sm">
               <li className="flex justify-between gap-3">
@@ -329,6 +363,12 @@ export function QuoteWizard({
                 <li className="flex items-center justify-between gap-3 text-[#B5790A]">
                   <span className="flex items-center gap-1"><Zap className="h-4 w-4" aria-hidden /> Express delivery</span>
                   <span>+30%</span>
+                </li>
+              )}
+              {umkm && (
+                <li className="flex justify-between gap-3 text-[#157A5E]">
+                  <span>Diskon UMKM</span>
+                  <span>−50%</span>
                 </li>
               )}
             </ul>
@@ -381,7 +421,7 @@ export function QuoteWizard({
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => {
-                onApply(k, r.pkg.id, r.qty, r.express, r.frac * 100);
+                onApply(k, r.pkg.id, r.qty, r.express, r.frac * 100, umkm);
                 onClose();
               }}
               className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold ring-1 ring-[#14202B]/20 hover:bg-[#14202B]/5"

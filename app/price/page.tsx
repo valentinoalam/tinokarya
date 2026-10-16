@@ -1,13 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import { Check, Minus, Plus, Zap, MessageCircle, ClipboardList, Sparkles } from "lucide-react";
 import { HelpCenter, ScopeDialog } from "./knowledge";
-import { QuoteWizard, Tip, InfoTip, TIPS } from "./wizard";
-
-const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display" });
-const body = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
+import { QuoteWizard, Tip, InfoTip, TIPS, UmkmToggle, UMKM_RATE } from "./wizard";
 
 /* ---------- Konfigurasi ---------- */
 const WA_NUMBER = "6281234567890"; // ganti dengan nomor WhatsApp Anda
@@ -194,9 +190,10 @@ export default function PricingPage() {
   const [complexity, setComplexity] = useState(50); // 0–100 untuk titik estimasi
   const [scopeOpen, setScopeOpen] = useState(false);
   const [wizardOpen, setWizardOpen] = useState(false);
- 
+  const [umkm, setUmkm] = useState(false);
 
   const packages = kind === "landing" ? LANDING : STORE;
+  
   const pkg = packages.find((p) => p.id === sel[kind])!;
   const addons = ADDONS[kind];
   const key = (id: string) => `${kind}:${id}`;
@@ -217,16 +214,22 @@ export default function PricingPage() {
       min *= 1 + EXPRESS_RATE;
       max *= 1 + EXPRESS_RATE;
     }
+    const estGross = min + ((max - min) * complexity) / 100;
+    if (umkm) {
+      min *= 1 - UMKM_RATE;
+      max *= 1 - UMKM_RATE;
+    }
     const est = min + ((max - min) * complexity) / 100;
-    return { min, max, est, lines, useExpress };
+    return { min, max, est, estGross, lines, useExpress };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pkg, qty, express, complexity, kind]);
-
+  }, [pkg, qty, express, complexity, kind, umkm]);
+ 
   const waText = encodeURIComponent(
     [
       `Halo, saya tertarik dengan paket *${pkg.name}*.`,
       calc.lines.length ? `Add-on: ${calc.lines.map((l) => l.name).join(", ")}` : "",
       calc.useExpress ? "Express delivery: ya" : "",
+      umkm ? "Diskon UMKM 50%: ya (siap kirim dokumen usaha)" : "",
       `Estimasi: ${range(calc.min, calc.max, pkg.open)}`,
     ]
       .filter(Boolean)
@@ -250,15 +253,13 @@ export default function PricingPage() {
 
   return (
     <main
-      className={`${display.variable} ${body.variable} min-h-screen h-max bg-[#F2F5F8] text-[#14202B] antialiased`}
-      style={{ fontFamily: "var(--font-body), system-ui, sans-serif" }}
+      className="min-h-screen h-max bg-[#F2F5F8] text-[#14202B] antialiased"
     >
       <div className="mx-auto h-max max-w-6xl px-5 py-14 sm:py-20">
         {/* Header */}
         <header className="max-w-2xl">
           <h1
             className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl"
-            style={{ fontFamily: "var(--font-display), system-ui, sans-serif" }}
           >
             Website Next.js yang cepat, dengan harga yang bisa Anda hitung sendiri.
           </h1>
@@ -267,7 +268,7 @@ export default function PricingPage() {
           </p>
           <button
             onClick={() => setWizardOpen(true)}
-            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#2F5BFF] px-5 py-3 font-semibold text-white transition hover:bg-[#2548CC] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2F5BFF]"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-5 py-3 font-semibold text-white transition hover:bg-emerald-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2F5BFF]"
           >
             <Sparkles className="h-5 w-5" aria-hidden /> Belum yakin? Hitung estimasi lewat wizard
           </button>
@@ -518,6 +519,7 @@ export default function PricingPage() {
               </p>
               <p className="mt-1 text-sm text-[#4A5968]">
                 Kisaran {range(calc.min, calc.max, pkg.open)}
+                {umkm && <span className="ml-2 line-through">{idr(calc.estGross)}</span>}
               </p>
  
               <div className="mt-5">
@@ -538,6 +540,10 @@ export default function PricingPage() {
                 />
               </div>
  
+              <div className="mt-5">
+                <UmkmToggle checked={umkm} onChange={setUmkm} />
+              </div>
+ 
               <ul className="mt-5 space-y-2 border-t border-[#14202B]/10 pt-4 text-sm">
                 <li className="flex justify-between gap-3">
                   <span>{pkg.name}</span>
@@ -553,6 +559,12 @@ export default function PricingPage() {
                   <li className="flex justify-between gap-3 text-[#B5790A]">
                     <span>Express delivery</span>
                     <span>+30%</span>
+                  </li>
+                )}
+                {umkm && (
+                  <li className="flex justify-between gap-3 text-[#157A5E]">
+                    <span>Diskon UMKM</span>
+                    <span>−50%</span>
                   </li>
                 )}
               </ul>
@@ -598,7 +610,8 @@ export default function PricingPage() {
         landing={LANDING}
         store={STORE}
         addons={ADDONS}
-        onApply={(kd, pkgId, q, ex, cx) => {
+        onApply={(kd, pkgId, q, ex, cx, um) => {
+          setUmkm(um);
           setKind(kd);
           setSel((v) => ({ ...v, [kd]: pkgId }));
           setQty(q);

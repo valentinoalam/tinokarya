@@ -142,6 +142,12 @@ export const defaultNavData: NavItem[] = [
   //   ],
   // },
   {
+    label: "Price",
+    href: "/price",
+    description: "Create pricing tables and calculators",
+    icon: DollarSign,
+  },
+  {
     label: "About",
     href: "/about",
     description: "Learn more about our company and mission",

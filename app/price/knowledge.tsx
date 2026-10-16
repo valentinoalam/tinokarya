@@ -184,6 +184,17 @@ const ITEMS: Item[] = [
       "DP 50% sebelum proyek dimulai, dan pelunasan 50% setelah proyek selesai diuji dan siap go-live. Angka final dipastikan pada proposal setelah diskusi kebutuhan.",
     ],
   },
+  {
+    id: "faq-umkm",
+    kind: "faq",
+    cat: "Diskon",
+    title: "Bagaimana syarat diskon 50% untuk UMKM?",
+    body: [
+      "Usaha mikro, kecil, dan menengah mendapat diskon 50% dari total biaya proyek, termasuk add-on.",
+      ["Siapkan bukti usaha yang bisa diverifikasi, misalnya NIB, surat izin usaha mikro, atau profil usaha aktif.", "Diskon berlaku untuk satu proyek per usaha dan tidak digabung dengan promo lain.", "DP 50% dan pelunasan dihitung dari total setelah diskon."],
+      "Verifikasi dilakukan sebelum DP, sehingga angka pada proposal sudah final.",
+    ],
+  },
 ];
 
 /* ---------- Pusat bantuan ---------- */
@@ -217,7 +228,7 @@ export function HelpCenter() {
               ["faq", "FAQ", HelpCircle],
             ] as const
           ).map(([k, label, Icon]) => (
-            <button suppressHydrationWarning
+            <button
               key={k}
               role="tab"
               aria-selected={tab === k}
