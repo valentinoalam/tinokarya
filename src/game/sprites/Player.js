@@ -1,122 +1,53 @@
+import Phaser from 'phaser';
+
 /**
- * Creates Player, extension of the Sprite Game Object class
- * https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Sprite.html
- *
- * - animations
- * - set world collisions (world bounds, blockedLayer collision)
+ * Jack: sprite pemain dengan animasi jalan & animasi "ring-cowbell" ke 4 arah.
+ * Spritesheet: jack-standing (4 frame), jack-walking (4x4), jack-cowbell (4x2).
  */
+export default class Player extends Phaser.Physics.Arcade.Sprite {
+  constructor({ scene, x, y, key, frame }) {
+    super(scene, x, y, key, frame);
+    scene.add.existing(this);
+    scene.physics.add.existing(this);
 
-export default class Player extends Phaser.GameObjects.Sprite {
+    // The image has a bit of whitespace so use setSize and
+    // setOffset to control the size of the player's body
+    this.setSize(32, 42).setOffset(0, 22);
 
-  constructor( config ) {
-    // super is the constructor inside the class we are extending, ie: Sprite
-    super( config.scene, config.x, config.y, config.key, config.frame );
+    this.setCollideWorldBounds(true);
+    this.setDepth(10);
+    // hitbox kecil di kaki supaya tidak "tersangkut" saat lewat di dekat objek
+    this.body.setSize(16, 12).setOffset(4, 20);
 
-    this.scene = config.scene;
-    this.init();
+    this.createAnims();
+
+    // Set the camera to follow the game object
+    scene.cameras.main.startFollow(this);
+    scene.cameras.main.setZoom(1);
+    
+    // tabrakan dengan layer "blocked" milik Map
+    scene.physics.add.collider(this, scene._MAP.blockedLayer);
   }
 
-  // init player
-  init() {
-    // adding sprite to scene
-    this.scene.add.existing( this );
-
-    // adding physics, this sprite is a dynamic body
-    this.scene.physics.add.existing( this );
-
-    // restrain player to game bounds, so cannot go off screen
-    this.body.setCollideWorldBounds( true );
-
-    this.body.allowGravity = false;
-
-    // setting animations for jack
-    this.setAnimations();
-
-    // adding collision between player and tiled Blocked layer
-    this.scene.physics.add.collider( this, this.scene._MAP.blockedLayer );
-
-    // restrain player to game bounds, so cannot go off screen
-    this.body.setCollideWorldBounds( true );
-  }
-
-  // creating Jack animations
-  // animation keys are defined inside the Background class, when loading the spritesheets
-  setAnimations() {
-    // when player is walking down
-    if ( ! this.scene.anims.get( 'walking-down' ) ) {
-      this.scene.anims.create( {
-        key: 'walking-down',
-        frames: this.scene.anims.generateFrameNames( 'jack-walking', {
-          frames: [ 0, 1 ]
-        }),
-        frameRate: 6,
-        yoyo: true,
-        repeat: -1
-      } );
-    }
-
-    // walking upward
-    if ( ! this.scene.anims.get( 'walking-up' ) ) {
-      this.scene.anims.create( {
-        key: 'walking-up',
-        frames: this.scene.anims.generateFrameNames( 'jack-walking', {
-          frames: [ 2, 3 ]
-        }),
-        frameRate: 6,
-        yoyo: true,
-        repeat: -1
-      } );
-    }
-
-    // walking left
-    if ( ! this.scene.anims.get( 'walking-left' ) ) {
-      this.scene.anims.create( {
-        key: 'walking-left',
-        frames: this.scene.anims.generateFrameNames( 'jack-walking', {
-          frames: [ 4, 5 ]
-        }),
-        frameRate: 6,
-        yoyo: true,
-        repeat: -1
-      } );
-    }
-
-    // walking right
-    if ( ! this.scene.anims.get( 'walking-right' ) ) {
-      this.scene.anims.create( {
-        key: 'walking-right',
-        frames: this.scene.anims.generateFrameNames( 'jack-walking', {
-          frames: [ 6, 7 ]
-        }),
-        frameRate: 6,
-        yoyo: true,
-        repeat: -1
-      } );
-    }
-
-    // creating ring cowbell animation keys
-    const cowbells = [
-      'ring-cowbell-down',
-      'ring-cowbell-up',
-      'ring-cowbell-left',
-      'ring-cowbell-right'
-    ];
-
-    for( let i = 0; i < cowbells.length; i++ ) {
-      let spritesheetKey = 'jack-'.concat( cowbells[i] );
-
-      if ( ! this.scene.anims.get( cowbells[i] ) ) {
-        this.scene.anims.create( {
-          key: cowbells[i],
-          frames: this.scene.anims.generateFrameNames( spritesheetKey, {
-            frames: [ 0, 1, 2, 3, 4, 5 ]
-          }),
-          frameRate: 4,
-          yoyo: false,
-          repeat: 0,
-        } );
+  createAnims() {
+    const anims = this.scene.anims;
+    ['down', 'up', 'left', 'right'].forEach((dir, row) => {
+      if (!anims.exists(`walking-${dir}`)) {
+        anims.create({
+          key: `walking-${dir}`,
+          frames: anims.generateFrameNumbers('jack-walking', { start: row * 4, end: row * 4 + 3, zeroPad: 3 }),
+          frameRate: 8,
+          repeat: -1,
+        });
       }
-    }
+      if (!anims.exists(`ring-cowbell-${dir}`)) {
+        anims.create({
+          key: `ring-cowbell-${dir}`,
+          frames: anims.generateFrameNumbers('jack-cowbell', { start: row * 2, end: row * 2 + 1, zeroPad: 3 }),
+          frameRate: 6,
+          repeat: 2,
+        });
+      }
+    });
   }
-
 }

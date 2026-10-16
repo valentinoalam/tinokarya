@@ -1,36 +1,21 @@
 /**
- * Generates map
+ * Membuat peta dari Tiled JSON.
+ * Layer wajib di Tiled: "background" (visual) dan "blocked" (tile apa pun di sini = tidak bisa dilewati).
+ * Layer "blocked" disembunyikan di game.
+ *
+ * Catatan: class ini sengaja bernama Map (seperti proyek asli), jadi `Map` bawaan JS
+ * tidak bisa dipakai di file yang meng-import-nya.
  */
-
 export default class Map {
-  constructor( config ) {
-    this.scene = config.scene; // the scene this map belongs to
-    this.key = config.key; // tile map name
-    this.imgKey = config.imgKey; // key of image file
-    this.tileSetName = config.tileSetName; // name of tileset
-    this.bgLayerName = config.bgLayerName; // background layer name in tileset
-    this.blockedLayerName = config.blockedLayerName; // blocked layer name in tileset
-    this.tileSize = 20; // size of tile
+  constructor({ scene, key, imgKey, tileSetName, bgLayerName, blockedLayerName }) {
+    this.scene = scene;
+    this.tilemap = scene.make.tilemap({ key });
+    this.tileset = this.tilemap.addTilesetImage(tileSetName, imgKey);
 
-    // console.log( 'in Map.js', config );
-    // console.log( 'in Map.js', this.scene.cache.tilemap.get( this.key ).data );
+    this.backgroundLayer = this.tilemap.createLayer(bgLayerName, this.tileset, 0, 0);
+    this.blockedLayer = this.tilemap.createLayer(blockedLayerName, this.tileset, 0, 0);
 
-    this.createMap();
+    this.blockedLayer.setCollisionByExclusion([-1]);
+    this.blockedLayer.setVisible(false);
   }
-
-  createMap() {
-
-    // create tile map
-    this.tilemap = this.scene.make.tilemap( { key: this.key } );
-
-    // add tileset image to map
-    this.tiles = this.tilemap.addTilesetImage( this.tileSetName, this.imgKey, this.tileSize, this.tileSize, 0, 0 );
-
-    this.backgroundLayer = this.tilemap.createStaticLayer( this.bgLayerName, this.tiles, 0, 0 );
-    this.blockedLayer = this.tilemap.createStaticLayer( this.blockedLayerName, this.tiles, 0, 0 );
-
-    // player cannot pass through this layer
-    this.blockedLayer.setCollisionByExclusion( -1 );
-  }
-
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Pixelify_Sans } from 'next/font/google';
 import GameLoader from '@/components/GameLoader';
-import { infos, profile } from '@/game/content';
+import { infos, profile } from '@/data/content';
 import styles from './about.module.css';
 
 const pixel = Pixelify_Sans({ subsets: ['latin'], weight: ['500', '700'], display: 'swap' });

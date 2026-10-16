@@ -16,7 +16,7 @@ export type Item = {
 };
 
 export const profile = {
-  name: 'Nama Kamu',
+  name: 'Valentino Alam',
   role: 'Web Developer',
   intro:
     'Selamat datang di rumah saya. Jalan-jalan dulu, lalu mampir ke Indomaret: ada token listrik yang harus dibayar.',
@@ -34,7 +34,7 @@ export const infos: Record<string, Info> = {
   bed: {
     title: '🛏️ Tentang Saya',
     body: [
-      'Halo, saya Nama Kamu, seorang web developer yang tinggal di Jakarta.',
+      'Halo, saya Tino, seorang web developer yang tinggal di Jakarta.',
       'Saya suka membangun hal kecil yang berguna: dari dashboard sampai game iseng.',
     ],
   },
@@ -42,7 +42,7 @@ export const infos: Record<string, Info> = {
     title: '💻 Skill & Teknologi',
     body: [
       'Sehari-hari saya memakai TypeScript, React, Next.js, dan Node.js.',
-      'Sedang belajar: Phaser, WebGL, dan sedikit Rust.',
+      'Sedang belajar: Sedang belajar: menjadi lebih baik.'
     ],
   },
   shelf: {
@@ -85,20 +85,20 @@ export const items: Item[] = [
   {
     id: 'p1',
     emoji: '🥤',
-    name: 'Es Teh Dashboard',
+    name: 'Sabun CARWash',
     price: 8_000,
     tag: 'Proyek · React',
-    description: 'Dashboard penjualan untuk warung teh: grafik harian, stok, dan laporan otomatis.',
-    link: { label: 'Lihat proyek', href: 'https://example.com/es-teh' },
+    description: 'Booking layanan carwash.',
+    link: { label: 'Lihat proyek', href: 'https://carwash-tino.vercel.com' },
   },
   {
     id: 'p2',
     emoji: '🍞',
-    name: 'Roti Landing Page',
+    name: 'Roti Sisir',
     price: 12_000,
     tag: 'Proyek · Next.js',
-    description: 'Landing page toko roti dengan pemesanan lewat WhatsApp dan skor Lighthouse 98.',
-    link: { label: 'Lihat proyek', href: 'https://example.com/roti' },
+    description: 'Barbershop website.',
+    link: { label: 'Lihat proyek', href: 'https://barbershop-tino.vercel.com' },
   },
   {
     id: 'p3',

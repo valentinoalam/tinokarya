@@ -1,165 +1,168 @@
-/**
- * creating random item locations from Object layers
- */
-
+import Phaser from 'phaser';
 import gameConfig from '../config/game-config';
-import Cow from '../sprites/animals/Cow';
-import Chicken from '../sprites/animals/Chicken';
-import Sprite from '../sprites/Sprite';
+import { EventBus } from '../EventBus';
+import { items, rupiah } from '../content';
 
+// Properti objek Tiled bisa berupa array [{name, value}] atau objek biasa.
+const toProps = (obj) => {
+  const p = obj.properties;
+  if (Array.isArray(p)) return Object.fromEntries(p.map((x) => [x.name, x.value]));
+  return p || {};
+};
+
+/**
+ * Membaca object layer dari peta Tiled dan membuat isinya:
+ *  - decor        : emoji hiasan                   (emoji, fontSize)
+ *  - labels       : teks di peta                   (text, color, fontSize, bold)
+ *  - interactions : objek yang bisa di-Enter       (kind, id, label, emoji, fontSize)
+ *                   kind: info | item | kasir | meter
+ *                   kind "item": id (p1..p12) dicocokkan dengan items di content.ts
+ *  - exits        : pintu pindah peta              (target, direction)
+ *  - vehicles     : kendaraan hiasan yang lewat    (emoji, direction, delay, duration)
+ */
 export default class ObjectLoader {
-  constructor( config ) {
-    this.scene = config.scene;
-    this.player = this.scene._PLAYER;
-    this.sprites = this.scene._SPRITES;
-    this.mapData = config.objectLayers; // array of Object layers created in Tiled
-
-    // physics groups
-    this.exitGroup = this.scene.physics.add.group();
-    this.interactiveGroup = this.scene.physics.add.group(); // interactive items
+  constructor({ scene, objectLayers }) {
+    this.scene = scene;
+    this.objectLayers = objectLayers || [];
   }
 
   setup() {
-    this.parseMapData();
-    this.setCollision();
-  }
+    this.objectLayers.forEach((layer) => {
+      layer.objects.forEach((obj) => {
+        const p = toProps(obj);
+        const box = {
+          x: obj.x,
+          y: obj.y,
+          w: obj.width,
+          h: obj.height,
+          cx: obj.x + obj.width / 2,
+          cy: obj.y + obj.height / 2,
+        };
 
-  /**
-   * parse data location from Tiled
-   */
-  parseMapData() {
-    this.mapData.forEach( layer => {
-      // console.log(layer);
-      // for Exit object layer
-      if ( layer.name === 'exits' ) {
-        layer.objects.forEach( obj => {
-          this.addToPhysicsGroup( obj, this.exitGroup, 'exits', 'pixel' );
-        });
-      }
-
-      // for animals
-      if ( layer.name === 'animals' ) {
-        layer.objects.forEach( obj => {
-          let type = obj.properties[1].value;
-          let name = obj.properties[0].value;
-
-          if ( type === 'cow' ) {
-            this.sprites[name] = new Cow( { scene: this.scene, x: obj.x, y: obj.y, key: 'cow' }, name, 'animal' );
-          }
-          else if ( type === 'chicken' ) {
-            this.sprites[name] = new Chicken( { scene: this.scene, x: obj.x, y: obj.y, key: 'chicken2' }, name, 'animal' );
-          }
-          else if ( type === 'calf' ) {}
-          else if ( type === 'chick' ) {}
-          else if ( type === 'dog' ) {}
-          else if ( type === 'horse' ) {}
-        });
-      }
-
-      // npcs
-
-
-      // for interactive items, eg: food, crops, flowers
-      if ( layer.name === 'interactive' ) {
-        layer.objects.forEach( obj => {
-          // sign type uses pixel
-          if ( this.findPropValue( obj.properties, 'type' ) === 'sign' ) {
-            this.addToPhysicsGroup( obj, this.interactiveGroup, 'interactive', 'pixel', 'interactive' );
-          } else {
-            let key = this.findPropValue( obj.properties, 'name' );
-            // otherwise make a sprite w/ img key
-            this.sprites[key] = new Sprite( { scene: this.scene, x: obj.x, y: obj.y, key: key }, key, 'interactive' );
-          }
-        });
-      }
-
+        switch (layer.name) {
+          case 'decor':
+            this.addEmoji(box, p.emoji, p.fontSize);
+            break;
+          case 'labels':
+            this.addLabel(box, p);
+            break;
+          case 'interactions':
+            this.addInteraction(box, p);
+            break;
+          case 'exits':
+            this.addExit(box, p);
+            break;
+          case 'vehicles':
+            this.addVehicle(box, p);
+            break;
+          default:
+            break;
+        }
+      });
     });
   }
 
-  /**
-   * creates Sprite from object, adds to physics group
-   * https://photonstorm.github.io/phaser3-docs/Phaser.Tilemaps.Tilemap.html#createFromObjects
-   * @param obj : object being passed from
-   * @param physicsGroup : group for this new Sprite
-   * @param layerName : string name of the Object Layer in Tiled
-   * @param keyName : string key of image asset
-   * @param type : string value for 'creatureType' property
-   */
-  addToPhysicsGroup( obj, physicsGroup, layerName, keyName, type = '' ) {
-    var newObj = this.scene._MAP.tilemap.createFromObjects( layerName, obj.id, { key: keyName } );
-    newObj[0].setOrigin( 0.5, -0.5 );
-    newObj[0].name = keyName;
-    newObj[0].creatureType = type;
-    // console.log( newObj[0]);
-    physicsGroup.add( newObj[0] );
+  addEmoji(box, emoji, fontSize) {
+    if (!emoji) return;
+    this.scene.add
+      .text(box.cx, box.cy, emoji, {
+        fontSize: `${fontSize || Math.round(Math.min(box.w, box.h) * 0.8)}px`,
+        resolution: 2,
+      })
+      .setOrigin(0.5)
+      .setDepth(2);
   }
 
-  /**
-   * finds and returns the value of the passed property name
-   * @param props - array of properties
-   * @param key - string property name to filter by
-   */
-  findPropValue( props, key ) {
-    return props.reduce( ( initVal, currentVal, currentIndex, arr ) => {
-      if ( initVal.name === key ) {
-        return initVal.value;
-      } else if ( currentVal.name === key ) {
-        return currentVal.value;
-      }
+  addLabel(box, p) {
+    this.scene.add
+      .text(box.cx, box.cy, p.text || '', {
+        fontFamily: 'monospace',
+        fontSize: `${p.fontSize || 14}px`,
+        fontStyle: p.bold ? 'bold' : 'normal',
+        color: p.color || '#ffffff',
+        resolution: 2,
+      })
+      .setOrigin(0.5)
+      .setDepth(3);
+  }
+
+  addInteraction(box, p) {
+    const data = { kind: p.kind, id: p.id, label: p.label };
+    let emoji = p.emoji;
+    let size = p.fontSize;
+
+    if (p.kind === 'item') {
+      const item = items.find((i) => i.id === p.id);
+      if (!item) return; // slot rak kosong (tidak ada item dengan id ini)
+      data.label = `Lihat ${item.name}`;
+      emoji = item.emoji;
+      size = 26;
+      this.scene.add
+        .text(box.cx, box.y + box.h + 11, rupiah(item.price), {
+          fontFamily: 'monospace',
+          fontSize: '10px',
+          color: '#111827',
+          backgroundColor: '#fde047',
+          padding: { x: 3, y: 1 },
+          resolution: 2,
+        })
+        .setOrigin(0.5)
+        .setDepth(3);
+    }
+
+    this.addEmoji(box, emoji, size);
+
+    // tanda ❗ yang naik-turun
+    const mark = this.scene.add
+      .text(box.cx, box.y - 12, '❗', { fontSize: '16px', resolution: 2 })
+      .setOrigin(0.5)
+      .setDepth(20);
+    this.scene.tweens.add({ targets: mark, y: mark.y - 5, yoyo: true, repeat: -1, duration: 600 });
+
+    // zona sentuh sedikit lebih besar dari objeknya
+    const zone = this.scene.add.zone(box.cx, box.cy, box.w + 28, box.h + 28);
+    this.scene.physics.add.existing(zone, true);
+    this.scene.physics.add.overlap(this.scene._PLAYER, zone, () => {
+      const od = gameConfig.overlapData;
+      if (od.isActive) return; // sudah ada objek aktif; Game.update() yang melepasnya
+      gameConfig.overlapData = { isActive: true, sprite: data, overlap: zone };
+      EventBus.emit('hint', data.label);
     });
   }
 
-  // set collisions
-  setCollision( ) {
-    // for each Exit inside exitGroup, set overlap event
-    // https://photonstorm.github.io/phaser3-docs/Phaser.Physics.Arcade.ArcadePhysics.html#overlap__anchor
-    this.exitGroup.children.entries.forEach( exit => {
-      this.scene.physics.add.overlap(
-        this.player,
-        exit,
-        function() {
-          this.newScene( exit.data.list[0].value );
-        }.bind( this ),
-        null,
-        this.scene
-      );
-    } );
+  addExit(box, p) {
+    const scene = this.scene;
+    const zone = scene.add.zone(box.cx, box.cy, box.w, box.h);
+    scene.physics.add.existing(zone, true);
+    scene.physics.add.overlap(scene._PLAYER, zone, () => {
+      if (scene._changing) return;
+      scene._changing = true;
+      gameConfig.pauseUpdateLoop = true;
+      scene.stopPlayerAnim();
 
-    this.interactiveGroup.children.entries.forEach( entry => {
-      // console.log( entry.data.list );
-      this.scene.physics.add.overlap(
-        this.player,
-        entry,
-        function( player, elm ) {
-          // console.log('overlapping sign')
-          gameConfig.overlapData.isActive = true;
-          gameConfig.overlapData.sprite = elm;
-          gameConfig.overlapData.overlap = elm;
-        }.bind( this ),
-        null,
-        this.scene
-      );
-    } );
-
+      scene.cameras.main.fadeOut(250, 0, 0, 0);
+      scene.cameras.main.once('camerafadeoutcomplete', () => {
+        gameConfig.previousData = { scene: gameConfig.loadedScene, direction: p.direction || 'down' };
+        gameConfig.loadedScene = p.target;
+        scene.scene.restart();
+      });
+    });
   }
 
-  // start scene, based on passed value
-  newScene( sceneName ) {
-    // update gameConfig
-    gameConfig.previousData.scene = gameConfig.loadedScene;
-    gameConfig.loadedScene = sceneName;
-
-    // what was the last cursor direction?
-    gameConfig.previousData.direction = this.scene._ANIMS.pressedCursor;
-
-    // store player's x/y coords
-    gameConfig.previousData.coords = {
-      x: this.player.x,
-      y: this.player.y
-    };
-
-    // restart scene
-    this.scene.scene.restart();
+  addVehicle(box, p) {
+    const worldW = this.scene._MAP.tilemap.widthInPixels;
+    const toRight = p.direction === 'right';
+    const car = this.scene.add
+      .text(toRight ? -60 : worldW + 60, box.cy, p.emoji || '🚗', { fontSize: '28px', resolution: 2 })
+      .setOrigin(0.5)
+      .setDepth(5);
+    if (toRight) car.setFlipX(true);
+    this.scene.tweens.add({
+      targets: car,
+      x: toRight ? worldW + 60 : -60,
+      duration: p.duration || 11000,
+      delay: p.delay || 0,
+      repeat: -1,
+    });
   }
-
 }

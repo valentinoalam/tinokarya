@@ -12,10 +12,10 @@ import {
   rupiah,
   type ExtLink,
   type Info,
-} from '../game/content';
+} from '@/data/content';
 import styles from './Game.module.css';
 
-type ModalState = { kind: 'info' | 'item' | 'kasir' | 'meter'; id: string } | null;
+type ModalState = { kind: 'info' | 'item' | 'kasir' | 'meter' | 'tasks'; id: string } | null;
 
 function Links({ links }: { links?: ExtLink[] }) {
   if (!links?.length) return null;
@@ -50,12 +50,15 @@ export default function GameOverlay({ focused }: { focused: boolean }) {
   const [billPaid, setBillPaid] = useState(false);
   const [modal, setModal] = useState<ModalState>(null);
   const [toast, setToast] = useState<string | null>(null);
+  const [hint, setHint] = useState<string | null>(null);
 
   // Phaser -> React
   useEffect(() => {
     const offs = [
       EventBus.on<ModalState>('interact', (p) => setModal(p)),
       EventBus.on<string>('scene-ready', (name) => setLocation(name)),
+      EventBus.on<string | null>('hint', (label) => setHint(label)),
+      EventBus.on('close-modal', () => setModal(null)),
     ];
     return () => offs.forEach((off) => off());
   }, []);
@@ -166,6 +169,71 @@ export default function GameOverlay({ focused }: { focused: boolean }) {
       );
     }
 
+    if (modal.kind === 'tasks') {
+      return (
+        <>
+          <h2>🎒 Misi & Tas</h2>
+          <p className={styles.muted}>Saldo kamu: {rupiah(money)}</p>
+
+          <h3>Misi</h3>
+          <ul className={styles.list}>
+            <li>
+              <span>{billPaid ? '✅' : '⬜'} Bayar listrik di Indomaret</span>
+              <span>{rupiah(ELECTRICITY_BILL)}</span>
+            </li>
+            <li>
+              <span>{owned.length > 0 ? '✅' : '⬜'} Belanja satu proyek (opsional)</span>
+              <span>
+                {owned.length}/{items.length}
+              </span>
+            </li>
+          </ul>
+
+          <h3>Keranjang</h3>
+          {basketItems.length === 0 ? (
+            <p className={styles.muted}>Kosong.</p>
+          ) : (
+            <ul className={styles.list}>
+              {basketItems.map((i) => (
+                <li key={i.id}>
+                  <span>
+                    {i.emoji} {i.name}
+                  </span>
+                  <span>{rupiah(i.price)}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {ownedItems.length > 0 && (
+            <>
+              <h3>Sudah dibeli</h3>
+              <ul className={styles.list}>
+                {ownedItems.map((i) => (
+                  <li key={i.id}>
+                    <span>
+                      {i.emoji} {i.name}
+                    </span>
+                    {i.link ? (
+                      <a href={i.link.href} target="_blank" rel="noopener noreferrer">
+                        {i.link.label}
+                      </a>
+                    ) : (
+                      <span />
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          <p className={styles.muted}>
+            Panah: jalan · Enter: interaksi · Shift: menu ini · Spasi: bunyikan lonceng · Esc: tutup
+          </p>
+        </>
+      );
+    }
+
     // kasir
     return (
       <>
@@ -261,8 +329,10 @@ export default function GameOverlay({ focused }: { focused: boolean }) {
 
       {toast && <div className={styles.toast}>{toast}</div>}
 
+      {hint && !modal && <div className={styles.hint}>[Enter] {hint}</div>}
+
       {!focused && !modal && (
-        <div className={styles.startHint}>Klik area game, lalu jalan dengan WASD atau panah</div>
+        <div className={styles.startHint}>Klik area game, lalu jalan dengan tombol panah</div>
       )}
 
       {!modal && (
@@ -273,16 +343,28 @@ export default function GameOverlay({ focused }: { focused: boolean }) {
             {dpadBtn('▶', 'right', 1, 0)}
             {dpadBtn('▼', 'down', 0, 1)}
           </div>
-          <button
-            className={styles.action}
-            onPointerDown={(e) => {
-              e.preventDefault();
-              EventBus.emit('touch-action');
-            }}
-            aria-label="Interaksi"
-          >
-            E
-          </button>
+          <div className={styles.actions}>
+            <button
+              className={styles.menuBtn}
+              onPointerDown={(e) => {
+                e.preventDefault();
+                EventBus.emit('touch-menu');
+              }}
+              aria-label="Menu misi dan tas"
+            >
+              ☰
+            </button>
+            <button
+              className={styles.action}
+              onPointerDown={(e) => {
+                e.preventDefault();
+                EventBus.emit('touch-action');
+              }}
+              aria-label="Interaksi"
+            >
+              E
+            </button>
+          </div>
         </div>
       )}
 
