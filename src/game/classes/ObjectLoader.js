@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import gameConfig from '../config/game-config';
 import { EventBus } from '../EventBus';
-import { items, rupiah } from '../content';
+import { items, rupiah } from '@/data/content';
 
 // Properti objek Tiled bisa berupa array [{name, value}] atau objek biasa.
 const toProps = (obj) => {

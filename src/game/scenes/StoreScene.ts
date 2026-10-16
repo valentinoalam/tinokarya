@@ -1,4 +1,4 @@
-import { items, rupiah } from '../content';
+import { items, rupiah } from '@/data/content';
 import BaseScene, { H, TILE, W } from './BaseScene';
 
 /** Dalam Indomaret: rak = proyek (maks. 12), kasir = bayar belanjaan & listrik. */
