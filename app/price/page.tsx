@@ -257,22 +257,23 @@ export default function PricingPage() {
     >
       <div className="mx-auto h-max max-w-6xl px-5 py-14 sm:py-20">
         {/* Header */}
-        <header className="max-w-2xl">
+        <header className="w-10/12 flex flex-col lg:flex-row justify-around">
           <h1
-            className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl"
+            className="text-4xl max-w-xl font-bold leading-[1.05] tracking-tight sm:text-6xl"
           >
-            Website Next.js yang cepat, dengan harga yang bisa Anda hitung sendiri.
+            Wujudkan Website yang Anda bayangkan! 
           </h1>
-          <p className="mt-5 max-w-xl text-lg text-[#4A5968]">
-            Pilih jenis proyek, paket, dan tambahan. Estimasi total beserta DP langsung diperbarui di samping.
-          </p>
-          <button
-            onClick={() => setWizardOpen(true)}
-            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-5 py-3 font-semibold text-white transition hover:bg-emerald-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2F5BFF]"
-          >
-            <Sparkles className="h-5 w-5" aria-hidden /> Belum yakin? Hitung estimasi lewat wizard
-          </button>
-
+          <div>
+            <p className="mt-5 max-w-xl text-lg text-[#4A5968]">
+              Pilih jenis proyek, paket, dan tambahan. Estimasi total beserta DP langsung diperbarui di samping.
+            </p>
+            <button
+              onClick={() => setWizardOpen(true)}
+              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-5 py-3 font-semibold text-white transition hover:bg-emerald-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2F5BFF]"
+            >
+              <Sparkles className="h-5 w-5" aria-hidden /> Belum yakin? Hitung estimasi lewat wizard
+            </button>
+          </div>
         </header>
 
         {/* Tabs */}
