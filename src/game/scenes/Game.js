@@ -88,11 +88,24 @@ export default class Game extends Phaser.Scene {
     this.cameras.main.fadeIn( 250, 0, 0, 0 ); // [template]
 
     // enable cursor keys
-    this._INPUTS = this.input.keyboard.createCursorKeys();
-
+    // this._INPUTS = this.input.keyboard.createCursorKeys();
+    this._INPUTS = this.input.keyboard.addKeys({
+            up: Phaser.Input.Keyboard.KeyCodes.UP,
+            down: Phaser.Input.Keyboard.KeyCodes.DOWN,
+            left: Phaser.Input.Keyboard.KeyCodes.LEFT,
+            right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
+            // Tambahan WASD
+            w: Phaser.Input.Keyboard.KeyCodes.W,
+            s: Phaser.Input.Keyboard.KeyCodes.S,
+            a: Phaser.Input.Keyboard.KeyCodes.A,
+            d: Phaser.Input.Keyboard.KeyCodes.D
+        });
     // assign additional keys
-    this._INPUTS.enter = this.input.keyboard.addKey( 13 );
-    this._INPUTS.escape = this.input.keyboard.addKey( 27 );
+    this._INPUTS.enter = this.input.keyboard.addKey( Phaser.Input.Keyboard.KeyCodes.ENTER );
+    this._INPUTS.space = this.input.keyboard.addKey( Phaser.Input.Keyboard.KeyCodes.SPACE );
+    this._INPUTS.shift = this.input.keyboard.addKey( Phaser.Input.Keyboard.KeyCodes.SHIFT );
+    this._INPUTS.escape = this.input.keyboard.addKey(  Phaser.Input.Keyboard.KeyCodes.ESC );
+    this._INPUTS.e = this.input.keyboard.addKey(  Phaser.Input.Keyboard.KeyCodes.E );
 
     this.createObjectLoader();  // generate items
     this.createEventListeners();  // event listeners
@@ -137,10 +150,10 @@ export default class Game extends Phaser.Scene {
   // animation update loop
   animation_update_loop() {
     // [template] keyboard ATAU d-pad layar sentuh
-    const down = this._INPUTS.down.isDown || this._TOUCH.y > 0;
-    const up = this._INPUTS.up.isDown || this._TOUCH.y < 0;
-    const left = this._INPUTS.left.isDown || this._TOUCH.x < 0;
-    const right = this._INPUTS.right.isDown || this._TOUCH.x > 0;
+    const down = this._INPUTS.down.isDown || this._INPUTS.s.isDown || this._TOUCH.y > 0;
+    const up = this._INPUTS.up.isDown || this._INPUTS.w.isDown  || this._TOUCH.y < 0;
+    const left = this._INPUTS.left.isDown || this._INPUTS.a.isDown  || this._TOUCH.x < 0;
+    const right = this._INPUTS.right.isDown  || this._INPUTS.d.isDown || this._TOUCH.x > 0;
 
     if ( down ) {
       this._PLAYER.body.setVelocityY( gameConfig.playerSpeed );
@@ -193,7 +206,7 @@ export default class Game extends Phaser.Scene {
 
       // [template] saat dialog terbuka, hanya ESC yang dipakai (tombol lain tidak boleh membuka kunci)
       if ( this._UTILITY.boxManager.isOpen ) {
-        if ( this._INPUTS.escape.isDown ) {
+        if ( this._INPUTS.escape.isDown || this._INPUTS.e.isDown) {
           this._UTILITY.boxManager.hideBox();
         }
         return;
