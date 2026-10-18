@@ -19,7 +19,10 @@
     "before": "Customers search on",
     "after": "Make sure your business can be found.",
     "googleAlt": "Google",
-    "lead": "An official website with your business information: a digital home that explains who you are, what you offer, and what sets you apart from competitors.",
+    "lead": {
+      "hook": "An official website",
+      "content": "that explains who you are, what you offer, and what sets you apart from your competitors." 
+    },
     "secondary": "See the benefits",
     "note": "Illustration. Pins and map positions depend on your business data and optimization.",
     "map": {

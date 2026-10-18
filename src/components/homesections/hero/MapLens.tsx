@@ -12,6 +12,8 @@ import {
   TILE_ATTRIBUTION,
   TILE_URL,
 } from "@/lib/map";
+import { useTranslations } from "next-intl";
+import type { PinId } from "@/i18n/types";
 import styles from "./MapLens.module.css";
 
 type Props = {
@@ -31,6 +33,13 @@ type Props = {
  * dengan zoom lebih tinggi, jadi tile dimuat tajam.
  */
 export default function MapLens({ lensSize = 240, zoomDelta = 2 }: Props) {
+  const t = useTranslations("hero.map");
+  // Nama pin dibaca lewat ref: bahasa tidak berubah tanpa memuat ulang halaman,
+  // jadi peta tidak perlu dibuat ulang hanya karena teks.
+  const tPins = useTranslations("hero.map.pins");
+  const pinsRef = useRef(
+    Object.fromEntries(MAP_PINS.map((p) => [p.id, tPins(p.id)])) as Record<PinId, string>
+  );
   const frameRef = useRef<HTMLDivElement>(null);
   const mapElRef = useRef<HTMLDivElement>(null);
   const hintRef = useRef<HTMLSpanElement>(null);
@@ -62,7 +71,7 @@ export default function MapLens({ lensSize = 240, zoomDelta = 2 }: Props) {
 
       const makePins = (map: LeafletNS.Map) => {
         MAP_PINS.forEach((p) => {
-          const html = `<span class="${styles.pin} ${p.me ? styles.pinMe : ""}"><span class="${styles.pinLabel}">${p.label}</span><span class="${styles.pinDot}"></span></span>`;
+          const html = `<span class="${styles.pin} ${p.me ? styles.pinMe : ""}"><span class="${styles.pinLabel}">${pinsRef.current[p.id]}</span><span class="${styles.pinDot}"></span></span>`;
           L.marker(p.pos, {
             icon: L.divIcon({ className: "", html, iconSize: [0, 0] }),
             interactive: false,
@@ -221,11 +230,11 @@ export default function MapLens({ lensSize = 240, zoomDelta = 2 }: Props) {
         ref={frameRef}
         className={`${styles.frame} ${lensEnabled ? styles.hasLens : ""}`}
         role="img"
-        aria-label="Ilustrasi peta: usaha Anda muncul di antara usaha lain di sekitar calon pelanggan. Arahkan kursor untuk memperbesar."
+        aria-label={t("aria")}
       >
         <div ref={mapElRef} className={styles.map} />
         <span ref={hintRef} className={styles.hint} aria-hidden="true">
-          Arahkan kursor untuk memperbesar
+          {t("hint")}
         </span>
       </div>
 

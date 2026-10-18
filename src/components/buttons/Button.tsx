@@ -3,6 +3,7 @@
 import { useRef, type ReactNode } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { waHref } from "@/lib/whatsapp";
+import { useTranslations } from "next-intl";
 
 type Props = {
   variant: "hero" | "hero-ghost" | "accent";
@@ -16,6 +17,7 @@ type Props = {
 /** Tombol dengan efek magnetik halus (hanya untuk mouse, bukan layar sentuh). */
 export default function Button({ variant, children, className, wa, href }: Props) {
   const ref = useRef<HTMLAnchorElement>(null);
+  const waText = useTranslations("wa");
 
   useGSAP(
     () => {
@@ -53,7 +55,7 @@ export default function Button({ variant, children, className, wa, href }: Props
     { scope: ref }
   );
 
-  const link = wa ? waHref() : href;
+  const link = wa ? waHref(waText("text")) : href;
 
   return (
     <a

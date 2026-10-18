@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import Button from "../../buttons/Button";
 import GoogleLogo from "./GoogleLogo";
@@ -23,6 +24,8 @@ function Words({ text }: { text: string }) {
 }
 
 export default function Hero() {
+  const t = useTranslations("hero");
+  const wa = useTranslations("wa");
   const root = useRef<HTMLDivElement>(null);
 
   // Satu rangkaian animasi saat halaman dibuka.
@@ -68,28 +71,27 @@ export default function Hero() {
           
           <div data-hero="map">
             <MapLens lensSize={240} zoomDelta={2} />
-            <p className={styles.note}>Ilustrasi. Pin dan posisi di peta bergantung pada data dan optimasi usaha Anda.</p>
+            <p className={styles.note}>{t("note")}</p>
           </div>
           <div className="w-full">
             <h1 className={styles.title}>
-              <Words text="Pelanggan mencari di" />
+              <Words text={t("before")} />
               <span className={styles.chip} data-hero="logo">
-                <span className="sr-only">Google</span>
+                <span className="sr-only">{t("googleAlt")}</span>
                 <GoogleLogo className={styles.logo} />
               </span>{" "}
               {/* <span className={styles.word}>
                 <span className={styles.wordInner} data-hero="word">.</span>
               </span>{" "} */}
-              <Words text="Pastikan usaha Anda bisa ditemukan." />
+              <Words text={t("after")} />
             </h1>
             <div className="flex flex-row gap-4">
               <p className={styles.lead} data-hero="lead">
-                Website official <span className="text-sm leading-0">yang menjelaskan siapa Anda, apa yang
-                Anda tawarkan, dan apa yang membedakan Anda dari kompetitor.</span>
+                {t("lead.hook")}<span className="text-sm leading-0">{t("lead.content")}</span>
               </p>
               <div className={styles.actions} data-hero="actions">
-                <Button className="text-center w-full bg-green-500 border-accent-100 border h-max p-1 rounded-xl" variant="hero" wa>Konsultasi lewat WhatsApp</Button>
-                <Button className="text-center border-dashed px-2 w-max border bg-gray-100 h-max p-1 rounded-xl" variant="hero-ghost" href="#manfaat">Lihat manfaatnya</Button>
+                <Button className="text-center w-full bg-green-500 border-accent-100 border h-max p-1 rounded-xl" variant="hero" wa>{wa("cta")}</Button>
+                <Button className="text-center border-dashed px-2 w-max border bg-gray-100 h-max p-1 rounded-xl" variant="hero-ghost" href="#manfaat">{t("secondary")}</Button>
               </div>
             </div>
           </div>

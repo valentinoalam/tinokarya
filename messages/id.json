@@ -19,7 +19,10 @@
     "before": "Pelanggan mencari di",
     "after": "Pastikan usaha Anda bisa ditemukan.",
     "googleAlt": "Google",
-    "lead": "Website resmi berisi informasi usaha: rumah digital yang menjelaskan siapa Anda, apa yang Anda tawarkan, dan apa yang membedakan Anda dari kompetitor.",
+    "lead": {
+      "hook": "Website official",
+      "content": "yang menjelaskan siapa Anda, apa yang Anda tawarkan, dan apa yang membedakan Anda dari kompetitor."
+    },
     "secondary": "Lihat manfaatnya",
     "note": "Ilustrasi. Pin dan posisi di peta bergantung pada data dan optimasi usaha Anda.",
     "map": {
