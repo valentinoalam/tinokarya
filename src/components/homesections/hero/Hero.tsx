@@ -87,7 +87,7 @@ export default function Hero() {
             </h1>
             <div className="flex flex-row gap-4">
               <p className={styles.lead} data-hero="lead">
-                {t("lead.hook")}<span className="text-sm leading-0">{t("lead.content")}</span>
+                {t("lead.hook")}<span className="text-sm leading-0"> {t("lead.content")}</span>
               </p>
               <div className={styles.actions} data-hero="actions">
                 <Button className="text-center w-full bg-green-500 border-accent-100 border h-max p-1 rounded-xl" variant="hero" wa>{wa("cta")}</Button>

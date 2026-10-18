@@ -16,6 +16,7 @@
   } */
 
   :root {
+    /* Variabel Kustom Kustomisasi Anda */
     --bg: #F6F8FB;
     --surface: #FFFFFF;
     --ink: #12213A;
@@ -25,11 +26,11 @@
     --tint: #E8F3F2;
     --btn-bg: #12213A;
     --btn-ink: #FFFFFF;
-    color-scheme: light;
     --hero-bg: #FFC629;
-    --hero-ink: #12213A;
-    --background: hsl(0, 0%, 100%); /* White */
-    --foreground: hsl(210, 50%, 20%); /* Dark text on light */
+
+    /* Variabel Sistem (Tailwind/UI Framework) */
+    --background: hsl(0, 0%, 100%);
+    --foreground: hsl(210, 50%, 20%);
     
     --card: hsl(0, 0%, 100%);
     --card-foreground: hsl(210, 50%, 20%);
@@ -37,60 +38,19 @@
     --popover: hsl(0, 0%, 100%);
     --popover-foreground: hsl(210, 50%, 20%);
     
-    --primary: hsl(210, 70%, 50%); /* Medium blue */
+    --primary: hsl(210, 70%, 50%);
     --primary-foreground: hsl(210, 70%, 90%);
     
-    --secondary: hsl(163, 50%, 70%); /* Green tint */
+    --secondary: hsl(163, 50%, 70%);
     --secondary-foreground: hsl(210, 50%, 20%);
     
     --muted-foreground: hsl(210, 30%, 40%);
     
-    --accent: hsl(30, 70%, 70%); /* Warm orange */
+    --accent: hsl(30, 70%, 70%);
     --accent-foreground: hsl(0, 0%, 100%);
-     /* Primary (blue scale) */
-    --primary-50: hsl(210, 70%, 95%);
-    --primary-100: hsl(210, 70%, 90%);
-    --primary-200: hsl(210, 70%, 80%);
-    --primary-300: hsl(210, 70%, 70%);
-    --primary-400: hsl(210, 70%, 60%);
-    --primary-500: hsl(210, 70%, 50%); /* base */
-    --primary-600: hsl(210, 70%, 40%);
-    --primary-700: hsl(210, 70%, 30%);
-    --primary-800: hsl(210, 70%, 20%);
-    --primary-900: hsl(210, 70%, 10%);
-
-    /* Secondary (green scale) */
-    --secondary-50: hsl(163, 50%, 95%);
-    --secondary-100: hsl(163, 50%, 90%);
-    --secondary-200: hsl(163, 50%, 80%);
-    --secondary-300: hsl(163, 50%, 70%);
-    --secondary-400: hsl(163, 50%, 60%);
-    --secondary-500: hsl(163, 50%, 50%);
-    --secondary-600: hsl(163, 50%, 40%);
-    --secondary-700: hsl(163, 50%, 30%);
-    --secondary-800: hsl(163, 50%, 20%);
-    --secondary-900: hsl(163, 50%, 10%);
-
-    /* Accent (orange scale) */
-    --accent-50: hsl(30, 70%, 95%);
-    --accent-100: hsl(30, 70%, 90%);
-    --accent-200: hsl(30, 70%, 80%);
-    --accent-300: hsl(30, 70%, 70%);
-    --accent-400: hsl(30, 70%, 60%);
-    --accent-500: hsl(30, 70%, 50%);
-    --accent-600: hsl(30, 70%, 40%);
-    --accent-700: hsl(30, 70%, 30%);
-    --accent-800: hsl(30, 70%, 20%);
-    --accent-900: hsl(30, 70%, 10%);
-    --destructive: hsl(0, 70%, 55%); /* Red */
-    --destructive-foreground: hsl(0, 0%, 100%);
     
-    /* Accent colors */
-    --color-1: rgb(163, 220, 154);
-    --color-2: rgb(222, 231, 145);
-    --color-3: rgb(255, 249, 189);
-    --color-4: rgb(255, 214, 186);
-    --color-5: hsl(210, 60%, 80%); /* soft blue */
+    --destructive: hsl(0, 70%, 55%);
+    --destructive-foreground: hsl(0, 0%, 100%);
     
     --border: hsl(210, 30%, 85%);
     --input: hsl(210, 30%, 90%);
@@ -98,68 +58,96 @@
     
     --display: var(--font-display), "Segoe UI", system-ui, sans-serif;
     --body: var(--font-body), "Segoe UI", system-ui, -apple-system, sans-serif;
-    
-    box-sizing: border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
 
     --radius: 0.5rem;
-
     --shiny-width: 1;
+
+    color-scheme: light;
   }
 
+  /* Penanganan Dark Mode Otomatis (Sistem) */
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #0C1524; --surface: #142136; --ink: #EEF2F8; --muted: #A9B7CB;
-      --line: #26364F; --teal: #52D3C6; --tint: #10303A;
-      --btn-bg: #FFC629; --btn-ink: #12213A; color-scheme: dark;
+      --bg: #0C1524; 
+      --surface: #142136; 
+      --ink: #EEF2F8; 
+      --muted: #A9B7CB;
+      --line: #26364F; 
+      --teal: #52D3C6; 
+      --tint: #10303A;
+      --btn-bg: #FFC629; 
+      --btn-ink: #12213A;
+      --background: hsl(210, 50%, 10%);
+      --foreground: hsl(0, 0%, 100%);
+      --card: hsl(210, 50%, 15%);
+      --card-foreground: hsl(0, 0%, 100%);
+      --popover: hsl(210, 50%, 15%);
+      --popover-foreground: hsl(0, 0%, 100%);
+      --primary: hsl(210, 70%, 60%);
+      --primary-foreground: hsl(0, 0%, 100%);
+      --secondary: hsl(163, 45%, 30%);
+      --secondary-foreground: hsl(0, 0%, 100%);
+      --muted-foreground: hsl(210, 20%, 70%);
+      --accent: hsl(30, 65%, 55%);
+      --accent-foreground: hsl(0, 0%, 100%);
+      --destructive: hsl(0, 60%, 45%);
+      --destructive-foreground: hsl(0, 0%, 100%);
+      --border: hsl(210, 20%, 30%);
+      --input: hsl(210, 20%, 30%);
+      --ring: hsl(210, 60%, 60%);
+
+      color-scheme: dark;
     }
   }
+
+  /* Penanganan Dark Mode Manual via Toggle */
   :root[data-theme="dark"] {
-    --bg: #0C1524; --surface: #142136; --ink: #EEF2F8; --muted: #A9B7CB;
-    --line: #26364F; --teal: #52D3C6; --tint: #10303A;
-    --btn-bg: #FFC629; --btn-ink: #12213A; color-scheme: dark;
-    --background: hsl(210, 50%, 10%); /* dark blue */
+    --bg: #0C1524; 
+    --surface: #142136; 
+    --ink: #EEF2F8; 
+    --muted: #A9B7CB;
+    --line: #26364F; 
+    --teal: #52D3C6; 
+    --tint: #10303A;
+    --btn-bg: #FFC629; 
+    --btn-ink: #12213A;
+    --hero-bg: #EEF2F8;
+    --background: hsl(210, 50%, 10%);
     --foreground: hsl(0, 0%, 100%);
-    
     --card: hsl(210, 50%, 15%);
     --card-foreground: hsl(0, 0%, 100%);
-    
     --popover: hsl(210, 50%, 15%);
     --popover-foreground: hsl(0, 0%, 100%);
-    
-    --primary: hsl(210, 70%, 60%); /* brighter blue */
+    --primary: hsl(210, 70%, 60%);
     --primary-foreground: hsl(0, 0%, 100%);
-    
-    --secondary: hsl(163, 45%, 30%); /* deep green */
+    --secondary: hsl(163, 45%, 30%);
     --secondary-foreground: hsl(0, 0%, 100%);
-    
-    --muted: hsl(210, 30%, 20%);
     --muted-foreground: hsl(210, 20%, 70%);
-    
-    --accent: hsl(30, 65%, 55%); /* warm orange */
+    --accent: hsl(30, 65%, 55%);
     --accent-foreground: hsl(0, 0%, 100%);
-    
     --destructive: hsl(0, 60%, 45%);
     --destructive-foreground: hsl(0, 0%, 100%);
-    
     --border: hsl(210, 20%, 30%);
     --input: hsl(210, 20%, 30%);
     --ring: hsl(210, 60%, 60%);
-    
-    --color-1: hsl(163, 50%, 45%);
-    --color-2: hsl(60, 55%, 50%);
-    --color-3: hsl(50, 55%, 60%);
-    --color-4: hsl(20, 65%, 55%);
-    --color-5: hsl(210, 60%, 65%);
+
+    color-scheme: dark;
   }
 
-  /* Pilihan eksplisit pengguna mengalahkan preferensi sistem */
-  :root[data-theme="light"] { color-scheme: light; }
+  :root[data-theme="light"] { 
+    color-scheme: light; 
+  }
+
+  /* Pengaturan Global Aman */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
 
   html { scroll-padding-top: env(safe-area-inset-top, 0px);  }
   *, *::before, *::after { box-sizing: border-box; }
   body {
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
     margin: 0; transition: background-color .25s ease, color .25s ease; background: var(--bg); color: var(--ink);
     font-family: var(--body); font-size: 1.0625rem; line-height: 1.65; font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -207,7 +195,7 @@
   }
 
   :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
-
+  
   /* ---------- Tombol ---------- */
   .btn {
     display: inline-block; text-decoration: none; font-weight: 700; font-size: 1rem;

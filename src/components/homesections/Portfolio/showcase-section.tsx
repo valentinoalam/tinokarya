@@ -17,10 +17,10 @@ export function ShowcaseSection() {
     <section id="karya" className="mt-16 scroll-mt-4">
       <div className="w-full relative text-center">
         <RightDotsDecoration />
-        <MagicText className="text-6xl text-black font-bebas text-shadow-4xl/60 font-black text-center mb-4 md:text-8xl">
+        <MagicText className="text-6xl text-ink font-bebas text-shadow-4xl/60 font-black text-center mb-4 md:text-8xl">
           Featured Work
         </MagicText>
-        <p className="w-full mx-auto text-lg text-stone-800">
+        <p className="w-full mx-auto text-lg text-muted">
           Explore our latest projects and see how we different from other agencies.
         </p>
       </div>

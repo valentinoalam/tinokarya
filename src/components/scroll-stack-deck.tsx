@@ -11,6 +11,7 @@ import {
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import gsap from 'gsap';
+import { TextureOverlay } from "./ui/texture-overlay";
 
 export interface ProjectItem {
   id: string | number;
@@ -123,13 +124,16 @@ function AnimatedCard({
           style={{ backgroundColor: project.color }}
           className="absolute left-0 top-0 flex h-12 w-44 items-center rounded-t-2xl px-4 text-base font-semibold tracking-tight text-black shadow-[inset_0_-1px_0_rgba(0,0,0,0.04)] sm:h-14 sm:w-60 sm:px-6"
         >
+          <TextureOverlay texture="paperGrain" opacity={0.4} />
           <span className="truncate">{project.tabTitle}</span>
         </div>
+        
 
         <div
           style={{ backgroundColor: project.color }}
-          className="relative grid min-h-112 grid-cols-1 items-center gap-6 overflow-hidden rounded-b-2xl rounded-tr-2xl p-6 shadow-[0_4px_8px_-4px_rgba(0,0,0,0.12),inset_0_-2px_4px_-2px_rgba(0,0,0,0.25)] sm:p-8 md:min-h-[33rem] md:grid-cols-[minmax(0,1.12fr)_minmax(16rem,0.88fr)] md:gap-14 md:p-8"
+          className="relative grid min-h-112 grid-cols-1 items-center gap-6 overflow-hidden rounded-b-2xl rounded-tr-2xl p-6 shadow-[0_4px_8px_-4px_rgba(0,0,0,0.12),inset_0_-2px_4px_-2px_rgba(0,0,0,0.25)] sm:p-8 md:min-h-132 md:grid-cols-[minmax(0,1.12fr)_minmax(16rem,0.88fr)] md:gap-14 md:p-8"
         >
+          <TextureOverlay texture="paperGrain" />
           <div className="z-10 flex flex-col items-start gap-3.5">
             {project.tags && project.tags.length > 0 ? (
               <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
@@ -149,7 +153,7 @@ function AnimatedCard({
                 href={project.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-inherit no-underline outline-none after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-black"
+                className="text-inherit no-underline outline-none after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus-visible:after:outline focus-visible:after:outline-offset-2 focus-visible:after:outline-black"
               >
                 {project.title}
                 <span className="sr-only"> (studi kasus, buka di tab baru)</span>
@@ -284,7 +288,7 @@ export function ScrollStackDeck({
 
   return (
     <div
-      className={`w-full bg-[#F4F6F8] font-sans text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white ${className}`}
+      className={`w-full font-sans text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white ${className}`}
     >
       {showIntro ? (
         <div className="flex w-full flex-col items-center justify-center px-4 text-center">
@@ -304,7 +308,7 @@ export function ScrollStackDeck({
 
             {scrollIndicatorText ? (
               <div className="mt-2 flex items-center justify-center gap-2.5">
-                <span className="text-lg font-normal leading-relaxed tracking-tight text-neutral-600 sm:text-xl">
+                <span className="text-lg font-normal leading-relaxed tracking-tight text-accent-foreground sm:text-xl">
                   {scrollIndicatorText}
                 </span>
                 <motion.svg
@@ -314,7 +318,7 @@ export function ScrollStackDeck({
                     duration: 1.8,
                     ease: "easeInOut",
                   }}
-                  className="h-6 w-6 text-black"
+                  className="h-6 w-6 text-ink"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"

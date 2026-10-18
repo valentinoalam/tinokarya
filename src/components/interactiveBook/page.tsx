@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React, { forwardRef } from 'react';
+import { GlyphMatrix } from "../ui/glyph-matrix";
+import { TextureOverlay } from "../ui/texture-overlay";
 interface PageProps {
   index: number;
   iscover: boolean;
@@ -157,9 +159,9 @@ const Page = forwardRef<HTMLDivElement, PageProps>(({ index, iscover, nextPage=(
 
   const renderFace = (face: Face, priority = false) => (
     <div className="page-inner font-inter">
-      {face.title && <h2 className="page-title font-serif" style={{marginBottom: 0}}>{face.title}</h2>}
+      {iscover && <TextureOverlay texture="noise" opacity={0.3} className="-z-10 mix-blend-overlay"/> }
       {face.image && (
-        <div className="page-figure h-1/2 w-full -z-10 absolute -top-2">
+        <div className="page-figure h-1/2 w-full -z-10 absolute -bottom-3">
           {face.image.width || face.image.height? 
           <Image
             src={face.image.src}
@@ -186,6 +188,7 @@ const Page = forwardRef<HTMLDivElement, PageProps>(({ index, iscover, nextPage=(
           />  }
         </div>
       )}
+      {face.title && <h2 className="page-title font-serif" style={{marginBottom: 0}}>{face.title}</h2>}
       {face.paragraphs && face.paragraphs.length > 0 && (
         <div className="page-body">{face.paragraphs.map(renderParagraph)}</div>
       )}
@@ -197,6 +200,8 @@ const Page = forwardRef<HTMLDivElement, PageProps>(({ index, iscover, nextPage=(
       className={`page book__page${iscover ? ' book__cover' : ''} ${isFrontCover ? ' book__cover--front' : ''} ${isBackCover ? ' book__cover--back' : ''}`}
       style={{ '--page-index': pageIndex } as React.CSSProperties}
     >
+      
+                  
       <div onClick={nextPage} className="page__half page__half--front">
         <div className="book-shadow"></div>
         {content && <div className="page-content">{renderFace(content.front, pageIndex === 0)}</div>}

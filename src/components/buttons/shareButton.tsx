@@ -108,8 +108,8 @@ const ShareButton: React.FC<ShareButtonProps> = ({
         <ShinyButton 
           style={{ padding: '0.6em 1.2em' }}
           className={cn(
-          'bg-gradient-to-b from-background via-background to-background transition-all duration-[800ms] shadow-none]',
-          'hover:from-yellow-50 hover:via-background hover:to-stone-50 hover:-translate-y-0.5 hover:shadow-lg transform-gpu ease-[cubic-bezier(0.4,0,0.2,1)]',  
+          'bg-linear-to-b from-background via-background to-background transition-all duration-800 shadow-none]',
+          'hover:from-yellow-50 hover:via-background hover:to-stone-50 hover:-translate-y-0.5 hover:shadow-lg transform-gpu ease-in-out',  
           'h-10 items-base rounded-full group', className)}>
           <Share2 className="h-4 w-4 group-hover:text-yellow-400/80 transition-colors duration-150 ease-in" />
         </ShinyButton>)}

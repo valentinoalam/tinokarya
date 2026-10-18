@@ -1,10 +1,11 @@
 * {
   box-sizing: border-box;
 }
-.book__cover > .page__half--front > .page-content > .page-inner > h2 {
-  /* Border & Background */
+.book__cover > .page__half--front > .page-content > .page-inner {
   border: 1px solid var(--muted);
-  background-color: var(--foreground);
+}
+.book__cover--front > .page__half--front > .page-content > .page-inner > h2 {
+  background-color: color-mix(in srgb, hsl(210, 50%, 20%) 80%, transparent);
 
   /* Text Shadow */
   text-shadow: 0 1px 1px var(--sky-300, #7dd3fc);
@@ -19,8 +20,8 @@
 .book__cover > .page__half--front > .page-content > .page-inner > .page-figure > img {
   /* Border & Background */
   border: 1px solid var(--border);
-  border-radius: var(--radius); 
-
+  border-top-left-radius: var(--radius); 
+  border-top-right-radius: var(--radius); 
   /* Box Shadow (Gabungan Inset Shadow & Drop Shadow) */
   box-shadow: 
     inset 0 1px 2px 0 var(--indigo-500, #6366f1),
@@ -43,10 +44,8 @@
   --book-spine: 25 86% 57%;
 
   /* Warna teks & aksen */
-  --ink: #1f2937;
   --ink-strong: #312e81;
   --brand: #4f46e5;
-  --accent: #f97316;
 
   /* Ukuran satu halaman buku (desktop: 2 halaman terbuka muat di layar) */
   --ratio: 1.333;
@@ -135,6 +134,10 @@
 }
 
 .page__half {
+  
+  /* Warna teks & aksen */
+  --ink: #1f2937;
+  --accent: #f97316;
   position: absolute;
   top: 0;
   left: 0;

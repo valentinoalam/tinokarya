@@ -10,6 +10,9 @@ import ParallaxCard from '@/components/cards/paralax';
 import { ThreeLines } from '@/components/lines/3lines';
 import Link from 'next/link';
 import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
+import { TextureOverlay } from '@/components/ui/texture-overlay';
+import { KineticText } from '@/components/ui/kinetic-text';
+import { GlyphMatrix } from '@/components/ui/glyph-matrix';
 
 const LATER = [
   "Katalog produk", "Sistem pemesanan dan booking", "Artikel dan blog", "Formulir konsultasi",
@@ -72,12 +75,13 @@ export default function Packages() {
   return (
     <section id="paket">
       <div className="wrap flex flex-col gap-5">
-        <h2 ref={titleRef} className="sec-title text-center font-black text-4xl" data-reveal>Mulai dari yang dasar. Kembangkan saat bisnis siap.</h2>
+        <div ref={titleRef} className="sec-title inline-flex w-max self-center font-black text-4xl" data-reveal>Mulai dari yang dasar. <KineticText className='font-display font-black text-4xl' text={' Kembangkan saat bisnis siap.'}/></div>
         <div className={cn(styles.grid, "w-[80%] mx-auto mt-4")} data-reveal-group>
           <ParallaxCard ref={cardsRef.current[0]} className={cn("relative border bg-card text-card-foreground cursor-pointer",
                 'from-[#667db6] via-[#0082c8] to-[#667db6] border-[#667db6] hover:border-[#0082c8]',
                 "transition-all duration-200 ease-in-out pricing-item relative text-white overflow-hidden bg-linear-to-r", `${styles.col} ${styles.now}`)}>
-            
+            <TextureOverlay texture="grid" className="mix-blend-overlay" />
+
             <h3 className="text-left font-black text-xl">Paket Dasar</h3>
             
             <p className={styles.tag}>Website resmi berisi informasi usaha</p>
@@ -91,6 +95,15 @@ export default function Packages() {
           <ParallaxCard ref={cardsRef.current[1]}  className={cn("relative border bg-card text-card-foreground cursor-pointer",
                 'from-[#b69166] via-[#c8c500] to-[#b68a66] border-[#b69166] hover:border-[#c8c500]',
                 "transition-all duration-200 ease-in-out pricing-item relative overflow-hidden bg-linear-to-r", `${styles.col} ${styles.later}`)}>
+            <GlyphMatrix
+              glyphs="01·•+*/\<>="
+              cellSize={14}
+              mutationRate={0.04}
+              interval={90}
+              fadeBottom={0.6}
+              color="#b69166"
+              className='absolute'
+            />
             <ThreeLines className='absolute opacity-80 -z-10' />
             <h3 className="text-left font-black text-xl">Bisa ditambahkan kemudian</h3>
             <p className={styles.tag}>Website berkembang mengikuti bisnis Anda</p>

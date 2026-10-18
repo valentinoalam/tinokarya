@@ -18,5 +18,9 @@ export default getRequestConfig(async () => {
   return {
     locale,
     messages: (await import(`../../messages/${locale}.json`)).default,
+     // The time zone can either be statically defined, read from the
+    // user profile if you store such a setting, or based on dynamic
+    // request information like the locale or a cookie.
+    timeZone: 'Asia/Jakarta'
   };
 });

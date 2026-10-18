@@ -9,6 +9,7 @@ import { routing } from "@/i18n/routing";
 import { inter, geist, merriweather, playfair, display, body } from "@/config/fonts";
 import { Providers } from "./providers";
 import Script from "next/script";
+import Head from "next/head";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => routing.locales.map((locale) => ({ locale }));
@@ -50,7 +51,7 @@ export default async function LocaleLayout({ children }: { children: React.React
 
   return (
     <html lang={locale} suppressHydrationWarning className={`${inter.variable} ${geist.variable} ${merriweather.variable} ${playfair.variable} ${display.variable} ${body.variable}`} >
-      <head>
+      <Head>
         <Script
           id="theme-script"
           strategy="beforeInteractive"
@@ -58,8 +59,10 @@ export default async function LocaleLayout({ children }: { children: React.React
             __html: THEME_SCRIPT,
           }}
         />
-      </head>
-      <Providers messages={messages} locale={locale}>{children}</Providers>
+      </Head>
+      <Providers messages={messages} locale={locale}>
+        {children}
+      </Providers>
       <Analytics />
     </html>
   );

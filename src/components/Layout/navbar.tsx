@@ -20,6 +20,8 @@ import useScrollContext from "@/hooks/useScrollTracking"
 import ShareButton from "../buttons/shareButton"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { LocaleSwitcher } from "../buttons/LocaleSwitcher"
+import { ThemeToggle } from "../buttons/ThemeToggle"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -267,6 +269,10 @@ export default function Navbar() {
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </ShinyButton>
+            <div className="flex items-center gap-3">
+              <LocaleSwitcher />
+              <ThemeToggle />
+            </div>
             <ShareButton />
           </div>
         </div>
