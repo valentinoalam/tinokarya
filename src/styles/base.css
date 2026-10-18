@@ -16,6 +16,18 @@
   } */
 
   :root {
+    --bg: #F6F8FB;
+    --surface: #FFFFFF;
+    --ink: #12213A;
+    --muted: #4A5A72;
+    --line: #D6DEE9;
+    --teal: #0B6E6E;
+    --tint: #E8F3F2;
+    --btn-bg: #12213A;
+    --btn-ink: #FFFFFF;
+    color-scheme: light;
+    --hero-bg: #FFC629;
+    --hero-ink: #12213A;
     --background: hsl(0, 0%, 100%); /* White */
     --foreground: hsl(210, 50%, 20%); /* Dark text on light */
     
@@ -31,7 +43,6 @@
     --secondary: hsl(163, 50%, 70%); /* Green tint */
     --secondary-foreground: hsl(210, 50%, 20%);
     
-    --muted: hsl(210, 50%, 95%); /* Light blue-grey */
     --muted-foreground: hsl(210, 30%, 40%);
     
     --accent: hsl(30, 70%, 70%); /* Warm orange */
@@ -74,19 +85,6 @@
     --destructive: hsl(0, 70%, 55%); /* Red */
     --destructive-foreground: hsl(0, 0%, 100%);
     
-    --border: hsl(210, 30%, 85%);
-    --input: hsl(210, 30%, 90%);
-    --ring: hsl(210, 60%, 60%);
-    
-    /* Charts aligned with palette */
-    --chart-1: rgb(163, 220, 154); /* soft green */
-    --chart-2: rgb(222, 231, 145); /* yellow-green */
-    --chart-3: rgb(255, 249, 189); /* pale yellow */
-    --chart-4: rgb(255, 214, 186); /* soft orange */
-    --chart-5: hsl(30, 60%, 80%);  /* light orange */
-    
-    --radius: 0.5rem;
-
     /* Accent colors */
     --color-1: rgb(163, 220, 154);
     --color-2: rgb(222, 231, 145);
@@ -94,19 +92,33 @@
     --color-4: rgb(255, 214, 186);
     --color-5: hsl(210, 60%, 80%); /* soft blue */
     
-    /* Sidebar */
-    --sidebar-background: hsl(210, 50%, 95%);
-    --sidebar-foreground: hsl(210, 50%, 25%);
-    --sidebar-primary: hsl(210, 70%, 50%);
-    --sidebar-primary-foreground: hsl(0, 0%, 100%);
-    --sidebar-accent: hsl(30, 60%, 90%);
-    --sidebar-accent-foreground: hsl(210, 50%, 20%);
-    --sidebar-border: hsl(210, 20%, 85%);
-    --sidebar-ring: hsl(210, 60%, 60%);
+    --border: hsl(210, 30%, 85%);
+    --input: hsl(210, 30%, 90%);
+    --ring: hsl(210, 60%, 60%);
+    
+    --display: var(--font-display), "Segoe UI", system-ui, sans-serif;
+    --body: var(--font-body), "Segoe UI", system-ui, -apple-system, sans-serif;
+    
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
+    --radius: 0.5rem;
+
     --shiny-width: 1;
   }
 
-  .dark {
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0C1524; --surface: #142136; --ink: #EEF2F8; --muted: #A9B7CB;
+      --line: #26364F; --teal: #52D3C6; --tint: #10303A;
+      --btn-bg: #FFC629; --btn-ink: #12213A; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0C1524; --surface: #142136; --ink: #EEF2F8; --muted: #A9B7CB;
+    --line: #26364F; --teal: #52D3C6; --tint: #10303A;
+    --btn-bg: #FFC629; --btn-ink: #12213A; color-scheme: dark;
     --background: hsl(210, 50%, 10%); /* dark blue */
     --foreground: hsl(0, 0%, 100%);
     
@@ -135,13 +147,6 @@
     --input: hsl(210, 20%, 30%);
     --ring: hsl(210, 60%, 60%);
     
-    /* Charts in darker mode */
-    --chart-1: hsl(163, 50%, 45%);
-    --chart-2: hsl(60, 55%, 50%);
-    --chart-3: hsl(50, 55%, 60%);
-    --chart-4: hsl(20, 65%, 55%);
-    --chart-5: hsl(30, 60%, 65%);
-    
     --color-1: hsl(163, 50%, 45%);
     --color-2: hsl(60, 55%, 50%);
     --color-3: hsl(50, 55%, 60%);
@@ -149,29 +154,29 @@
     --color-5: hsl(210, 60%, 65%);
   }
 
+  /* Pilihan eksplisit pengguna mengalahkan preferensi sistem */
+  :root[data-theme="light"] { color-scheme: light; }
 
-  html {
-    position: relative;
-    overflow-x: clip;
-  }
-
+  html { scroll-padding-top: env(safe-area-inset-top, 0px);  }
+  *, *::before, *::after { box-sizing: border-box; }
   body {
-    /* margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh; */
-    font-family: "Nunito", Arial, Helvetica, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-    /* color-scheme: light dark; */
-    color: rgba(255, 255, 255, 0.87);
+    margin: 0; transition: background-color .25s ease, color .25s ease; background: var(--bg); color: var(--ink);
+    font-family: var(--body); font-size: 1.0625rem; line-height: 1.65; font-weight: 400;
+    -webkit-font-smoothing: antialiased;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 1s ease;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: clip;
   }
+
+  
   
   img {
     max-width: none;
@@ -191,6 +196,55 @@
     line-height: 1.1;
   }
 
+  h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.08; letter-spacing: -0.02em; }
+  p { margin: 0 0 1em; max-width: 62ch; }
+  a { color: inherit; }
+  .wrap { width: min(1220px, 100% - 1rem); margin-inline: auto; }
+  section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+
+  :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------- Tombol ---------- */
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 700; font-size: 1rem;
+    padding: 0.95rem 1.5rem; border-radius: 999px; background: var(--btn-bg); color: var(--btn-ink);
+    border: 2px solid var(--btn-bg); will-change: transform;
+  }
+  .btn--hero { background: #12213A; border-color: #12213A; color: #fff; }
+  .btn--hero-ghost { background: transparent; border-color: #12213A; color: #12213A; }
+  .btn--accent { background: var(--hero-bg); border-color: var(--hero-bg); color: #12213A; }
+  .btn:focus-visible { outline-color: var(--teal); }
+  .btn--hero:focus-visible, .btn--hero-ghost:focus-visible { outline-color: #12213A; }
+
+  /* .sec-title { font-size: clamp(1.9rem, 4.2vw, 2.8rem); max-width: 20ch; margin-bottom: clamp(2rem, 5vw, 3.5rem); } */
+
+  /* ---------- Lenis ---------- */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+  .lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-smooth iframe { pointer-events: none; }
+
+  /* ---------- Keadaan awal animasi ----------
+    Disembunyikan hanya bila JS aktif dan pengguna tidak meminta gerak minimal.
+    GSAP yang menampilkannya (autoAlpha). */
+  @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+    [data-hero],
+    [data-reveal],
+    [data-reveal-group] > * { visibility: hidden; }
+  }
+
+  /* ---------- Progres scroll ---------- */
+  .scroll-progress {
+    position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 100;
+    background: var(--muted); transform-origin: left center; transform: scaleX(0);
+    pointer-events: none;
+  }
+
+
   #contact {
     background-image: url("/bg/dark-tl.svg"), url("/bg/dark-tr.svg"), url("/bg/dark-bl.svg"), url("/bg/dark-br.svg");
     background-position: top left, top right, bottom left, bottom right;
@@ -198,16 +252,6 @@
     background-size: 25em;
     padding: 7em 0;
   }
-  
-  /* @media (prefers-color-scheme: light) {
-    :root {
-      color: #213547;
-      background-color: #ffffff;
-    }
-    a:hover {
-      color: #747bff;
-    }
-  } */
 
 }
 

@@ -55,5 +55,5 @@ export default function ScrollAnimations() {
     return () => mm.revert();
   });
 
-  return <div ref={bar} className="scroll-progress" aria-hidden="true" />;
+  return <div ref={bar} className="scroll-progress bottom-0" aria-hidden="true" />;
 }

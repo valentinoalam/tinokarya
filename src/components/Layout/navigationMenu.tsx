@@ -10,7 +10,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import Link from "next/link"
+import {Link} from '@/i18n/navigation';
 import { cn } from "@/lib/utils"
 import ShareButton from "../buttons/shareButton"
 import Image from "next/image"
@@ -41,7 +41,7 @@ export interface NavItem {
   label: string
   description?: string
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>> | null
-  href?: string
+  href: string
   image?: string
   children?: NavItem[]
   onClick?: () => void
@@ -250,7 +250,7 @@ const NavigationMenuComponent: React.FC<NavigationMenuProps> = ({ items, classNa
             />
             <div className="min-w-0 flex-1">
               <h1 className="font-semibold text-lg mb-2">{item.label}</h1>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted text-sm leading-relaxed">
                 {item.description}
               </p>
             </div>

@@ -128,7 +128,7 @@ const DynamicIslandSizePresets: Record<SizePresets, Preset> = {
   },
   [SIZE_PRESETS.BENEFIT]: {
     width: 630,
-    aspectRatio: 630 / 800,
+    aspectRatio: 630 / 870,
     borderRadius: 42,
   },
   [SIZE_PRESETS.MASSIVE]: {

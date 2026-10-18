@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "title": "Basic Digitalization Package for Small Businesses — An Official Website for Your Business",
+    "description": "An official website with your business information: profile, services, portfolio, and contact. Help customers find and trust your business."
+  },
+  "ui": {
+    "theme": "Toggle light/dark theme",
+    "language": "Language"
+  },
+  "wa": {
+    "text": "Hello, I'm interested in the Basic Digitalization Package for small businesses.",
+    "cta": "Chat on WhatsApp"
+  },
+  "topbar": {
+    "brand": "Basic Digitalization Package",
+    "ask": "Ask about the package"
+  },
+  "hero": {
+    "before": "Customers search on",
+    "after": "Make sure your business can be found.",
+    "googleAlt": "Google",
+    "lead": "An official website with your business information: a digital home that explains who you are, what you offer, and what sets you apart from competitors.",
+    "secondary": "See the benefits",
+    "note": "Illustration. Pins and map positions depend on your business data and optimization.",
+    "map": {
+      "aria": "Map illustration: your business appears among other businesses near potential customers. Move your cursor over the map to zoom in.",
+      "hint": "Move your cursor to zoom in",
+      "pins": {
+        "me": "Your business",
+        "carwash": "Car wash",
+        "barber": "Barbershop",
+        "catering": "Catering",
+        "coffee": "Coffee"
+      }
+    }
+  },
+  "intro": {
+    "title": "Before buying, people search first.",
+    "p1": "Today, customers don't always discover a business from a storefront, a sign, or a friend's recommendation. Many look for information online before deciding to buy.",
+    "p2": "A website is the digital home of your business: the first place potential customers learn who you are, what you offer, and why your business deserves their choice.",
+    "queries": [
+      "car wash near me",
+      "barbershop in your city",
+      "traditional food catering",
+      "website design for small businesses"
+    ],
+    "aria": "Google search illustration: a potential customer types a keyword like car wash near me, then finds a business website.",
+    "resultUrl": "www.yourbusiness.com",
+    "resultTitle": "Your Business Name — Official Website",
+    "resultSnippet": "Business profile, services, portfolio, and contact. Reach us on WhatsApp.",
+    "note": "Illustration. Your position in search results depends on optimization."
+  },
+  "benefits": {
+    "title": "What changes when your business has a website",
+    "rows": [
+      {
+        "title": "Trusted faster",
+        "sum": "Credibility, trust, and customer loyalty grow from a serious first impression.",
+        "items": [
+          {
+            "lead": "Professional image.",
+            "text": "An official web address (your own domain) looks more legitimate and trustworthy than a business that only uses social media accounts."
+          },
+          {
+            "lead": "Brand reputation.",
+            "text": "Modern consumers tend to assume a business with an online presence keeps better operating standards."
+          },
+          {
+            "lead": "A sign of commitment.",
+            "text": "A website shows the owner takes the business seriously, and helps build a good relationship with customers."
+          },
+          {
+            "lead": "Loyalty.",
+            "text": "The better customers know your brand, the greater their pride and loyalty."
+          }
+        ]
+      },
+      {
+        "title": "Found by new people",
+        "sum": "People who have never heard of your business can still find it through search.",
+        "items": [
+          {
+            "lead": "Open 24 hours.",
+            "text": "A website works as a digital storefront: potential customers can look up information, browse a catalog, or buy at any time."
+          },
+          {
+            "lead": "Wider reach.",
+            "text": "Not limited by physical location. Buyers from other cities, even other countries, can find your business."
+          },
+          {
+            "lead": "Show up when searched.",
+            "text": "Through SEO, your products or services can appear when people type keywords like “car wash near me”, “barbershop in your city”, or “traditional food catering”."
+          },
+          {
+            "lead": "Free traffic from serious buyers.",
+            "text": "The people who arrive are actually looking for the solution or product you offer."
+          }
+        ],
+        "aside": {
+          "lead": "To be honest:",
+          "text": "a website does not automatically put your business on the first page of Google. But without a digital asset that can be found and optimized, the chance of being discovered organically is far more limited."
+        }
+      },
+      {
+        "title": "Answering customer questions",
+        "sum": "An information hub that is always on, even when you're not holding your phone.",
+        "items": [
+          {
+            "lead": "Complete information.",
+            "text": "Prices, specifications, FAQs, and address are laid out clearly, so your customer service team has less to handle."
+          },
+          {
+            "lead": "Fewer barriers to buying.",
+            "text": "The easier it is for customers to get answers, the easier it is for them to act: call, send a WhatsApp message, order, or visit in person."
+          },
+          {
+            "lead": "A clear call to action.",
+            "text": "Buttons like “Buy Now”, “Book Online”, or “Contact on WhatsApp” let customers transact right away."
+          }
+        ]
+      },
+      {
+        "title": "Fully yours",
+        "sum": "Social media is great for interaction, but the space is controlled by someone else.",
+        "items": [
+          {
+            "lead": "Full control over content and brand.",
+            "text": "Catalog, brand story, and look are arranged to fit your business's character, without competitor ads getting in the way as often happens on marketplaces."
+          },
+          {
+            "lead": "Free from algorithm changes.",
+            "text": "A website is your own asset and doesn't depend on third-party platform policies."
+          },
+          {
+            "lead": "Customer data.",
+            "text": "Collect emails and WhatsApp numbers for direct promotions."
+          },
+          {
+            "lead": "Understand customer behavior.",
+            "text": "Install analytics tools like Google Analytics to see which products are most popular, where visitors come from, and how they shop."
+          }
+        ]
+      }
+    ]
+  },
+  "compare": {
+    "title": "Social media complements. A website is yours.",
+    "sub": "Both are useful. The difference is who holds the control.",
+    "headA": "Social media or marketplace only",
+    "headB": "With your own website",
+    "rows": [
+      [
+        "Control over look and content",
+        "Follows platform rules",
+        "You arrange the information, story, visuals, and offers yourself"
+      ],
+      [
+        "Competitor ads",
+        "Can appear around your products (marketplaces)",
+        "You steer the user experience entirely"
+      ],
+      [
+        "Algorithm changes",
+        "Reach depends on third-party policy",
+        "A personal asset you fully control"
+      ],
+      [
+        "Customer data",
+        "Stays on the platform",
+        "You can collect emails and WhatsApp numbers yourself"
+      ],
+      [
+        "Official address",
+        "An account on a platform",
+        "A web address with your own domain"
+      ]
+    ]
+  },
+  "story": {
+    "title": "A website can tell a story, not just sell.",
+    "oldLine": "“This is our product. Please buy.”",
+    "newLine": "“We understand your problem, and we have something that can help.”",
+    "examples": [
+      {
+        "title": "Food businesses",
+        "text": "Not just showing a menu, but sharing the story behind the ingredients, how it's made, the history of the dish, or tips for enjoying it."
+      },
+      {
+        "title": "Professional services",
+        "text": "Sharing education that helps potential customers understand the problem they face, through articles, guides, FAQs, or case studies."
+      }
+    ],
+    "close": "This kind of relationship is what slowly builds trust."
+  },
+  "packages": {
+    "title": "Start with the basics. Grow when your business is ready.",
+    "base": {
+      "title": "Basic Package",
+      "tag": "An official website with your business information",
+      "items": [
+        "Business profile",
+        "Services",
+        "Portfolio",
+        "Contact"
+      ]
+    },
+    "later": {
+      "title": "Can be added later",
+      "tag": "Your website grows with your business",
+      "items": [
+        "Product catalog",
+        "Ordering and booking system",
+        "Articles and blog",
+        "Consultation form",
+        "WhatsApp integration",
+        "Newsletter",
+        "Payment system",
+        "Various business automations"
+      ]
+    },
+    "note": "A website isn't just a cost for “having a page on the internet”. It's a digital asset that can keep growing as your business grows."
+  },
+  "usecase": {
+    "title": "Example: a car wash service",
+    "sub": "This kind of business is a great fit for a website, because it needs scheduling and reservations, and depends on local search.",
+    "items": [
+      {
+        "title": "Found on Google",
+        "text": "Local SEO for searches like “car wash near me” or “car wash [city]”."
+      },
+      {
+        "title": "Scheduling and reservations",
+        "text": "Customers can book through a “Book Online” or “Contact on WhatsApp” button."
+      },
+      {
+        "title": "Customer data",
+        "text": "Emails and WhatsApp numbers are collected for direct promotions."
+      }
+    ],
+    "chips": [
+      "Barbershop",
+      "Traditional food catering",
+      "Food businesses",
+      "Professional services"
+    ],
+    "chipsLabel": "Other businesses that fit"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "q": "Does a website automatically show up on the first page of Google?",
+        "a": "Not automatically. A website gives you an asset that can be found and optimized through SEO. Without that asset, the chance of being found organically is far more limited."
+      },
+      {
+        "q": "If I'm already active on social media, do I still need a website?",
+        "a": "Social media is very useful for interacting with customers, but the platform is controlled by someone else. A website gives you more freedom to build your own brand experience."
+      },
+      {
+        "q": "Can the website be expanded after the basic package?",
+        "a": "Yes. A website can grow with your business, for example with a product catalog, ordering system, blog, WhatsApp integration, newsletter, or a payment system."
+      },
+      {
+        "q": "What does the Basic Package include?",
+        "a": "An official website with your business information: business profile, services, portfolio, and contact."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to have a digital home for your business?",
+    "text": "Tell us about your business. We'll help explain what's in the package and the next steps."
+  },
+  "footer": {
+    "text": "Basic Digitalization Package for Small Businesses"
+  }
+}

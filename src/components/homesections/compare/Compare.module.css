@@ -1,0 +1,11 @@
+.compare h2 { font-size: clamp(1.9rem, 4.2vw, 2.8rem); max-width: 22ch; }
+.sub { color: var(--muted); margin-top: 1rem; }
+.scroll { overflow-x: auto; margin-top: 2rem; border: 2px solid var(--ink); border-radius: 14px; background: var(--surface); }
+.scroll table { border-collapse: collapse; width: 100%; min-width: 640px; }
+.scroll th, .scroll td { text-align: left; padding: 1rem 1.25rem; vertical-align: top; border-bottom: 1px solid var(--line); }
+.scroll tr:last-child td, .scroll tr:last-child th { border-bottom: 0; }
+.scroll thead th { font-family: var(--display); font-size: 1.05rem; border-bottom: 2px solid var(--ink); }
+.scroll thead th:last-child, .scroll td:last-child { background: var(--tint); }
+.scroll tbody th { font-weight: 600; width: 26%; }
+.scroll td { color: var(--muted); }
+.scroll td:last-child { color: var(--ink); font-weight: 500; }

@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React, { forwardRef } from 'react';
 interface PageProps {
@@ -22,51 +23,6 @@ interface Sheet {
   back: Face;
 }
 
-const renderParagraph = (p: Paragraph, key: number) => {
-  if (typeof p === 'string') {
-    if (p.startsWith('• ')) {
-      return <p key={key} className="page-text page-bullet">{p.slice(2)}</p>;
-    }
-    return <p key={key} className="page-text">{p}</p>;
-  }
-  return <p key={key} className={`page-text page-text--${p.variant}`}>{p.text}</p>;
-};
-
-const renderFace = (face: Face, priority = false) => (
-  <div className="page-inner font-inter">
-    {face.title && <h2 className="page-title font-exo" style={{marginBottom: 0}}>{face.title}</h2>}
-    {face.image && (
-      <div className="page-figure h-1/2 w-full -z-10 absolute -top-2">
-        {face.image.width || face.image.height? 
-        <Image
-          src={face.image.src}
-          alt={face.image.alt}
-          width={face.image.width || 300}
-          height={face.image.height || 300}
-          priority={priority}
-          unoptimized={face.image.src.endsWith('.svg')}
-          style={{ 
-            objectFit: 'cover', 
-            width: '100%',     // or a specific pixel value like '300px'
-            height: 'auto'     // <-- Fixes the warning by letting height scale naturally
-          }}
-        />
-        : <Image
-          fill
-          src={face.image.src}
-          alt={face.image.alt}
-          sizes="(max-width: 899px) 90vw, 40vw"
-          priority={priority}
-          unoptimized={face.image.src.endsWith('.svg')}
-          style={{ objectFit: 'contain' }}
-        />  }
-      </div>
-    )}
-    {face.paragraphs && face.paragraphs.length > 0 && (
-      <div className="page-body">{face.paragraphs.map(renderParagraph)}</div>
-    )}
-  </div>
-);
 
 const Page = forwardRef<HTMLDivElement, PageProps>(({ index, iscover, nextPage=()=>{}, previousPage=()=>{}}, ref) => {
   const pageIndex = index;
@@ -189,7 +145,52 @@ const Page = forwardRef<HTMLDivElement, PageProps>(({ index, iscover, nextPage=(
   ];
 
   const content = pageContents[pageIndex];
+  const renderParagraph = (p: Paragraph, key: number) => {
+    if (typeof p === 'string') {
+      if (p.startsWith('• ')) {
+        return <p key={key} className="page-text page-bullet">{p.slice(2)}</p>;
+      }
+      return <p key={key} className="page-text">{p}</p>;
+    }
+    return <p key={key} className={`page-text page-text--${p.variant}`}>{p.text}</p>;
+  };
 
+  const renderFace = (face: Face, priority = false) => (
+    <div className="page-inner font-inter">
+      {face.title && <h2 className="page-title font-serif" style={{marginBottom: 0}}>{face.title}</h2>}
+      {face.image && (
+        <div className="page-figure h-1/2 w-full -z-10 absolute -top-2">
+          {face.image.width || face.image.height? 
+          <Image
+            src={face.image.src}
+            alt={face.image.alt}
+            width={face.image.width || 300}
+            height={face.image.height || 300}
+            priority={priority}
+            unoptimized={face.image.src.endsWith('.svg')}
+            style={{ 
+              objectFit: 'cover', 
+              width: '100%',     // or a specific pixel value like '300px'
+              height: 'auto'     // <-- Fixes the warning by letting height scale naturally
+            }}
+          />
+          : <Image
+            fill
+            src={face.image.src}
+            alt={face.image.alt}
+            sizes="(max-width: 899px) 90vw, 40vw"
+            priority={priority}
+            
+            unoptimized={face.image.src.endsWith('.svg')}
+            style={{ objectFit: 'cover' }}
+          />  }
+        </div>
+      )}
+      {face.paragraphs && face.paragraphs.length > 0 && (
+        <div className="page-body">{face.paragraphs.map(renderParagraph)}</div>
+      )}
+    </div>
+  );
   return (
     <div
       ref={ref}

@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "title": "Paket Dasar Digitalisasi UMKM — Website Resmi untuk Usaha Anda",
+    "description": "Website resmi berisi informasi usaha: profil, layanan, portofolio, dan kontak. Bantu pelanggan menemukan dan mempercayai bisnis Anda."
+  },
+  "ui": {
+    "theme": "Ganti tema terang/gelap",
+    "language": "Bahasa"
+  },
+  "wa": {
+    "text": "Halo, saya tertarik dengan Paket Dasar Digitalisasi UMKM.",
+    "cta": "Konsultasi lewat WhatsApp"
+  },
+  "topbar": {
+    "brand": "Paket Dasar Digitalisasi UMKM",
+    "ask": "Tanya paket"
+  },
+  "hero": {
+    "before": "Pelanggan mencari di",
+    "after": "Pastikan usaha Anda bisa ditemukan.",
+    "googleAlt": "Google",
+    "lead": "Website resmi berisi informasi usaha: rumah digital yang menjelaskan siapa Anda, apa yang Anda tawarkan, dan apa yang membedakan Anda dari kompetitor.",
+    "secondary": "Lihat manfaatnya",
+    "note": "Ilustrasi. Pin dan posisi di peta bergantung pada data dan optimasi usaha Anda.",
+    "map": {
+      "aria": "Ilustrasi peta: usaha Anda muncul di antara usaha lain di sekitar calon pelanggan. Arahkan kursor untuk memperbesar.",
+      "hint": "Arahkan kursor untuk memperbesar",
+      "pins": {
+        "me": "Usaha Anda",
+        "carwash": "Cuci mobil",
+        "barber": "Barbershop",
+        "catering": "Catering",
+        "coffee": "Kopi"
+      }
+    }
+  },
+  "intro": {
+    "title": "Sebelum membeli, orang mencari dulu.",
+    "p1": "Hari ini, pelanggan tidak selalu menemukan sebuah usaha dari toko, papan nama, atau rekomendasi orang terdekat. Banyak yang lebih dulu mencari informasi di internet sebelum memutuskan membeli.",
+    "p2": "Website menjadi rumah digital bagi bisnis Anda: tempat pertama calon pelanggan mengenal siapa Anda, apa yang Anda tawarkan, dan mengapa usaha Anda layak dipilih.",
+    "queries": [
+      "jasa cuci mobil terdekat",
+      "barbershop di kota Anda",
+      "catering makanan tradisional",
+      "jasa desain website untuk UMKM"
+    ],
+    "aria": "Ilustrasi pencarian Google: calon pelanggan mengetik kata kunci seperti jasa cuci mobil terdekat, lalu menemukan website sebuah usaha.",
+    "resultUrl": "www.namausaha.com",
+    "resultTitle": "Nama Usaha Anda — Website Resmi",
+    "resultSnippet": "Profil usaha, layanan, portofolio, dan kontak. Hubungi kami lewat WhatsApp.",
+    "note": "Ilustrasi. Posisi di hasil pencarian bergantung pada optimasi."
+  },
+  "benefits": {
+    "title": "Yang berubah ketika usaha Anda punya website",
+    "rows": [
+      {
+        "title": "Dipercaya lebih cepat",
+        "sum": "Kredibilitas, kepercayaan, dan loyalitas pelanggan tumbuh dari kesan yang serius.",
+        "items": [
+          {
+            "lead": "Citra profesional.",
+            "text": "Alamat web resmi (domain sendiri) terlihat lebih sah dan dapat dipercaya dibandingkan usaha yang hanya memakai akun media sosial."
+          },
+          {
+            "lead": "Reputasi brand.",
+            "text": "Konsumen modern cenderung menganggap bisnis yang terdaftar di internet memiliki standar operasional yang lebih baik."
+          },
+          {
+            "lead": "Kesan keseriusan.",
+            "text": "Website menunjukkan pemilik serius menjalankan usahanya, dan membantu membangun hubungan yang baik dengan pelanggan."
+          },
+          {
+            "lead": "Loyalitas.",
+            "text": "Semakin pelanggan mengenal brand Anda, semakin besar rasa bangga dan kesetiaan mereka."
+          }
+        ]
+      },
+      {
+        "title": "Ditemukan orang baru",
+        "sum": "Orang yang belum pernah mendengar usaha Anda tetap bisa menemukannya lewat pencarian.",
+        "items": [
+          {
+            "lead": "Buka 24 jam.",
+            "text": "Website bekerja sebagai toko digital: calon pelanggan bisa mencari informasi, melihat katalog, atau bertransaksi kapan saja."
+          },
+          {
+            "lead": "Jangkauan lebih luas.",
+            "text": "Tidak terbatas lokasi fisik. Usaha Anda bisa ditemukan pembeli dari luar kota, bahkan luar negeri."
+          },
+          {
+            "lead": "Muncul saat dicari.",
+            "text": "Lewat optimasi SEO, produk atau jasa Anda berpeluang tampil ketika orang mengetik kata kunci seperti “jasa cuci mobil terdekat”, “barbershop di kota Anda”, atau “catering makanan tradisional”."
+          },
+          {
+            "lead": "Trafik gratis dari calon pembeli yang serius.",
+            "text": "Mereka yang datang memang sedang mencari solusi atau produk yang Anda tawarkan."
+          }
+        ],
+        "aside": {
+          "lead": "Jujur saja:",
+          "text": "website tidak otomatis membuat bisnis berada di halaman pertama Google. Namun tanpa aset digital yang bisa ditemukan dan dioptimalkan, peluang ditemukan secara organik jauh lebih terbatas."
+        }
+      },
+      {
+        "title": "Menjawab pertanyaan pelanggan",
+        "sum": "Pusat informasi yang tersedia terus, bahkan saat Anda tidak memegang ponsel.",
+        "items": [
+          {
+            "lead": "Informasi lengkap.",
+            "text": "Harga, spesifikasi, FAQ, dan alamat tersaji jelas, sehingga beban tim customer service berkurang."
+          },
+          {
+            "lead": "Lebih sedikit hambatan membeli.",
+            "text": "Semakin mudah pelanggan mendapat jawaban, semakin mudah mereka melangkah: menelepon, mengirim WhatsApp, memesan, atau datang langsung."
+          },
+          {
+            "lead": "Ajakan bertindak yang jelas.",
+            "text": "Tombol seperti “Beli Sekarang”, “Booking Online”, atau “Hubungi WhatsApp” memudahkan pelanggan langsung bertransaksi."
+          }
+        ]
+      },
+      {
+        "title": "Sepenuhnya milik Anda",
+        "sum": "Media sosial bagus untuk berinteraksi, tetapi ruangnya dikendalikan pihak lain.",
+        "items": [
+          {
+            "lead": "Kontrol penuh atas konten dan brand.",
+            "text": "Katalog, cerita brand, dan tampilan tersusun sesuai karakter usaha Anda, tanpa terganggu iklan pesaing seperti yang sering terjadi di marketplace."
+          },
+          {
+            "lead": "Bebas dari perubahan algoritma.",
+            "text": "Website adalah aset pribadi, tidak bergantung pada kebijakan platform pihak ketiga."
+          },
+          {
+            "lead": "Data pelanggan.",
+            "text": "Kumpulkan email dan nomor WhatsApp untuk promosi langsung."
+          },
+          {
+            "lead": "Pahami perilaku pelanggan.",
+            "text": "Pasang alat analitik seperti Google Analytics untuk melihat produk yang paling diminati, asal pengunjung, dan cara mereka berbelanja."
+          }
+        ]
+      }
+    ]
+  },
+  "compare": {
+    "title": "Media sosial melengkapi. Website menjadi milik Anda.",
+    "sub": "Keduanya berguna. Perbedaannya ada pada siapa yang memegang kendali.",
+    "headA": "Hanya media sosial atau marketplace",
+    "headB": "Dengan website sendiri",
+    "rows": [
+      [
+        "Kendali atas tampilan dan konten",
+        "Mengikuti aturan platform",
+        "Anda menyusun informasi, cerita, visual, dan penawaran sendiri"
+      ],
+      [
+        "Iklan pesaing",
+        "Bisa muncul di sekitar produk Anda (marketplace)",
+        "Pengalaman pengguna sepenuhnya Anda arahkan"
+      ],
+      [
+        "Perubahan algoritma",
+        "Jangkauan bergantung kebijakan pihak ketiga",
+        "Aset pribadi yang bisa Anda kontrol penuh"
+      ],
+      [
+        "Data pelanggan",
+        "Ada di platform",
+        "Email dan nomor WhatsApp bisa Anda kumpulkan sendiri"
+      ],
+      [
+        "Alamat resmi",
+        "Akun di platform",
+        "Alamat web dengan domain sendiri"
+      ]
+    ]
+  },
+  "story": {
+    "title": "Website bisa bercerita, bukan hanya menjual.",
+    "oldLine": "“Ini produk kami. Silakan beli.”",
+    "newLine": "“Kami memahami masalah Anda, dan kami memiliki sesuatu yang dapat membantu.”",
+    "examples": [
+      {
+        "title": "Bisnis kuliner",
+        "text": "Tidak hanya menampilkan menu, tetapi juga membagikan cerita tentang bahan yang digunakan, proses pembuatan, sejarah makanan, atau tips menikmati produknya."
+      },
+      {
+        "title": "Jasa profesional",
+        "text": "Membagikan edukasi yang membantu calon pelanggan memahami masalah yang mereka hadapi, lewat artikel, panduan, FAQ, atau studi kasus."
+      }
+    ],
+    "close": "Hubungan seperti inilah yang perlahan membangun kepercayaan."
+  },
+  "packages": {
+    "title": "Mulai dari yang dasar. Kembangkan saat bisnis siap.",
+    "base": {
+      "title": "Paket Dasar",
+      "tag": "Website resmi berisi informasi usaha",
+      "items": [
+        "Profil usaha",
+        "Layanan",
+        "Portofolio",
+        "Kontak"
+      ]
+    },
+    "later": {
+      "title": "Bisa ditambahkan kemudian",
+      "tag": "Website berkembang mengikuti bisnis Anda",
+      "items": [
+        "Katalog produk",
+        "Sistem pemesanan dan booking",
+        "Artikel dan blog",
+        "Formulir konsultasi",
+        "Integrasi WhatsApp",
+        "Newsletter",
+        "Sistem pembayaran",
+        "Berbagai otomatisasi bisnis"
+      ]
+    },
+    "note": "Website bukan sekadar biaya untuk “punya halaman di internet”. Ia adalah aset digital yang dapat terus dikembangkan seiring pertumbuhan bisnis Anda."
+  },
+  "usecase": {
+    "title": "Contoh: jasa cuci mobil",
+    "sub": "Kategori usaha ini sangat cocok punya website, karena membutuhkan jadwal dan reservasi, serta bergantung pada pencarian lokal.",
+    "items": [
+      {
+        "title": "Ditemukan di Google",
+        "text": "SEO lokal untuk pencarian seperti “cuci mobil terdekat” atau “cuci mobil [kota]”."
+      },
+      {
+        "title": "Jadwal dan reservasi",
+        "text": "Pelanggan bisa memesan lewat tombol “Booking Online” atau “Hubungi WhatsApp”."
+      },
+      {
+        "title": "Data pelanggan",
+        "text": "Email dan nomor WhatsApp terkumpul untuk promosi langsung."
+      }
+    ],
+    "chips": [
+      "Barbershop",
+      "Catering makanan tradisional",
+      "Usaha kuliner",
+      "Jasa profesional"
+    ],
+    "chipsLabel": "Usaha lain yang cocok"
+  },
+  "faq": {
+    "title": "Pertanyaan yang sering muncul",
+    "items": [
+      {
+        "q": "Apakah website otomatis muncul di halaman pertama Google?",
+        "a": "Tidak otomatis. Website memberi Anda aset yang bisa ditemukan dan dioptimalkan lewat SEO. Tanpa aset itu, peluang ditemukan secara organik jauh lebih terbatas."
+      },
+      {
+        "q": "Kalau sudah aktif di media sosial, apakah masih perlu website?",
+        "a": "Media sosial sangat berguna untuk berinteraksi dengan pelanggan, tetapi platformnya dikendalikan pihak lain. Website memberi ruang yang lebih bebas untuk membangun pengalaman brand Anda sendiri."
+      },
+      {
+        "q": "Apakah website bisa dikembangkan setelah paket dasar?",
+        "a": "Bisa. Website dapat berkembang mengikuti bisnis, misalnya dengan katalog produk, sistem pemesanan, blog, integrasi WhatsApp, newsletter, hingga sistem pembayaran."
+      },
+      {
+        "q": "Apa yang dimuat di Paket Dasar?",
+        "a": "Website resmi berisi informasi usaha: profil usaha, layanan, portofolio, dan kontak."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Siap punya rumah digital untuk usaha Anda?",
+    "text": "Ceritakan usaha Anda. Kami bantu jelaskan isi paket dan langkah berikutnya."
+  },
+  "footer": {
+    "text": "Paket Dasar Digitalisasi UMKM"
+  }
+}

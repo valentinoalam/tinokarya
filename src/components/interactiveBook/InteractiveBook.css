@@ -1,7 +1,32 @@
 * {
   box-sizing: border-box;
 }
+.book__cover > .page__half--front > .page-content > .page-inner > h2 {
+  /* Border & Background */
+  border: 1px solid var(--muted);
+  background-color: var(--foreground);
 
+  /* Text Shadow */
+  text-shadow: 0 1px 1px var(--sky-300, #7dd3fc);
+
+  /* Box Shadow (Gabungan Inset Shadow & Drop Shadow) */
+  box-shadow: 
+    inset 0 1px 2px 0 var(--indigo-500, #6366f1),
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.book__cover > .page__half--front > .page-content > .page-inner > .page-figure > img {
+  /* Border & Background */
+  border: 1px solid var(--border);
+  border-radius: var(--radius); 
+
+  /* Box Shadow (Gabungan Inset Shadow & Drop Shadow) */
+  box-shadow: 
+    inset 0 1px 2px 0 var(--indigo-500, #6366f1),
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
 :root {
   --page-count: 5;
   --page-scroll: 4;
@@ -142,7 +167,7 @@
 /* Sisi luar sampul: gelap dengan teks terang */
 .book__cover--front .page__half--front,
 .book__cover--back .page__half--back {
-  background: linear-gradient(155deg, #3730a3 0%, #1e1b4b 100%);
+  background: linear-gradient(155deg, #c1a75e 0%, #1e1b4b 100%);
   --ink: #e0e7ff;
   --ink-strong: #ffffff;
   --brand: #c7d2fe;
@@ -194,7 +219,7 @@
 }
 
 .page-inner {
-  --fs: 3.5cqw;
+  --fs: 4.5cqw;
   --title-fs: 6.2cqw;
   height: 100%;
   display: flex;
@@ -229,6 +254,7 @@
   flex: 1 1 0;
   min-height: 16cqw;
   width: 100%;
+  
 }
 
 .page-body {

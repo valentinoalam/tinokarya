@@ -17,7 +17,7 @@
   /* Base theme mapping */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
+  --color-teal: var(--teal);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
 
@@ -42,21 +42,6 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-
-  --color-sidebar: var(--sidebar-background);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 
   --color-color-1: var(--color-1);
   --color-color-2: var(--color-2);
@@ -101,7 +86,6 @@
   --color-accent-800: var(--accent-800);
   --color-accent-900: var(--accent-900);
 
-
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
@@ -114,29 +98,7 @@
   --animate-shine: shine var(--duration) infinite linear;
   --animate-border-beam: border-beam calc(var(--duration) * 1s) infinite linear;
   --animate-shiny-text: shiny-text 8s infinite;
-  --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
-  --animate-flicker: flicker 3s linear infinite;
-
-  @keyframes flicker {
-    0%, 19.99%, 22%, 62.99%, 64%, 64.99%, 74%, 79.99%, 82%, 100% { 
-      opacity: 1;
-      color: #0090ff;
-      font-weight: bold;
-      text-shadow: 0 0 1px #12ead8;
-    }
-    20%, 21.99%, 63%, 63.99%, 65%, 73.99%, 80%, 81.99% { 
-      opacity: 0.9;
-      color: #111d42;
-      font-weight: light;
-      text-shadow: none;
-    }
-    75%, 78.99% {
-        opacity: 0.8;
-        color: #0090ff;
-        font-weight: extrabold;
-        text-shadow: 0 0 3px #8be812, 0 0 6px #12ead8;
-    }
-  }
+  
   @keyframes accordion-down {
     from {
       height: 0;
@@ -197,14 +159,6 @@
     30%,
     60% {
       background-position: calc(100% + var(--shiny-width)) 0;
-    }
-  }
-  @keyframes rainbow {
-    0% {
-      background-position: 0%;
-    }
-    100% {
-      background-position: 200%;
     }
   }
   @keyframes bounce {

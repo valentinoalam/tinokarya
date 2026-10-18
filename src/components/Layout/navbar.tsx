@@ -5,24 +5,21 @@ import "./cardboard-nav.css"
 import "./landing-fold.css"
 
 import { usePathname } from "next/navigation"
+import { routing } from '@/i18n/routing';
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Menu, X, Sparkles, ChevronRight, ChevronLeft, ChevronDown, Home } from "lucide-react"
+import { Menu, X, Sparkles, ChevronRight, ChevronDown } from "lucide-react"
 import { ShinyButton } from "@/components/ui/shiny-button"
 import Logo from "../logo/Logo"
 import { defaultNavData, flattenDefaultNavForMobile, landingPageData } from "./navigationData"
 import { type NavItem, NavLink } from "./navigationMenu"
-
-import Link from "next/link"
+import {Link} from "@/i18n/navigation"
 import dynamic from "next/dynamic"
 import { cn } from "@/lib/utils"
 import useScrollContext from "@/hooks/useScrollTracking"
 import ShareButton from "../buttons/shareButton"
-import { Switch } from "@/components/ui/switch"
-import { Label } from "@/components/ui/label"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Separator } from "../ui/separator"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -33,38 +30,12 @@ const DockNavigation = dynamic(() => import("./dockNav"), {
 // Types for mobile navigation
 interface MobileNavItem {
   label: string
-  href?: string
+  href: string
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>> | string | null
   children?: MobileNavItem[]
   type?: "dropdown" | "featured" | "button" | "link"
   description?: string
   image?: string
-}
-
-const createMultiLevelMobileNav = (): MobileNavItem[] => {
-  return defaultNavData.map(item => {
-    const mobileItem: MobileNavItem = {
-      label: item.label,
-      href: item.type === "dropdown" ? undefined : item.href, // Dropdowns don't have direct href
-      icon: item.icon || null,
-      description: item.description,
-      type: item.type,
-      image: item.image,
-    }
-
-    // Only add children for dropdown items that actually have children
-    if (item.type === "dropdown" && item.children && item.children.length > 0) {
-      mobileItem.children = item.children.map(child => ({
-        label: child.label,
-        href: child.href,
-        icon: child.icon || null,
-        description: child.description,
-        type: "link" as const,
-      }))
-    }
-
-    return mobileItem
-  })
 }
 
 // Helper function to group navigation items for desktop (max 4 visible + "Other")
@@ -106,14 +77,13 @@ const foldDelay = (open: number, close: number) =>
 export default function Navbar() {
   const { isScrolled } = useScrollContext()
   const pathname = usePathname()
-  const isDefaultRoute = pathname === "/"
+  const isDefaultRoute = routing.locales.some(
+    (locale) => pathname === `/${locale}` || pathname === `/${locale}/`
+  );
   const navigationData = defaultNavData
 
   const desktopNavigationData = groupDesktopNavItems(navigationData)
   const [isOpen, setIsOpen] = useState(false)
-  const [navHistory, setNavHistory] = useState<MobileNavItem[][]>([])
-  const [currentLevel, setCurrentLevel] = useState<MobileNavItem[]>([])
-  const [useFlatNavigation, setUseFlatNavigation] = useState(false)
   const [isClosing, setIsClosing] = useState(false)
   const [spacerH, setSpacerH] = useState(0)
 
@@ -127,10 +97,6 @@ export default function Navbar() {
   const closeMobileMenu = () => {
     const t = setTimeout(() =>  setIsOpen(false), 900)
     return () => clearTimeout(t)
-  }
-  async function handleNavChange(item: MobileNavItem[]) {
-    setCurrentLevel(item)
-    setNavHistory([])
   }
 
   // Handle window resize
@@ -148,26 +114,6 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  useEffect(()=>{
-    const handleNavChange = (item: MobileNavItem[]) => {
-      setCurrentLevel(item)
-      setNavHistory([])
-    }
-    let menuItems: MobileNavItem[]
-    
-    if (useFlatNavigation) {
-      const flatItems = flattenDefaultNavForMobile().map(item => ({
-        label: item.label,
-        href: item.href,
-        icon: null,
-        type: "link" as const
-      }))
-      menuItems = flatItems
-    } else {
-      menuItems = createMultiLevelMobileNav()
-    }
-    handleNavChange(menuItems)
-  },[useFlatNavigation])
   // Initial animation
   useEffect(() => {
     ctx.current = gsap.context(() => {
@@ -233,128 +179,43 @@ export default function Navbar() {
     }
   }, [isOpen])
 
-  const resetMobileNav = useCallback(() => {
-    let menuItems: MobileNavItem[]
-
-    if (useFlatNavigation) {
-      const flatItems = flattenDefaultNavForMobile().map(item => ({
-        label: item.label,
-        href: item.href,
-        icon: null,
-        type: "link" as const
-      }))
-      menuItems = flatItems
-    } else {
-      menuItems = createMultiLevelMobileNav()
-    }
-    handleNavChange(menuItems)
-  }, [useFlatNavigation])
-
-  // Isi menu mobile saat pertama kali & setiap mode (flat / multi-level) berubah
-  useEffect(() => {
-    
-  }, [resetMobileNav])
-
-  const navigateToLevel = (items: MobileNavItem[], parentItem?: MobileNavItem) => {
-    if (parentItem) {
-      setNavHistory(prev => [...prev, currentLevel])
-    }
-    setCurrentLevel(items)
-  }
-
-  const handleMobileLinkClick = (item: MobileNavItem) => {
-    if (!useFlatNavigation && item.children && item.children.length > 0) {
-      // Navigate to submenu - only in multi-level mode
-      navigateToLevel(item.children, item)
-    } else if (item.href) {
-      // Regular link - close menu
-      closeMobileMenu()
-      resetMobileNav()
-    }
-  }
-
   const renderMobileItem = (item: MobileNavItem) => {
-    if (!useFlatNavigation && item.children && item.children.length > 0) {
-      return (
-        <button
-          onClick={() => handleMobileLinkClick(item)}
-          className="cb-chip group flex items-center justify-between w-full px-4 py-3 text-left"
-        >
-          <div className="flex items-center gap-3 flex-1 min-w-0">
-            {item.icon && (
-              <div className="cb-tile">
-                <item.icon className="w-4 h-4" />
-              </div>
-            )}
-            <div className="flex flex-col flex-1 min-w-0">
-              <span className={cn("font-bold truncate text-base", item.type === "featured" && "text-lg")}>
-                {item.label}
-              </span>
-              {item.description && (
-                <span className="cb-ink-soft text-sm mt-1 line-clamp-2">{item.description}</span>
-              )}
-              <span className="cb-ink-soft text-xs mt-1">{item.children.length} items</span>
-            </div>
-          </div>
-          <ChevronRight className="w-5 h-5 shrink-0 opacity-60" />
-        </button>
-      )
-    }
-
-    if (item.href) {
-      return (
-        <MobileNavLink
-          href={item.href}
-          onClick={closeMobileMenu}
-          className="cb-chip group flex items-center gap-3 w-full px-4 py-3 text-left"
-        >
-          <div className="flex items-center gap-3 flex-1 min-w-0">
-            {item.image && (
-              <div className="relative w-12 h-12 rounded-md overflow-hidden shrink-0">
-                <Image
-                  width={48}
-                  height={48}
-                  src={item.image}
-                  alt={item.label}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            )}
-            {item.icon && (
-              <div className="cb-tile">
-                {typeof item.icon === "string"? item.icon : <item.icon className="w-4 h-4" />}
-              </div>
-            )}
-            <div className="flex flex-col flex-1 min-w-0">
-              <span className={cn("font-bold truncate", item.type === "featured" ? "text-xl" : "text-base")}>
-                {item.label}
-              </span>
-              {item.description && (
-                <span className="cb-ink-soft text-sm mt-1 line-clamp-2">{item.description}</span>
-              )}
-            </div>
-          </div>
-        </MobileNavLink>
-      )
-    }
-
-    // Fallback for items without href or children
     return (
-      <div className="flex items-center gap-3 w-full px-4 py-3 text-left opacity-50">
-        {item.icon && (
-          <div className="cb-tile">
-            <item.icon className="w-4 h-4" />
-          </div>
-        )}
-        <div className="flex flex-col flex-1 min-w-0">
-          <span className="font-bold truncate text-base">{item.label}</span>
-          {item.description && (
-            <span className="cb-ink-soft text-sm mt-1 line-clamp-2">{item.description}</span>
+      <MobileNavLink
+        href={item.href}
+        onClick={closeMobileMenu}
+        className="cb-chip group flex items-center gap-3 w-full px-4 py-3 text-left"
+      >
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          {item.image && (
+            <div className="relative w-12 h-12 rounded-md overflow-hidden shrink-0">
+              <Image
+                width={48}
+                height={48}
+                src={item.image}
+                alt={item.label}
+                className="w-full h-full object-cover"
+              />
+            </div>
           )}
+          {item.icon && (
+            <div className="cb-tile">
+              {typeof item.icon === "string"? item.icon : <item.icon className="w-4 h-4" />}
+            </div>
+          )}
+          <div className="flex flex-col flex-1 min-w-0">
+            <span className={cn("font-bold truncate", item.type === "featured" ? "text-xl" : "text-base")}>
+              {item.label}
+            </span>
+            {item.description && (
+              <span className="cb-ink-soft text-sm mt-1 line-clamp-2">{item.description}</span>
+            )}
+          </div>
         </div>
-      </div>
+      </MobileNavLink>
     )
   }
+  
   
   const alreadyFixed = isMobile && isScrolled
 
@@ -452,7 +313,7 @@ export default function Navbar() {
 
               <div className="cb-m-scroll">
                 <div className="p-3 space-y-2">
-                  {currentLevel.map((item, index) => (
+                  {navigationData.map((item, index) => (
                     <div
                       key={`${item.label}-${index}`}
                       className="cb-item"
