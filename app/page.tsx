@@ -5,8 +5,8 @@ import { BASE_PATH, withBase } from "@/lib/base-path";
  * "/" pada hosting statis: tidak ada middleware, jadi pengalihan dilakukan di klien
  * berdasarkan bahasa browser, dengan meta refresh sebagai cadangan bila JS mati.
  */
-const detect = `(function(){var ok=${JSON.stringify(routing.locales)};var l=((navigator.languages&&navigator.languages[0])||navigator.language||"").slice(0,2).toLowerCase();var targetLocale=ok.indexOf(l)>-1?l:${JSON.stringify(routing.defaultLocale)};var base=${JSON.stringify(BASE_PATH)};location.replace(base+"/"+targetLocale+"/")})()`;
-
+// const detect = `(function(){var ok=${JSON.stringify(routing.locales)};var l=((navigator.languages&&navigator.languages[0])||navigator.language||"").slice(0,2).toLowerCase();var targetLocale=ok.indexOf(l)>-1?l:${JSON.stringify(routing.defaultLocale)};var base=${JSON.stringify(BASE_PATH)};location.replace(base+"/"+targetLocale+"/")})()`;
+const detect = `(function(){var base=${JSON.stringify(BASE_PATH)};var defaultLoc=${JSON.stringify(routing.defaultLocale)};location.replace(base+"/"+defaultLoc+"/")})()`;
 export default function RootRedirect() {
   const fallback = withBase(`/${routing.defaultLocale}/`);
   
