@@ -51,7 +51,7 @@ export default function BranchStorySection() {
   return (
     <section ref={sectionRef} className={`bs ${display.variable} ${inter.variable} ${body.variable}`} aria-label="Perjalanan bisnis dari toko sederhana menjadi banyak cabang">
       <style>{css}</style>
-      <div className="bs-stick overflow-visible font-sans">
+      <div className="bs-stick font-sans">
         <div className="bs-txt">
           <p className="bs-eyebrow">Perjalanan Bisnis</p>
           <h1 className="text-4xl font-bold">Dari Toko Sederhana Menjadi <em className="font-extrabold">Banyak Cabang</em></h1>

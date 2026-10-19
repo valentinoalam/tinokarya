@@ -77,10 +77,10 @@ const Pain = () => {
     <section id='pain' ref={sectionRef} className="overflow-x-hidden scrollbar-none z-10 space-y-11">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 ref={titleRef} className="text-3xl font-bold text-gray-900 mb-4 opacity-0">
+          <h2 ref={titleRef} className="text-4xl font-bold text-red-500 mb-4 opacity-0">
             {painPoints.title}
           </h2>
-          <p ref={subtitleRef} className="text-xl text-gray-600 opacity-0">
+          <p ref={subtitleRef} className="text-xl text-gray-900/70 dark:text-amber-50/70">
             {painPoints.subtitle}
           </p>
         </div>

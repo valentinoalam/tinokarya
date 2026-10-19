@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect, useRef, useCallback } from "react"
+import { useState, useEffect, useRef } from "react"
 import type React from "react"
 import "./cardboard-nav.css"
 import "./landing-fold.css"
@@ -76,7 +76,7 @@ const groupDesktopNavItems = (navItems: NavItem[]): NavItem[] => {
 const foldDelay = (open: number, close: number) =>
   ({ "--do": `${open}s`, "--dc": `${close}s` }) as React.CSSProperties
 
-export default function Navbar() {
+export default function Header() {
   const { isScrolled } = useScrollContext()
   const pathname = usePathname()
   const isDefaultRoute = routing.locales.some(
@@ -130,9 +130,12 @@ export default function Navbar() {
           opacity: 1,
           duration: 0.6,
           ease: "power2.out",
+          // Bersihkan sisa inline transform/translate/rotate/scale dari GSAP setelah animasi masuk
+          // (kalau dibiarkan, `translate: none` inline menimpa animasi tutup di CSS)
+          clearProps: "transform,translate,rotate,scale",
         },
       )
-
+ 
       gsap.fromTo(
         ".logo-container",
         { opacity: 0 },
@@ -149,6 +152,7 @@ export default function Navbar() {
       ctx.current = null
     }
   }, [])
+
 
     // Dengarkan sinyal dari <Footer /> (lihat footer.tsx)
   useEffect(() => {
@@ -227,12 +231,9 @@ export default function Navbar() {
       data-scrolled={isScrolled}
       data-closing={isClosing && !alreadyFixed}
       className={cn(
-        "cb-nav w-full z-50",
-        isClosing || alreadyFixed ? "fixed top-0 left-0" : "relative",
+        "cb-nav w-full z-50 transition-transform duration-300",
+        alreadyFixed ? "sticky lg:fixed top-0" : "relative", isClosing ? "scale-x-110 lg:scale-x-100 lg:fixed lg:-top-16 translate-y-16": ""
       )}
-      style={{
-        opacity: 0,
-      }}
     >
       {/* Lapisan kardus: tekstur + bentuk flap ujung tutup */}
       <div className="cb-bar" aria-hidden="true">

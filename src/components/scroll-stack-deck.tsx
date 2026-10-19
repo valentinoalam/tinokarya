@@ -12,6 +12,7 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import gsap from 'gsap';
 import { TextureOverlay } from "./ui/texture-overlay";
+import Image from "next/image";
 
 export interface ProjectItem {
   id: string | number;
@@ -124,77 +125,79 @@ function AnimatedCard({
           style={{ backgroundColor: project.color }}
           className="absolute left-0 top-0 flex h-12 w-44 items-center rounded-t-2xl px-4 text-base font-semibold tracking-tight text-black shadow-[inset_0_-1px_0_rgba(0,0,0,0.04)] sm:h-14 sm:w-60 sm:px-6"
         >
-          <TextureOverlay texture="paperGrain" opacity={0.4} />
+          <TextureOverlay texture="paperGrain" opacity={0.4} className="absolute" />
           <span className="truncate">{project.tabTitle}</span>
         </div>
         
 
         <div
           style={{ backgroundColor: project.color }}
-          className="relative grid min-h-112 grid-cols-1 items-center gap-6 overflow-hidden rounded-b-2xl rounded-tr-2xl p-6 shadow-[0_4px_8px_-4px_rgba(0,0,0,0.12),inset_0_-2px_4px_-2px_rgba(0,0,0,0.25)] sm:p-8 md:min-h-132 md:grid-cols-[minmax(0,1.12fr)_minmax(16rem,0.88fr)] md:gap-14 md:p-8"
+          className="relative min-h-112 items-center overflow-hidden rounded-b-2xl rounded-tr-2xl p-6 shadow-[0_4px_8px_-4px_rgba(0,0,0,0.12),inset_0_-2px_4px_-2px_rgba(0,0,0,0.25)] sm:p-8 md:gap-14 md:p-8"
         >
-          <TextureOverlay texture="paperGrain" />
-          <div className="z-10 flex flex-col items-start gap-3.5">
-            {project.tags && project.tags.length > 0 ? (
-              <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
-                {project.tags.map((tag) => (
-                  <li
-                    key={tag}
-                    className="rounded-full bg-black/[0.07] px-3 py-1 text-xs font-medium text-black/70"
-                  >
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
+          <TextureOverlay texture="paperGrain" className="absolute" />
+          <div className="grid grid-cols-1 gap-6 md:min-h-132 md:grid-cols-[minmax(0,1.12fr)_minmax(16rem,0.88fr)]">
+            <div className="z-10 flex flex-col items-start gap-3.5">
+              {project.tags && project.tags.length > 0 ? (
+                <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
+                  {project.tags.map((tag) => (
+                    <li
+                      key={tag}
+                      className="rounded-full bg-black/[0.07] px-3 py-1 text-xs font-medium text-black/70"
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
 
-            <h3 className="m-0 text-2xl font-medium leading-tight tracking-tight text-black sm:text-3xl">
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-inherit no-underline outline-none after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus-visible:after:outline focus-visible:after:outline-offset-2 focus-visible:after:outline-black"
-              >
-                {project.title}
-                <span className="sr-only"> (studi kasus, buka di tab baru)</span>
-              </a>
-            </h3>
-
-            <p className="m-0 text-base font-normal leading-snug tracking-normal text-black/60 sm:text-lg">
-              {project.description}
-            </p>
-
-            <div className="mt-2 flex flex-wrap items-center gap-3">
-              <span
-                aria-hidden="true"
-                className="inline-flex items-center rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors group-hover:bg-neutral-800"
-              >
-                Baca studi kasus
-              </span>
-
-              {project.websiteUrl ? (
+              <h3 className="m-0 text-2xl font-medium leading-tight tracking-tight text-black sm:text-3xl">
                 <a
-                  href={project.websiteUrl}
+                  href={project.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative z-10 inline-flex items-center rounded-full border border-black/25 px-5 py-2.5 text-sm font-medium text-black no-underline transition-colors hover:bg-black/6 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-black"
+                  className="text-inherit no-underline outline-none after:absolute after:inset-0 after:rounded-2xl after:content-[''] focus-visible:after:outline focus-visible:after:outline-offset-2 focus-visible:after:outline-black"
                 >
-                  Kunjungi website
-                  <span className="sr-only"> (buka di tab baru)</span>
+                  {project.title}
+                  <span className="sr-only"> (studi kasus, buka di tab baru)</span>
                 </a>
-              ) : null}
-            </div>
-          </div>
+              </h3>
 
-          <div className="relative h-60 w-full overflow-hidden rounded-xl bg-white/25 sm:h-72 md:h-96 lg:h-100">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={project.image}
-              alt=""
-              decoding="async"
-              loading={index === 0 ? "eager" : "lazy"}
-              className="block work-item h-full w-full rounded-xl object-cover transition-transform duration-500 will-change-transform group-hover:scale-105"
-            />
+              <p className="m-0 text-base font-normal leading-snug tracking-normal text-black/60 sm:text-lg">
+                {project.description}
+              </p>
+
+              <div className="mt-2 flex flex-wrap items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="inline-flex items-center rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors group-hover:bg-neutral-800"
+                >
+                  Baca studi kasus
+                </span>
+
+                {project.websiteUrl ? (
+                  <a
+                    href={project.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative z-10 inline-flex items-center rounded-full border border-black/25 px-5 py-2.5 text-sm font-medium text-black no-underline transition-colors hover:bg-black/6 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-black"
+                  >
+                    Kunjungi website
+                    <span className="sr-only"> (buka di tab baru)</span>
+                  </a>
+                ) : null}
+              </div>
+            </div>
+
+            <div className="relative  work-item h-60 w-full overflow-hidden rounded-xl bg-white/25 sm:h-72 md:h-96 lg:h-100">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <Image fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                src={project.image}
+                alt=""
+                decoding="async"
+                loading={index === 0 ? "eager" : "lazy"}
+                className="block h-full w-full rounded-xl object-cover transition-transform duration-500 will-change-transform group-hover:scale-105"
+              />
+            </div>
           </div>
         </div>
       </article>

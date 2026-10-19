@@ -59,7 +59,7 @@ function PricingImage({ images, name, className }: { images: string[] | string; 
           }}
           className="w-full"
         >
-          <div className="relative h-[320px] overflow-hidden rounded-2xl">
+          <div className="relative h-80 overflow-hidden rounded-2xl">
             <CarouselContent className="h-full rounded-lg">
               {images.map((src, index) => (
                 <CarouselItem key={index} className="p-0 rounded-lg">

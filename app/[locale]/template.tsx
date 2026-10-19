@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
-export default function Template({ children}: Readonly<{
+export default function Template({ children }: Readonly<{
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
@@ -16,6 +16,8 @@ export default function Template({ children}: Readonly<{
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
+        // ✅ Tambahkan style atau kelas CSS ini untuk mencegah meluber
+        style={{ width: '100%' }}
       >
         {children}
       </motion.div>

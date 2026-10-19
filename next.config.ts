@@ -5,9 +5,19 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // output: "export", // hasil build statis di folder /out
+  output: "export", // hasil build statis di folder /out
   trailingSlash: true, // /id/ → out/id/index.html (aman untuk hosting statis apa pun)
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || undefined,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        // port: '',
+        // pathname: '/account123/**',
+      },
+    ],
+  },
 };
 
 export default withNextIntl(nextConfig);

@@ -21,7 +21,6 @@
   --cb-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .27  0 0 0 0 .16  0 0 0 0 .06  1.4 0 0 0 -.38'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
   /* serat memanjang */
   --cb-fibre: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='160'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.012 .55' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .33  0 0 0 0 .2  0 0 0 0 .07  1.6 0 0 0 -.55'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>");
-
   color: var(--cb-ink);
 }
 
@@ -170,7 +169,7 @@
 .cb-m[data-cb-open="true"] {
   visibility: visible;
   pointer-events: auto;
-  transition-delay: 0s;
+  transition-delay: 2s;
 }
 
 .cb-fold {
@@ -280,13 +279,13 @@
 .cb-m {
   position: absolute;
   z-index: 60;
-  left: 1.125rem;
-  right: 1.125rem;
   top: calc(100% - 2px);
+  transition: all 0.3s ease-in-out;
 }
 
 .cb-m-scroll {
   max-height: min(50dvh, 26rem);
+  
   overflow-y: auto;
   overscroll-behavior: contain;
 }

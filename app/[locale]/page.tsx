@@ -1,5 +1,3 @@
-import { useTranslations } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import Hero from "@/components/homesections/hero/Hero";
 import Intro from "@/components/homesections/intro/Intro";

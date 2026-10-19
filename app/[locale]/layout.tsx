@@ -1,15 +1,20 @@
+import 'lenis/dist/lenis.css';
 import "@/styles/globals.css";
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { generateMetaData } from '@/lib/metadata';
 import { hasLocale } from "next-intl";
-import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { getLocale, getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { inter, geist, merriweather, playfair, display, body } from "@/config/fonts";
 import { Providers } from "./providers";
 import Script from "next/script";
 import Head from "next/head";
+import ScrollAnimations from "@/components/Layout/ScrollAnimations";
+import SmoothScroll from "@/components/Layout/SmoothScroll";
+import Header from "@/components/Layout/header";
+import Footer from "@/components/Layout/footer";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => routing.locales.map((locale) => ({ locale }));
@@ -60,9 +65,16 @@ export default async function LocaleLayout({ children }: { children: React.React
           }}
         />
       </Head>
-      <Providers messages={messages} locale={locale}>
-        {children}
-      </Providers>
+
+      <body suppressHydrationWarning className="relative antialiased font-geist mx-2 text-md flex flex-col">
+        <Providers messages={messages} locale={locale}>
+          <SmoothScroll />
+          <Header />
+          {children}
+          <Footer/>
+          <ScrollAnimations />
+        </Providers>
+      </body>
       <Analytics />
     </html>
   );

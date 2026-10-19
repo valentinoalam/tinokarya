@@ -223,6 +223,7 @@ const About = () => {
           src="/images/small-business-web-design-fm.svg"
           width={256}
           height={283}
+          loading="lazy"
           className="absolute z-10 scale-175 opacity-60 left-1/4 top-1/3 aspect-auto"
           alt="setting"
           style={{

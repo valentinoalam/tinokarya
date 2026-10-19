@@ -31,9 +31,9 @@ export function LocaleSwitcher() {
             onClick={() => handleLocaleChange(loc)}
             className={`px-2.5 py-1 rounded-md font-medium transition-colors ${
               isActive
-                ? 'bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900'
+                ? 'bg-neutral-900 text-white  dark:text-neutral-900'
                 + 'text-xs' // penyesuaian gaya
-                : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                : 'text-neutral-600 dark:text-neutral-900 hover:text-neutral-900 dark:hover:text-white'
             }`}
           >
             {loc.toUpperCase()}
