@@ -5,7 +5,7 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { generateMetaData } from '@/lib/metadata';
 import { hasLocale } from "next-intl";
-import { getLocale, getMessages } from "next-intl/server";
+import { getLocale, getMessages, getTimeZone } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { inter, geist, merriweather, playfair, display, body } from "@/config/fonts";
 import { Providers } from "./providers";
@@ -53,7 +53,7 @@ export default async function LocaleLayout({ children }: { children: React.React
   const locale = await getLocale();
   if (!hasLocale(routing.locales, locale)) notFound();
   const messages = await getMessages();
-
+  const timeZone = await getTimeZone();
   return (
     <html lang={locale} suppressHydrationWarning className={`${inter.variable} ${geist.variable} ${merriweather.variable} ${playfair.variable} ${display.variable} ${body.variable}`} >
       <Head>
@@ -67,7 +67,7 @@ export default async function LocaleLayout({ children }: { children: React.React
       </Head>
 
       <body suppressHydrationWarning className="relative antialiased font-geist mx-2 text-md flex flex-col">
-        <Providers messages={messages} locale={locale}>
+        <Providers messages={messages} locale={locale} timeZone={timeZone}>
           <SmoothScroll />
           <Header />
           {children}

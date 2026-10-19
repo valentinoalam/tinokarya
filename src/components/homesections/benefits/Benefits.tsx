@@ -12,66 +12,17 @@ import {
 import BenefitLaptop from "./laptop";
 import styles from "./Benefits.module.css";
 import stage from "./Benefits.module.css";
+import { useTranslations } from "next-intl";
+import type { BenefitRow } from "@/i18n/types";
 import BenefitMural from "./mural";
 import { MagicText } from "@/components/ui/magic-text";
 
-type Row = {
-  title: string;
-  sum: string;
-  items: { lead: string; text: string }[];
-  aside?: { lead: string; text: string };
-};
-
-const ROWS: Row[] = [
-  {
-    title: "Dipercaya lebih cepat",
-    sum: "Kredibilitas, kepercayaan, dan loyalitas pelanggan tumbuh dari kesan yang serius.",
-    items: [
-      { lead: "Citra profesional.", text: "Alamat web resmi (domain sendiri) terlihat lebih sah dan dapat dipercaya dibandingkan usaha yang hanya memakai akun media sosial." },
-      { lead: "Reputasi brand.", text: "Konsumen modern cenderung menganggap bisnis yang terdaftar di internet memiliki standar operasional yang lebih baik." },
-      { lead: "Kesan keseriusan.", text: "Website menunjukkan pemilik serius menjalankan usahanya, dan membantu membangun hubungan yang baik dengan pelanggan." },
-      { lead: "Loyalitas.", text: "Semakin pelanggan mengenal brand Anda, semakin besar rasa bangga dan kesetiaan mereka." },
-    ],
-  },
-  {
-    title: "Ditemukan orang baru",
-    sum: "Orang yang belum pernah mendengar usaha Anda tetap bisa menemukannya lewat pencarian.",
-    items: [
-      { lead: "Buka 24 jam.", text: "Website bekerja sebagai toko digital: calon pelanggan bisa mencari informasi, melihat katalog, atau bertransaksi kapan saja." },
-      { lead: "Jangkauan lebih luas.", text: "Tidak terbatas lokasi fisik. Usaha Anda bisa ditemukan pembeli dari luar kota, bahkan luar negeri." },
-      { lead: "Muncul saat dicari.", text: "Lewat optimasi SEO, produk atau jasa Anda berpeluang tampil ketika orang mengetik kata kunci seperti “jasa cuci mobil terdekat”, “barbershop di kota Anda”, atau “catering makanan tradisional”." },
-      { lead: "Trafik gratis dari calon pembeli yang serius.", text: "Mereka yang datang memang sedang mencari solusi atau produk yang Anda tawarkan." },
-    ],
-    aside: {
-      lead: "Jujur saja:",
-      text: "website tidak otomatis membuat bisnis berada di halaman pertama Google. Namun tanpa aset digital yang bisa ditemukan dan dioptimalkan, peluang ditemukan secara organik jauh lebih terbatas.",
-    },
-  },
-  {
-    title: "Menjawab pertanyaan pelanggan",
-    sum: "Pusat informasi yang tersedia terus, bahkan saat Anda tidak memegang ponsel.",
-    items: [
-      { lead: "Informasi lengkap.", text: "Harga, spesifikasi, FAQ, dan alamat tersaji jelas, sehingga beban tim customer service berkurang." },
-      { lead: "Lebih sedikit hambatan membeli.", text: "Semakin mudah pelanggan mendapat jawaban, semakin mudah mereka melangkah: menelepon, mengirim WhatsApp, memesan, atau datang langsung." },
-      { lead: "Ajakan bertindak yang jelas.", text: "Tombol seperti “Beli Sekarang”, “Booking Online”, atau “Hubungi WhatsApp” memudahkan pelanggan langsung bertransaksi." },
-    ],
-  },
-  {
-    title: "Sepenuhnya milik Anda",
-    sum: "Media sosial bagus untuk berinteraksi, tetapi ruangnya dikendalikan pihak lain.",
-    items: [
-      { lead: "Kontrol penuh atas konten dan brand.", text: "Katalog, cerita brand, dan tampilan tersusun sesuai karakter usaha Anda, tanpa terganggu iklan pesaing seperti yang sering terjadi di marketplace." },
-      { lead: "Bebas dari perubahan algoritma.", text: "Website adalah aset pribadi, tidak bergantung pada kebijakan platform pihak ketiga." },
-      { lead: "Data pelanggan.", text: "Kumpulkan email dan nomor WhatsApp untuk promosi langsung." },
-      { lead: "Pahami perilaku pelanggan.", text: "Pasang alat analitik seperti Google Analytics untuk melihat produk yang paling diminati, asal pengunjung, dan cara mereka berbelanja." },
-    ],
-  },
-];
 // Gambar dasar mural (opsional), mis. "/images/mural-wall.jpg" dari folder public.
 // Boleh juga array 4 URL: satu gambar untuk tiap benefit.
 const MURAL_IMAGE: string | string[] | undefined = [];
  
 export default function Benefits() {
+  const t = useTranslations("benefits");
   const [index, setIndex] = useState(0);
   const [shown, setShown] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -96,15 +47,15 @@ export default function Benefits() {
     io.observe(el);
     return () => io.disconnect();
   }, []);
-
+  const ROWS = t.raw("rows");
   const next = () => setIndex((i) => (i + 1) % ROWS.length);
-  const row = ROWS[index];
+  const row: BenefitRow = ROWS[index];
 
   return (
     <section className={`${styles.band} ${stage.band}`} id="manfaat">
       <BenefitMural tone={index} ready={shown} image={MURAL_IMAGE} />
       <div className="wrap">
-        <MagicText className="sec-title text-4xl text-end pr-20 mb-2 font-black">Yang berubah ketika usaha Anda punya website</MagicText>
+        <MagicText className="sec-title text-4xl text-end pr-20 mb-2 font-black">{t("title")}</MagicText>
 
         <div className={stage.stage} ref={stageRef} data-tone={index} data-shown={shown}>
           
@@ -112,7 +63,7 @@ export default function Benefits() {
           <div className={stage.laptopCol}>
             
             <div className={stage.dots} role="group" aria-label="Pilih manfaat">
-              {ROWS.map((r, i) => (
+              {(t.raw("rows") as BenefitRow[]).map((r, i) => (
                 <button
                   key={r.title}
                   type="button"

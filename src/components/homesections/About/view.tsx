@@ -6,12 +6,15 @@ import Image from 'next/image';
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslations } from "next-intl";
+
 // import { TypingAnimation } from '@/components/ui/typing-animation';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   // const { bgColor } = useBackgroundColor();
+  const t = useTranslations("About");
   const containerRef = useRef<HTMLDivElement>(null);
   const storyRef = useRef<HTMLDivElement>(null);
   const missionRef = useRef<HTMLDivElement>(null);
@@ -237,35 +240,25 @@ const About = () => {
           {/* Our Story Section */}
           <div className="flex flex-col gap-5 md:flex-row" ref={storyRef}>
             <h2 className="flex-1 text-3xl font-bold md:text-5xl transition-colors duration-300">
-              <SparklesText sparklesCount={6} text="Our Story" />
+              <SparklesText sparklesCount={6} text={t("story.title")} />
             </h2>
-            <p className="flex-1 leading-none text-lg transition-colors">
-              Perjalanan kami didorong oleh hasrat untuk mengubah ide menjadi pengalaman visual yang mendalam. 
-              Didirikan dengan visi untuk merevolusi dunia konten, kami telah berkembang menjadi pusat kreativitas dan inovasi.
-            </p>
+            <p className="flex-1 leading-none text-lg transition-colors">{t("story.description")}</p>
           </div>
 
           {/* Mission Section */}
           <div className="flex flex-col gap-5 md:flex-row" ref={missionRef}>
             <h2 className="flex-1 text-3xl font-semibold md:text-5xl transition-colors duration-300">
-              <SparklesText sparklesCount={4} colors={{first: '#A6F1E0', second: '#FFAB5B'}} text="Mission" />
+              <SparklesText sparklesCount={4} colors={{first: '#A6F1E0', second: '#FFAB5B'}} text={t("mission.title")} />
             </h2>
-            <p className="flex-1 leading-none text-lg transition-colors">
-              Kami percaya bahwa setiap merek memiliki narasi unik yang siap diceritakan, dan misi kami adalah menghidupkan kisah-kisah tersebut dengan keaslian, kreativitas, dan dampak.
-            </p>
+            <p className="flex-1 leading-none text-lg transition-colors">{t("mission.description")}</p>
           </div>
 
           {/* Approach Section */}
           <div className="flex flex-col gap-5 md:flex-row" ref={approachRef}>
             <h2 className="flex-1 text-3xl font-bold md:text-5xl transition-colors duration-300">
-              <SparklesText sparklesCount={3} colors={{first: '#BE5985', second: '#FFB200'}} text="Approach" />
+              <SparklesText sparklesCount={3} colors={{first: '#BE5985', second: '#FFB200'}} text={t("approach.title")} />
             </h2>
-            <p className="flex-1 leading-none text-lg transition-colors" >
-              Yang membedakan kami adalah pendekatan holistik kami dalam mengembangkan image dari produk tersebut.
-              Dari konsep hingga kreasi dan promosi, kami memandu klien kami
-              melalui setiap langkah, memastikan proses yang lancar dan efektif.
-              Kami menggabungkan kreativitas dengan strategi, menghasilkan konten yang tidak hanya terlihat memukau tetapi juga mencapai hasil nyata.
-            </p>
+            <p className="flex-1 leading-none text-lg transition-colors" >{t("approach.description")}</p>
           </div>
         </div>
       </div>

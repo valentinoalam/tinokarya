@@ -146,6 +146,58 @@
       }
     ]
   },
+  "About": {
+    "story": {
+      "title": "Cerita Kami",
+      "description": "Perjalanan kami didorong oleh hasrat untuk mengubah ide menjadi pengalaman visual yang mendalam. Berawal dari visi untuk merevolusi dunia konten, kami berkembang menjadi pusat kreativitas dan inovasi."
+    },
+    "mission": {
+      "title": "Misi",
+      "description": "Kami percaya bahwa setiap merek memiliki narasi unik yang siap diceritakan. Misi kami adalah menghidupkan kisah-kisah tersebut melalui keaslian, kreativitas, dan dampak yang berarti."
+    },
+    "approach": {
+      "title": "Pendekatan",
+      "description": "Yang membedakan kami adalah pendekatan holistik dalam membangun citra produk. Dari konsep hingga kreasi dan promosi, kami mendampingi klien di setiap tahap untuk memastikan proses yang lancar dan efektif. Kami memadukan kreativitas dengan strategi untuk menghasilkan konten yang tidak hanya memukau secara visual, tetapi juga memberikan hasil nyata."
+    }
+  },
+  "Pain": {
+    "title": "Brosur Anda Menghambat Pertumbuhan Bisnis",
+    "subtitle": "Di era digital yang serba cepat ini, brosur tradisional tidak lagi efektif.",
+    "sum": "Kenapa Masih Mengandalkan Brosur Tradisional Jika Landing Page Bisa Melonjakkan Bisnis Anda?",
+    "points": [
+      {
+        "title": "Mudah Hilang atau Terabaikan",
+        "description": "Pelanggan sering kali salah tempat atau melupakan brosur begitu meninggalkan toko atau acara Anda."
+      },
+      {
+        "title": "Biaya Cetak dan Pembaruan Mahal",
+        "description": "Biaya cetak yang terus bertambah, ditambah setiap pembaruan memerlukan cetak ulang dari awal."
+      },
+      {
+        "title": "Jangkauan Terbatas",
+        "description": "Brosur hanya mencapai mereka yang Anda temui secara langsung, meninggalkan celah besar pada audiens potensial Anda."
+      }
+    ],
+    "brochure": {
+      "headline": "Brosur Anda Menghambat Pertumbuhan Bisnis?",
+      "intro": "Di era digital yang serba cepat ini, brosur tradisional tidak lagi efektif.",
+      "points": [
+        {
+          "title": "Mudah Hilang atau Terabaikan!",
+          "body": "Pelanggan sering kali salah tempat atau melupakan brosur begitu meninggalkan toko atau acara Anda."
+        },
+        {
+          "title": "Biaya Cetak dan Pembaruan Mahal!!",
+          "body": "Biaya cetak yang terus bertambah, ditambah setiap pembaruan memerlukan cetak ulang dari awal."
+        },
+        {
+          "title": "Jangkauan Terbatas!!!",
+          "body": "Brosur hanya mencapai mereka yang Anda temui secara langsung, meninggalkan celah besar pada audiens potensial Anda."
+        }
+      ]
+    },
+    "conclusion": "Anda menghabiskan anggaran untuk materi pemasaran yang hasilnya sulit diukur. Parahnya lagi, Anda kehilangan cara modern yang lebih disukai pelanggan untuk berinteraksi—melalui informasi yang cepat, interaktif, dan mudah diakses."
+  },
   "compare": {
     "title": "Media sosial melengkapi. Website menjadi milik Anda.",
     "sub": "Keduanya berguna. Perbedaannya ada pada siapa yang memegang kendali.",

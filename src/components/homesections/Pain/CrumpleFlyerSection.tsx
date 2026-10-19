@@ -12,26 +12,9 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import gsap from "gsap";
+import { useTranslations } from "next-intl";
+import { BrochurePoints, PainPoints } from '@/i18n/types';
 
-/* ============ KONTEN PAMFLET (edit di sini) ============ */
-const CONTENT = {
-  headline: "Brosur Anda Menghambat Pertumbuhan Bisnis?",
-  intro: "Di era digital yang serba cepat ini, brosur tradisional tidak lagi efektif.",
-  points: [
-    {
-      title: "Mudah Hilang atau Terabaikan!",
-      body: "Pelanggan sering kali salah tempat atau melupakan brosur begitu meninggalkan toko atau acara Anda.",
-    },
-    {
-      title: "Biaya Cetak dan Pembaruan Mahal!!",
-      body: "Biaya cetak yang terus bertambah, ditambah setiap pembaruan memerlukan cetak ulang dari awal.",
-    },
-    {
-      title: "Jangkauan Terbatas!!!",
-      body: "Brosur hanya mencapai mereka yang Anda temui secara langsung, meninggalkan celah besar pada audiens potensial Anda.",
-    },
-  ],
-};
 
 /* ============ TEKSTUR PAMFLET (canvas 2D) ============ */
 function wrapText(g: CanvasRenderingContext2D, text: string, x: number, y: number, maxW: number, lh: number) {
@@ -48,7 +31,7 @@ function wrapText(g: CanvasRenderingContext2D, text: string, x: number, y: numbe
   return y;
 }
 
-function makeFlyerTexture() {
+function makeFlyerTexture({headline, intro, points}: {headline:string; intro:string, points: BrochurePoints[]}) {
   const w = 800, h = 1130; // rasio sama dengan bidang 4.2 x 5.9
   const c = document.createElement("canvas");
   c.width = w; c.height = h;
@@ -60,12 +43,12 @@ function makeFlyerTexture() {
 
   g.fillStyle = "#f6efe0"; g.textAlign = "center";
   g.font = `bold 58px ${sans}`;
-  wrapText(g, CONTENT.headline, w / 2, 120, 700, 70);
+  wrapText(g, headline, w / 2, 120, 700, 70);
 
   g.fillStyle = "#2b2f3a"; g.font = `28px ${sans}`;
-  wrapText(g, CONTENT.intro, w / 2, 400, 660, 38);
+  wrapText(g, intro, w / 2, 400, 660, 38);
 
-  CONTENT.points.forEach((p, i) => {
+  points.forEach((p, i) => {
     const y = 535 + i * 190;
     g.fillStyle = "#d9503f"; g.beginPath(); g.arc(85, y - 10, 34, 0, Math.PI * 2); g.fill();
     g.fillStyle = "#f6efe0"; g.font = `bold 36px ${sans}`; g.textAlign = "center";
@@ -104,12 +87,18 @@ type Props = {
   background?: string;
   /** Warna teks hint di bawah. Ubah jadi gelap jika latar halaman terang. */
   hintColor?: string;
+  brochure: {
+    headline: string;
+    intro: string;
+    points: BrochurePoints[]
+  }
 };
 
-export default function CrumpleFlyerSection({ background = "transparent", hintColor = "#ece8df" }: Props) {
+export default function CrumpleFlyerSection({ background = "transparent", hintColor = "#ece8df", brochure }: Props) {
+  const {headline, intro, points} = brochure
   const wrapRef = useRef<HTMLDivElement>(null);
   const msgRef = useRef<HTMLSpanElement>(null);
-
+  
   useEffect(() => {
     const el = wrapRef.current!;
     let w = el.clientWidth, h = el.clientHeight;
@@ -147,8 +136,7 @@ export default function CrumpleFlyerSection({ background = "transparent", hintCo
     }
     pos.needsUpdate = true;
     geo.morphAttributes.position = [new THREE.BufferAttribute(crumpled, 3)];
-
-    const map = makeFlyerTexture();
+    const map = makeFlyerTexture({headline, intro, points});
     const mat = new THREE.MeshStandardMaterial({ map, roughness: 0.8, side: THREE.DoubleSide, flatShading: true });
     const flyer = new THREE.Mesh(geo, mat);
     flyer.updateMorphTargets(); // pastikan morphTargetInfluences terbentuk
@@ -331,9 +319,9 @@ export default function CrumpleFlyerSection({ background = "transparent", hintCo
     <div className="-m-10" style={{ position: "relative", minHeight: "100svh", background, overflow: "hidden" }}>
       {/* Teks asli untuk SEO & screen reader (pamflet 3D hanya visual) */}
       <div style={sr}>
-        <h2>{CONTENT.headline}</h2>
-        <p>{CONTENT.intro}</p>
-        {CONTENT.points.map((p) => (
+        <h2>{headline}</h2>
+        <p>{intro}</p>
+        {points.map((p) => (
           <div key={p.title}><h3>{p.title}</h3><p>{p.body}</p></div>
         ))}
       </div>

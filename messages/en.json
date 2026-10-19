@@ -146,6 +146,57 @@
       }
     ]
   },
+  "About": {
+    "story": {
+      "title": "Our Story",
+      "description": "Our journey is driven by a passion for transforming ideas into immersive visual experiences. Founded with a vision to revolutionize the world of content, we have grown into a hub of creativity and innovation."
+    },
+    "mission": {
+      "title": "Mission",
+      "description": "We believe every brand has a unique story waiting to be told. Our mission is to bring those stories to life with authenticity, creativity, and impact."
+    },
+    "approach": {
+      "title": "Approach",
+      "description": "What sets us apart is our holistic approach to developing a product's image. From concept to creation and promotion, we guide our clients through every step, ensuring a seamless and effective process. We combine creativity with strategy to produce content that not only looks stunning but also delivers tangible results."
+    }
+  },
+  "Pain": {
+    "title": "Is Your Brochure Holding Your Business Back?",
+    "subtitle": "In today's fast-paced digital world, traditional brochures are no longer as effective as they used to be.",
+    "points": [
+      {
+        "title": "Easily Lost or Forgotten",
+        "description": "Customers often misplace or forget your brochure as soon as they leave your store or an event."
+      },
+      {
+        "title": "High Printing and Updating Costs",
+        "description": "Printing costs continue to add up, and every update requires another full print run."
+      },
+      {
+        "title": "Limited Reach",
+        "description": "Brochures only reach people you meet in person, leaving a significant portion of your potential audience untapped."
+      }
+    ],
+    "brochure": {
+      "headline": "Is Your Brochure Holding Your Business Back?",
+      "intro": "In today's fast-paced digital world, traditional brochures are no longer as effective as they used to be.",
+      "points": [
+        {
+          "title": "Easily Lost or Forgotten!",
+          "body": "Customers often misplace or forget your brochure as soon as they leave your store or an event."
+        },
+        {
+          "title": "High Printing and Updating Costs!!",
+          "body": "Printing costs continue to add up, and every update requires another full print run."
+        },
+        {
+          "title": "Limited Reach!!!",
+          "body": "Brochures only reach people you meet in person, leaving a significant portion of your potential audience untapped."
+        }
+      ]
+    },
+    "conclusion": "You're spending your marketing budget on materials whose impact is difficult to measure. Worse, you're missing out on a modern way customers prefer to engage—with information that's quick, interactive, and easy to access."
+  },
   "compare": {
     "title": "Social media complements. A website is yours.",
     "sub": "Both are useful. The difference is who holds the control.",

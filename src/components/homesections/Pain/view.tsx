@@ -2,7 +2,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { pain } from './content';
+import { useTranslations } from "next-intl";
+import { BrochurePoints, PainPoints } from '@/i18n/types';
 import CrumpleFlyerSection from './CrumpleFlyerSection';
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,8 +13,12 @@ const Pain = () => {
   const subtitleRef = useRef(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const conclusionRef = useRef(null);
-  const painPoints = pain;
-  
+  const t = useTranslations("Pain");
+  const brochure = {
+    headline: t("brochure.headline"),
+    intro: t("brochure.intro"),
+    points: (t.raw("brochure.points") as BrochurePoints[])
+  }
   useEffect(() => {
     const scrollTriggers: ScrollTrigger[] = [];
 
@@ -78,15 +83,15 @@ const Pain = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 ref={titleRef} className="text-4xl font-bold text-red-500 mb-4 opacity-0">
-            {painPoints.title}
+            {t("title")}
           </h2>
           <p ref={subtitleRef} className="text-xl text-gray-900/70 dark:text-amber-50/70">
-            {painPoints.subtitle}
+            {t("subtitle")}
           </p>
         </div>
 
-        {/* <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {painPoints.points.map((point, index) => (
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {(t.raw("points") as PainPoints[]).map((point, index) => (
             <div 
               key={index}
               ref={el => { cardsRef.current[index] = el; }}
@@ -96,15 +101,15 @@ const Pain = () => {
               <p className="text-gray-600">{point.description}</p>
             </div>
           ))}
-        </div> */}
+        </div>
 
         <div 
           ref={conclusionRef}
           className="relative bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg opacity-0"
         >
-          <p className="text-lg text-gray-800">{painPoints.conclusion}</p>
+          <p className="text-lg text-gray-800">{t("conclusion")}</p>
           
-          <CrumpleFlyerSection />
+          <CrumpleFlyerSection brochure={brochure} />
         </div>
       </div>
       

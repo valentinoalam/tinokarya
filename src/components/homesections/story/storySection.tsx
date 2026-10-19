@@ -72,10 +72,10 @@ const Pain = () => {
       const direction = currentIndex > previousIndex ? "right" : "left";
       const slideDistance = halfWidth;
 
-      // gsap.set(previousContent, {
-      //   x: 0,
-      //   opacity: 1,
-      // });
+      gsap.set(previousContent, {
+        x: 0,
+        opacity: 1,
+      });
       // Slide out the previous content
       const outAnimation = gsap.to(previousContent, {
         x: direction === "right" ? `-${slideDistance}px` : `${slideDistance}px`,
