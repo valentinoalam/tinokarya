@@ -298,11 +298,11 @@ export default function Header() {
         aria-hidden={!isOpen}
       >
         {/* Lipatan 1: judul + mode */}
-        <div className="cb-fold" style={foldDelay(0, 0.24)}>
+        <div className="cb-fold" style={foldDelay(0, 0.32)}>
           
 
           {/* Lipatan 2: breadcrumb + daftar */}
-          <div className="cb-fold" style={foldDelay(0.22, 0.12)}>
+          <div className="cb-fold" style={foldDelay(0.22, 0.16)}>
             {isDefaultRoute ? 
               <LandingFold
                 items={landingPageData as MobileNavItem[]}
@@ -512,7 +512,7 @@ function CardboardDesktopMenu({ items, className }: { items: NavItem[]; classNam
                 aria-hidden={!isOpen}
               >
                 {/* Lipatan utama: badan flap */}
-                <div className="cb-fold" style={foldDelay(0, 0.12)}>
+                <div className="cb-fold" style={foldDelay(0, 0.2)}>
                   <Face clip="cb-clip-flap">
                     <ul className="p-3 space-y-1.5">
                       {item.children!.map((child, ci) => {
