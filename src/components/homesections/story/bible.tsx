@@ -1,8 +1,7 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { cerita_bergambar } from './content';
 import {
   Tabs,
   TabsContent,
@@ -14,8 +13,18 @@ import useScrollContext from '@/hooks/useScrollTracking';
 import dynamic from 'next/dynamic';
 gsap.registerPlugin(ScrollTrigger);
 
-const StoryCarousel = dynamic(() => import("./storyCarousel"));
-const Pain = () => {
+export type Slide = {
+  title?: string;
+  image: string; // Assuming gambar is a URL or path to an image
+  naration?: string;
+};
+type Story = {
+  title: string;
+  slides: Slide[];
+};
+
+const StoryCarousel = dynamic(() => import("./storyRead"));
+const StoryBible = ({stories, conclusion}: {stories: Story[], conclusion:string}) => {
   const sectionRef = useRef<(HTMLDivElement | null)>(null)
   const {scrollY} = useScrollContext();
   const [halfWidth, setHalfWidth] = useState<number | null>(null);
@@ -125,36 +134,32 @@ const Pain = () => {
   
   return (
     <div ref={sectionRef} className="overflow-y-visible overflow-x-hidden no-scrollbar pt-10 z-10 space-y-11">
-      <Tabs defaultValue={cerita_bergambar[0].judul} className="w-full space-y-6 container relative mx-auto">
+      <Tabs defaultValue={stories[0].title} className="w-full space-y-6 container relative mx-auto">
         <TabsList className="bg-transparent w-full grid-cols-4 gap-4 justify-evenly flex">
-          {cerita_bergambar.map((cerita, index) => (
-            <TabsTrigger key={index} value={cerita.judul} onClick={() => handleTabChange(index)}>
-              {cerita.judul}
+          {stories.map((cerita, index) => (
+            <TabsTrigger key={index} value={cerita.title} onClick={() => handleTabChange(index)}>
+              {cerita.title}
             </TabsTrigger>
           ))}
         </TabsList>
-        {cerita_bergambar.map((cerita, index) => (
-          <TabsContent key={index} value={cerita.judul} className="relative h-112.5 py-9 overflow-y-visible">
+        {stories.map((cerita, index) => (
+          <TabsContent key={index} value={cerita.title} className="relative h-112.5 py-9 overflow-y-visible">
             <div className={`absolute h-full w-full rounded-2xl top-0 mask-radial-[50%_90%] mask-radial-from-80% mask-radial-at-center ${getBackgroundColor(currentIndex)} transition-colors delay-1000 duration-1000`} />
             {/* Previous Content */}
             {previousIndex !== index && (
-              <StoryCarousel ref={previousContentRef} slides={cerita_bergambar[previousIndex].slides} />
+              <StoryCarousel ref={previousContentRef} slides={stories[previousIndex].slides} />
             )}
             {/* Current Content */}
             <StoryCarousel className={`transition-opacity duration-500 ${isAnimating ? 'opacity-0' : 'opacity-100'}`} ref={currentContentRef} slides={cerita.slides} />
           </TabsContent>
         ))}
       </Tabs>
-      <div 
-          className="container relative mx-auto min-h-48 h-max border-l-4 border-red-500 px-6 py-20 mt-16 rounded-r-lg"
-        >
-        <p className=''>Dari cerita-cerita di atas, kita bisa melihat bahwa landing page atau website adalah alat yang sangat penting untuk bisnis di era digital.   Landing page atau website tidak hanya membantu bisnis terlihat lebih profesional, tetapi juga memudahkan pelanggan untuk mengambil tindakan.  </p>
-        </div>
+      <p className='container relative mx-auto min-h-48 h-max px-6 py-20 mt-16 rounded-r-lg'>{conclusion}</p>
     </div>
   );
 };
 
-export default Pain;
+export default StoryBible;
 
 
 function getBackgroundColor(index: number) {

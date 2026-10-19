@@ -128,7 +128,7 @@
         "items": [
           {
             "lead": "Kontrol penuh atas konten dan brand.",
-            "text": "Katalog, cerita brand, dan tampilan tersusun sesuai karakter usaha Anda, tanpa terganggu iklan pesaing seperti yang sering terjadi di marketplace."
+            "text": "Katalog, naration brand, dan tampilan tersusun sesuai karakter usaha Anda, tanpa terganggu iklan pesaing seperti yang sering terjadi di marketplace."
           },
           {
             "lead": "Bebas dari perubahan algoritma.",
@@ -148,12 +148,12 @@
   },
   "About": {
     "story": {
-      "title": "Cerita Kami",
+      "title": "naration Kami",
       "description": "Perjalanan kami didorong oleh hasrat untuk mengubah ide menjadi pengalaman visual yang mendalam. Berawal dari visi untuk merevolusi dunia konten, kami berkembang menjadi pusat kreativitas dan inovasi."
     },
     "mission": {
       "title": "Misi",
-      "description": "Kami percaya bahwa setiap merek memiliki narasi unik yang siap diceritakan. Misi kami adalah menghidupkan kisah-kisah tersebut melalui keaslian, kreativitas, dan dampak yang berarti."
+      "description": "Kami percaya bahwa setiap merek memiliki narasi unik yang siap dinarationkan. Misi kami adalah menghidupkan kisah-kisah tersebut melalui keaslian, kreativitas, dan dampak yang berarti."
     },
     "approach": {
       "title": "Pendekatan",
@@ -198,6 +198,233 @@
     },
     "conclusion": "Anda menghabiskan anggaran untuk materi pemasaran yang hasilnya sulit diukur. Parahnya lagi, Anda kehilangan cara modern yang lebih disukai pelanggan untuk berinteraksi—melalui informasi yang cepat, interaktif, dan mudah diakses."
   },
+  "Book": {
+    "newLine": "“Kami memahami masalah Anda, dan kami memiliki sesuatu yang dapat membantu.”",
+    "title": "Website bisa bernaration, bukan hanya menjual.",
+    "subtitle": "“Ini produk kami. Silakan beli.”",
+    "pages": [
+      {
+        "front": {
+          "title": "Website Adalah Rumah",
+          "image": { "src": "/images/illust/book-house.svg", "alt": "Ilustrasi rumah dengan jendela berbentuk halaman website dan pintu yang terbuka" },
+          "paragraphs": [
+              "Bukan hanya lapak untuk menjual, tetapi tempat brand Anda bernaration."
+            ]
+        },
+        "back": {
+          "title": "Lapak atau Rumah?",
+          "image": { "src": "/images/illust/book-lapak-rumah.svg", "alt": "Ilustrasi lapak sederhana di kiri dan rumah yang hangat di kanan" },
+          "paragraphs": [
+            { "text": "“Ini produk kami. Silakan beli.”", "variant": "strike" },
+            "Lapak hanya memajang. Rumah memperkenalkan siapa Anda dan apa yang Anda pedulikan.",
+            { "text": "“Kami memahami masalah Anda, dan kami mengusahakan yang terbaik untuk membantu Anda.”", "variant": "quote" }
+          ]
+        }
+      },
+      {
+        "front": {
+          "title": "Pelanggan Datang dengan Pertanyaan",
+          "image": { "src": "/images/illust/book-pertanyaan.svg", "alt": "Ilustrasi pelanggan dengan banyak pertanyaan dan ponsel yang menampilkan jawaban" },
+          "paragraphs": [
+            "Apa layanannya? Berapa biayanya? Di mana lokasinya? Apakah usaha ini layak dipercaya?",
+            "Website menjawabnya kapan saja, bahkan saat toko sudah tutup."
+          ]
+        },
+        "back": {
+          "title": "Brand Punya naration",
+          "image": { "src": "/images/illust/book-naration.svg", "alt": "Ilustrasi buku terbuka dengan hati dan bintang yang muncul dari halamannya" },
+          "paragraphs": [
+            "Latar belakang, nilai, dan cara kerja Anda membantu pelanggan mengenal siapa yang mereka percaya.",
+            "Produk tetap penting. Namun naration yang jelas memberi alasan untuk memilih Anda."
+          ]
+        }
+      },
+      {
+        "front": {
+          "title": "Untuk Usaha Setempat",
+          "image": { "src": "/images/illust/book-setempat.svg", "alt": "Ilustrasi toko dengan tenda bergaris, tanda buka, pin lokasi, dan chat WhatsApp" },
+          "paragraphs": [
+            "Kedai, bengkel, salon, atau klinik: orang sekitar biasanya mencari dulu sebelum datang.",
+            "• Alamat, peta, dan jam buka",
+            "• Layanan dan harga yang jelas",
+            "• Tombol WhatsApp untuk pesan atau reservasi"
+          ]
+        },
+        "back": {
+          "title": "Untuk Usaha Pengiriman",
+          "image": {
+            "src": "/images/illust/book-pengiriman.png",
+            "alt": "Ilustrasi truk membawa paket melalui rute menuju kota tujuan",
+            "width": 320,
+            "height": 200
+          },
+          "paragraphs": [
+            "Toko online, UMKM, atau produsen yang melayani pembeli di luar kota.",
+            "• Katalog lengkap dengan foto dan harga",
+            "• Informasi pengiriman dan cara memesan",
+            "• Brand milik sendiri, tidak hanya bergantung pada marketplace"
+          ]
+        }
+      },
+      {
+        "front": {
+          "title": "Setiap Usaha Lebih Proper",
+          "image": { "src": "/images/illust/book-proper.jfif", "alt": "Ilustrasi halaman website rapi dengan lencana centang hijau dan bintang lima" },
+          "paragraphs": [
+            "Melayani di tempat maupun lewat pengiriman, website membuat usaha tampak lebih siap dan layak dipercaya.",
+            "• Informasi rapi dan mudah ditemukan",
+            "• Mudah dihubungi",
+            "• Kesan profesional sejak kunjungan pertama"
+          ]
+        },
+        "back": {
+          "title": "Mulai dari yang Sederhana",
+          "image": { "src": "/images/illust/book-mulai.svg", "alt": "Ilustrasi daftar periksa dengan pensil dan tunas yang baru tumbuh" },
+          "paragraphs": [
+            "Tulis siapa yang Anda bantu, masalah apa yang Anda selesaikan, dan bagaimana cara menghubungi Anda.",
+            "Website tidak otomatis mendatangkan pembeli, tetapi membantu mereka yakin ketika tiba. Perbarui seiring usaha Anda tumbuh."
+          ]
+        }
+      },
+      {
+        "front": {
+          "title": "Undang Pelanggan Masuk",
+          "image": { "src": "/images/illust/book-selamat-datang.svg", "alt": "Ilustrasi pintu rumah yang terbuka hangat menyambut tamu" },
+          "paragraphs": [
+            "Rumah yang baik terasa ramah: jelas, mudah dijelajahi, dan siap membantu.",
+            "Mulailah dari informasi yang paling dibutuhkan pelanggan Anda."
+          ]
+        },
+        "back": {
+          "title": "Website Adalah Rumah",
+          "image": { "src": "/images/illust/book-house.svg", "alt": "Rumah sebagai simbol brand yang terbuka bagi pelanggan" },
+          "paragraphs": [
+            { "text": "“Kami memahami masalah Anda, dan kami mengusahakan yang terbaik untuk membantu Anda.”", "variant": "quote" },
+            "Bangun rumah untuk brand Anda."
+          ]
+        }
+      }
+    ]
+  },
+  "stories": {
+    "stories": [
+      {
+        "title": "Yummy Cake",
+        "slides": [
+          { "image": "/story-slides/1-6.webp" },
+          { 
+            "title": "Perjuangan Dina dan Toko Kue 'Yummy Cake'",
+            "image": "/story-slides/1-1.webp",
+            "naration": "Dina adalah seorang ibu rumah tangga yang pandai membuat kue. Kue-kue buatannya selalu laris manis di lingkungan rumahnya. Teman-teman dan tetangga sering memesan kue ulang tahun, kue kering, atau dessert box untuk acara-acara spesial. Melihat potensi ini, Dina memutuskan untuk membuka usaha kecil-kecilan bernama 'Lezatnya Dina'."
+          },
+          {
+            "title": "Promosi Media Sosial",
+            "image": "/story-slides/1-2.webp",
+            "naration": "Awalnya, Dina hanya mengandalkan pesanan dari mulut ke mulut. Namun, lama-kelamaan, ia merasa usahanya tidak berkembang. Teman-temannya menyarankan untuk mempromosikan kuenya di media sosial. Dina pun membuat akun Instagram dan Facebook untuk memamerkan foto-foto kue buatannya. Pesanan pun mulai berdatangan dari luar lingkungan rumahnya."
+          },
+          {
+            "title": "Pesanan Besar yang Hilang",
+            "image": "/story-slides/1-3.webp",
+            "naration": "Suatu hari, Dina mendapat pesanan besar dari seorang calon pelanggan yang menemukan akun Instagram-nya. Pelanggan itu ingin memesan 50 box dessert untuk acara kantor. Namun, si pelanggan kebingungan karena Dina hanya mengandalkan pesan langsung di Instagram. Tidak ada informasi lengkap tentang menu, harga, atau cara pemesanan. Akhirnya, si pelanggan memilih toko kue lain yang memiliki website dengan informasi lengkap."
+          },
+          {
+            "title": "Membuat Landing Page",
+            "image": "/story-slides/1-4.webp",
+            "naration": "Dina pun menyadari kekurangannya. Ia belajar dari temannya yang sudah berpengalaman di dunia digital dan memutuskan untuk membuat landing page sederhana untuk usahanya. Di landing page tersebut, Dina menampilkan foto-foto kue terbaiknya, daftar menu lengkap dengan harga, testimoni dari pelanggan yang puas, dan tombol 'Pesan Sekarang' yang langsung terhubung ke WhatsApp-nya."
+          },
+          {
+            "title": "Hasil Luar Biasa",
+            "image": "/story-slides/1-5.webp",
+            "naration": "Setelah landing page-nya aktif, Dina membagikan link-nya di media sosial dan iklan online. Hasilnya luar biasa! Banyak pelanggan baru yang merasa lebih nyaman karena semua informasi ada di satu halaman. Mereka tidak perlu lagi bertanya-tanya tentang harga atau menu. Bahkan, Dina mulai mendapat pesanan dari kota-kota lain berkat iklan online yang mengarahkan calon pelanggan ke landing page-nya."
+          }
+        ]
+      },
+      {
+        "title": "CreativeInk",
+        "slides": [
+          { "image": "/story-slides/2-5.webp" },
+          {
+            "title": "Perjalanan Rian dan Jasa Desain Grafis 'CreativeInk'",
+            "image": "/story-slides/2-1.webp",
+            "naration": "Rian adalah seorang desainer grafis berbakat yang baru memulai bisnis jasa desain bernama 'CreativeInk'. Awalnya, Rian hanya mengandalkan platform freelance lokal untuk mendapatkan proyek. Namun, ia merasa platform tersebut mengambil komisi besar dan membuatnya sulit membangun identitas bisnisnya sendiri. Rian pun memutuskan untuk mencari cara agar klien bisa langsung menghubunginya."
+          },
+          {
+            "title": "Klien Potensial yang Hilang",
+            "image": "/story-slides/2-2.webp",
+            "naration": "Suatu hari, Rian bertemu dengan seorang calon klien potensial melalui rekomendasi teman. Klien tersebut membutuhkan desain logo dan branding untuk usaha barunya. Rian dengan antusias menjelaskan portofolio dan layanannya melalui email. Namun, klien tersebut meminta Rian mengirimkan link website atau halaman khusus yang berisi informasi lengkap tentang jasanya, termasuk portofolio, harga paket, dan testimoni dari klien sebelumnya. Rian kebingungan karena ia tidak memiliki website atau landing page. Ia hanya mengandalkan file PDF yang berisi portofolio dan penawaran harga. Klien tersebut akhirnya memilih desainer lain yang sudah memiliki website profesional dengan informasi lengkap dan mudah diakses."
+          },
+          {
+            "title": "Membuat Landing Page",
+            "image": "/story-slides/2-4.webp",
+            "naration": "Menyadari kesalahannya, Rian segera membuat landing page sederhana untuk 'CreativeInk'. Di landing page tersebut, Rian menampilkan portofolio desain terbaiknya, paket layanan beserta harganya, testimoni dari klien sebelumnya, dan tombol 'Hubungi Saya' yang langsung terhubung ke email dan WhatsApp-nya."
+          },
+          {
+            "title": "Hasil Menakjubkan",
+            "image": "/story-slides/2-4.webp",
+            "naration": "Setelah landing page-nya selesai, Rian mulai mempromosikannya di media sosial, forum desain, dan grup komunitas bisnis. Hasilnya sungguh menakjubkan! Banyak calon klien yang merasa lebih nyaman karena semua informasi yang mereka butuhkan sudah tersedia di satu halaman. Mereka tidak perlu lagi bertanya-tanya tentang harga atau proses kerja. Bahkan, Rian mulai mendapatkan klien dari luar kota dan luar negeri berkat promosi online yang mengarahkan calon klien ke landing page-nya."
+          },
+          {
+            "title": "Hasil Menakjubkan",
+            "image": "/story-slides/2-4.webp",
+            "naration": "Setelah landing page-nya selesai, Rian mulai mempromosikannya di media sosial, forum desain, dan grup komunitas bisnis. Hasilnya sungguh menakjubkan! Banyak calon klien yang merasa lebih nyaman karena semua informasi yang mereka butuhkan sudah tersedia di satu halaman. Mereka tidak perlu lagi bertanya-tanya tentang harga atau proses kerja. Bahkan, Rian mulai mendapatkan klien dari luar kota dan luar negeri berkat promosi online yang mengarahkan calon klien ke landing page-nya."
+          }
+        ]
+      },
+      {
+        "title": "Wanderlust Adventures",
+        "slides": [
+          { "image": "/story-slides/3-6.webp" },
+          {
+            "title": "Usaha Tour & Travel 'Wanderlust Adventures' milik Andi",
+            "image": "/story-slides/3-1.webp",
+            "naration": "Andi adalah seorang pemandu wisata yang memiliki usaha tour & travel bernama 'Wanderlust Adventures'. Usahanya menawarkan paket wisata ke destinasi alam eksotis, seperti hiking ke gunung, menjelajahi hutan, atau mengunjungi pantai-pantai tersembunyi. Awalnya, Andi hanya mengandalkan promosi dari mulut ke mulut dan brosur fisik yang dibagikan di kafe-kafe atau tempat nongkrong anak muda."    
+          },
+          {
+            "title": "Peluang yang Hilang",
+            "image": "/story-slides/3-2.webp",
+            "naration": "Suatu hari, Andi mendapat kabar bahwa ada komunitas pecinta alam dari kota besar yang sedang mencari paket wisata untuk 30 orang. Mereka menemukan nama 'Wanderlust Adventures' dari rekomendasi teman, tetapi ketika mencoba mencari informasi lebih lanjut secara online, mereka tidak menemukan website atau landing page yang bisa diakses. Andi hanya memiliki akun Instagram yang jarang di-update, dan tidak ada informasi lengkap tentang paket wisata, harga, atau itinerary. Komunitas tersebut akhirnya memilih biro perjalanan lain yang memiliki website profesional dengan informasi lengkap, foto-foto destinasi, dan testimoni dari pelanggan sebelumnya. Andi pun kehilangan peluang besar karena calon kliennya tidak bisa menemukan informasi yang mereka butuhkan."
+          },
+          {
+            "title": "Membuat Landing Page",
+            "image": "/story-slides/3-3.webp",
+            "naration": "Menyadari hal ini, Andi memutuskan untuk membuat landing page sederhana untuk 'Wanderlust Adventures'. Di landing page tersebut, Andi menampilkan foto-foto destinasi wisata yang menakjubkan, daftar paket wisata beserta harganya, itinerary lengkap untuk setiap paket, testimoni dari pelanggan yang puas, dan tombol 'Daftar Sekarang' yang langsung terhubung ke WhatsApp-nya."
+          },
+          {
+            "title": "Hasil Luar Biasa",
+            "image": "/story-slides/3-5.webp",
+            "naration": "Setelah landing page-nya aktif, Andi mulai mempromosikannya melalui Google Ads dan media sosial. Hasilnya luar biasa! Banyak calon pelanggan yang merasa lebih percaya karena semua informasi tersedia dengan jelas. Mereka tidak perlu lagi bertanya-tanya tentang harga atau jadwal. Bahkan, Andi mulai mendapatkan pelanggan dari luar daerah yang tertarik dengan paket wisatanya."
+          }
+        ]
+      },
+      {
+        "title": "SkillUp Academy",
+        "slides": [
+          { "image": "/story-slides/4-1-3.webp" },
+          {
+            "title": "Bisnis Online Course 'SkillUp Academy' milik Sarah",
+            "image": "/story-slides/4-1.webp",
+            "naration": "Sarah adalah seorang ahli pemasaran digital yang memutuskan untuk membuat bisnis online course bernama 'SkillUp Academy'. Ia menawarkan kursus online tentang digital marketing, SEO, dan content creation. Awalnya, Sarah hanya mengandalkan platform kursus online untuk menjual kelasnya. Namun, ia merasa platform tersebut mengambil komisi besar dan membatasi kreativitasnya dalam mempromosikan kelas."    
+          },
+          {
+            "title": "Webinar yang Menarik",
+            "image": "/story-slides/4-3.webp",
+            "naration": "Suatu hari, Sarah mengikuti webinar dan berkesempatan untuk mempromosikan kursusnya kepada ratusan peserta. Ia memberikan presentasi yang menarik, dan banyak peserta yang tertarik untuk mendaftar. Namun, ketika Sarah hanya memberikan link ke platform kursus online, banyak peserta yang merasa kurang nyaman karena harus mendaftar dan membayar melalui platform tersebut. Beberapa bahkan meminta link langsung ke website atau halaman khusus yang bisa memberikan informasi lebih lengkap."
+          },
+          {
+            "title": "Membuat Landing Page",
+            "image": "/story-slides/4-4.webp",
+            "naration": "Sarah pun menyadari pentingnya memiliki landing page sendiri. Ia segera membuat landing page untuk 'SkillUp Academy' yang berisi deskripsi lengkap tentang kursus yang ditawarkan, daftar modul dan manfaat yang akan didapatkan, testimoni dari peserta sebelumnya, dan tombol 'Daftar Sekarang' yang langsung mengarahkan ke pembayaran."
+          },
+          {
+            "title": "Peningkatan Jumlah Pendaftar",
+            "image": "/story-slides/4-6.webp",
+            "naration": "Setelah landing page-nya aktif, Sarah mulai mempromosikannya melalui webinar, email marketing, dan iklan Facebook. Hasilnya, jumlah pendaftar kursusnya meningkat signifikan karena calon peserta merasa lebih nyaman dan percaya dengan informasi yang tersedia di landing page-nya."
+          }
+        ]
+      }
+    ],
+    "conclusion": "Dari naration-naration di atas, kita bisa melihat bahwa landing page atau website adalah alat yang sangat penting untuk bisnis di era digital.   Landing page atau website tidak hanya membantu bisnis terlihat lebih profesional, tetapi juga memudahkan pelanggan untuk mengambil tindakan.  "
+  },
   "compare": {
     "title": "Media sosial melengkapi. Website menjadi milik Anda.",
     "sub": "Keduanya berguna. Perbedaannya ada pada siapa yang memegang kendali.",
@@ -207,7 +434,7 @@
       [
         "Kendali atas tampilan dan konten",
         "Mengikuti aturan platform",
-        "Anda menyusun informasi, cerita, visual, dan penawaran sendiri"
+        "Anda menyusun informasi, naration, visual, dan penawaran sendiri"
       ],
       [
         "Iklan pesaing",
@@ -231,48 +458,86 @@
       ]
     ]
   },
-  "story": {
-    "title": "Website bisa bercerita, bukan hanya menjual.",
-    "oldLine": "“Ini produk kami. Silakan beli.”",
-    "newLine": "“Kami memahami masalah Anda, dan kami memiliki sesuatu yang dapat membantu.”",
-    "examples": [
+  "BranchStory": {
+    "ariaLabel": "Perjalanan bisnis dari toko sederhana menjadi banyak cabang",
+    "eyebrow": "Perjalanan Bisnis",
+    "heading": "Dari Toko Sederhana Menjadi",
+    "headingHighlight": "Banyak Cabang",
+    "stages": [
       {
-        "title": "Bisnis kuliner",
-        "text": "Tidak hanya menampilkan menu, tetapi juga membagikan cerita tentang bahan yang digunakan, proses pembuatan, sejarah makanan, atau tips menikmati produknya."
+        "n": "01",
+        "title": "Toko Sederhana",
+        "sub": "Sudah ada pembeli, tampilannya apa adanya"
       },
       {
-        "title": "Jasa profesional",
-        "text": "Membagikan edukasi yang membantu calon pelanggan memahami masalah yang mereka hadapi, lewat artikel, panduan, FAQ, atau studi kasus."
+        "n": "02",
+        "title": "+ Branding & Dekor",
+        "sub": "Orang mulai mengenal brand, bukan sekadar produk"
+      },
+      {
+        "n": "03",
+        "title": "+ Komputer & Kasir",
+        "sub": "Bisnis mulai punya ingatan: order, stok, pelanggan"
+      },
+      {
+        "n": "04",
+        "title": "+ Layanan Take Away",
+        "sub": "Pesan dulu, ambil tanpa antre, atau diantar kurir"
+      },
+      {
+        "n": "05",
+        "title": "+ Banyak Cabang",
+        "sub": "Satu brand, satu sistem, banyak toko"
+      },
+      {
+        "n": "∞",
+        "title": "Satu toko, banyak cabang.",
+        "sub": "Brand, sistem, dan data yang sama dibawa ke setiap toko—itulah aset bisnis Anda.",
+        "quote": "Dulu satu toko. Sekarang satu brand dengan sistem yang bisa diulang di banyak tempat."
       }
     ],
-    "close": "Hubungan seperti inilah yang perlahan membangun kepercayaan."
+    "steps": [
+      "Toko sederhana",
+      "Branding & dekor",
+      "Komputer & data",
+      "Take away",
+      "Banyak cabang",
+      "Aset bisnis"
+    ],
+    "scrollHint": "Gulir untuk membangun ↓",
+    "webglError": "WebGL tidak tersedia di perangkat ini."
   },
   "packages": {
-    "title": "Mulai dari yang dasar. Kembangkan saat bisnis siap.",
-    "base": {
-      "title": "Paket Dasar",
-      "tag": "Website resmi berisi informasi usaha",
-      "items": [
-        "Profil usaha",
-        "Layanan",
-        "Portofolio",
-        "Kontak"
-      ]
+    "title": {
+      "hook": "Mulai dari yang dasar.", 
+      "line": "Kembangkan saat bisnis siap."
     },
-    "later": {
-      "title": "Bisa ditambahkan kemudian",
-      "tag": "Website berkembang mengikuti bisnis Anda",
-      "items": [
-        "Katalog produk",
-        "Sistem pemesanan dan booking",
-        "Artikel dan blog",
-        "Formulir konsultasi",
-        "Integrasi WhatsApp",
-        "Newsletter",
-        "Sistem pembayaran",
-        "Berbagai otomatisasi bisnis"
-      ]
-    },
+    "packages": [
+      {
+        "title": "Paket Dasar",
+        "tag": "Website resmi berisi informasi usaha",
+        "items": [
+          "Profil usaha",
+          "Layanan",
+          "Portofolio",
+          "Kontak"
+        ]
+      },
+      {
+        "title": "Bisa ditambahkan kemudian",
+        "tag": "Website berkembang mengikuti bisnis Anda",
+        "items": [
+          "Katalog produk",
+          "Sistem pemesanan dan booking",
+          "Artikel dan blog",
+          "Formulir konsultasi",
+          "Integrasi WhatsApp",
+          "Newsletter",
+          "Sistem pembayaran",
+          "Berbagai otomatisasi bisnis"
+        ]
+      }
+    ],
     "note": "Website bukan sekadar biaya untuk “punya halaman di internet”. Ia adalah aset digital yang dapat terus dikembangkan seiring pertumbuhan bisnis Anda."
   },
   "usecase": {
@@ -323,7 +588,7 @@
   },
   "cta": {
     "title": "Siap punya rumah digital untuk usaha Anda?",
-    "text": "Ceritakan usaha Anda. Kami bantu jelaskan isi paket dan langkah berikutnya."
+    "text": "narationkan usaha Anda. Kami bantu jelaskan isi paket dan langkah berikutnya."
   },
   "footer": {
     "text": "Paket Dasar Digitalisasi UMKM"

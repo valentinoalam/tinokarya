@@ -253,7 +253,7 @@ export default function PricingPage() {
 
   return (
     <main
-      className="min-h-screen h-max bg-[#F2F5F8] text-[#14202B] antialiased"
+      className="min-h-screen mb-30 h-max bg-[#F2F5F8] text-[#14202B] antialiased"
     >
       <div className="mx-auto h-max max-w-6xl px-5 py-14 sm:py-20">
         {/* Header */}

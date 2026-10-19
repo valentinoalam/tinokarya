@@ -1,5 +1,5 @@
 "use client";
-
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { createStoryScene, STAGE_THRESHOLDS } from "./createStoryScene";
 import { inter, geist, merriweather, playfair, display, body } from "@/config/fonts";
@@ -15,11 +15,20 @@ const STAGES = [
 const STEPS = ["Toko sederhana", "Branding & dekor", "Komputer & data", "Take away", "Banyak cabang", "Aset bisnis"];
 
 export default function BranchStorySection() {
+  const t = useTranslations("BranchStory");
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const vizRef = useRef<HTMLDivElement>(null);
   const [stage, setStage] = useState(0);
   const [failed, setFailed] = useState(false);
+
+  const STAGES = t.raw("stages") as {
+    n: string;
+    title: string;
+    sub: string;
+    quote?: string;
+  }[];
+  const STEPS = t.raw("steps") as string[];
 
   useEffect(() => {
     if (!canvasRef.current || !vizRef.current) return;
@@ -49,19 +58,19 @@ export default function BranchStorySection() {
   const s = STAGES[stage];
 
   return (
-    <section ref={sectionRef} className={`bs ${display.variable} ${inter.variable} ${body.variable}`} aria-label="Perjalanan bisnis dari toko sederhana menjadi banyak cabang">
+    <section ref={sectionRef} className={`bs ${display.variable} ${inter.variable} ${body.variable}`} aria-label={t("ariaLabel")}>
       <style>{css}</style>
       <div className="bs-stick font-sans">
         <div className="bs-txt">
-          <p className="bs-eyebrow">Perjalanan Bisnis</p>
-          <h1 className="text-4xl font-bold">Dari Toko Sederhana Menjadi <em className="font-extrabold">Banyak Cabang</em></h1>
+          <p className="bs-eyebrow">{t("eyebrow")}</p>
+          <h1 className="text-4xl font-bold"> {t("heading")}{" "}<em className="font-extrabold">{t("headingHighlight")}</em></h1>
           
           <div className="bs-card">
             <div key={stage} className="bs-in" aria-live="polite">
               <div className="bs-num">{s.n}</div>
               <h2 className="bs-h2">{s.title}</h2>
               <p className="bs-sub">{s.sub}</p>
-              {stage === 5 && <p className="bs-quote">“Dulu satu toko. Sekarang satu brand dengan sistem yang bisa diulang di banyak tempat.”</p>}
+              {stage === 5 && <p className="bs-quote">“{s.quote}”</p>}
             </div>
           </div>
           <ol className="flex lg:hidden bs-steps">
@@ -71,13 +80,13 @@ export default function BranchStorySection() {
               </li>
             ))}
           </ol>
-          <div className="bs-hint" style={{ opacity: stage === 0 ? 1 : 0 }}>Gulir untuk membangun ↓</div>
+          <div className="bs-hint" style={{ opacity: stage === 0 ? 1 : 0 }}> {t("scrollHint")}</div>
         </div>
 
         <div className="bs-viz" ref={vizRef}>
           <canvas className="mask-[radial-gradient(500px_circle_at_center,white,transparent)]" ref={canvasRef} />
           <div className="bs-vig" />
-          {failed && <p className="bs-fail">WebGL tidak tersedia di perangkat ini.</p>}
+          {failed && <p className="bs-fail">{t("webglError")}</p>}
         </div>
         
       </div>

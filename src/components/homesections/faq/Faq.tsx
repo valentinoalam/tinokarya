@@ -1,16 +1,9 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import styles from "./Faq.module.css";
-import { cn } from "@/lib/utils";
-
-const ITEMS = [
-  { q: "Apakah website otomatis muncul di halaman pertama Google?", a: "Tidak otomatis. Website memberi Anda aset yang bisa ditemukan dan dioptimalkan lewat SEO. Tanpa aset itu, peluang ditemukan secara organik jauh lebih terbatas." },
-  { q: "Kalau sudah aktif di media sosial, apakah masih perlu website?", a: "Media sosial sangat berguna untuk berinteraksi dengan pelanggan, tetapi platformnya dikendalikan pihak lain. Website memberi ruang yang lebih bebas untuk membangun pengalaman brand Anda sendiri." },
-  { q: "Apakah website bisa dikembangkan setelah paket dasar?", a: "Bisa. Website dapat berkembang mengikuti bisnis, misalnya dengan katalog produk, sistem pemesanan, blog, integrasi WhatsApp, newsletter, hingga sistem pembayaran." },
-  { q: "Apa yang dimuat di Paket Dasar?", a: "Website resmi berisi informasi usaha: profil usaha, layanan, portofolio, dan kontak." },
-];
 
 function FaqItem({ q, a }: { q: string; a: string }) {
   const details = useRef<HTMLDetailsElement>(null);
@@ -56,12 +49,14 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 export default function Faq() {
+  const t = useTranslations("faq");
+  const items = t.raw("items") as { q: string; a: string }[];
   return (
-    <section id="faq" className={cn(styles.faq, "justify-items-center")}>
+    <section className={styles.faq}>
       <div className="wrap">
-        <h2 data-reveal>Pertanyaan yang sering muncul</h2>
+        <h2 data-reveal>{t("title")}</h2>
         <div data-reveal-group>
-          {ITEMS.map((it) => <FaqItem key={it.q} {...it} />)}
+          {items.map((it) => <FaqItem key={it.q} {...it} />)}
         </div>
       </div>
     </section>

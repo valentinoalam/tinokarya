@@ -4,15 +4,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Page from './page';
 import './InteractiveBook.css';
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
-import { MagicText } from '../ui/magic-text';
-import { cn } from '@/lib/utils';
-import { ScrollVelocityContainer, ScrollVelocityRow } from '../ui/scroll-based-velocity';
-import { GlyphMatrix } from '../ui/glyph-matrix';
+import BookIntro from './book-intro';
 
 // Harus sama dengan jumlah lembar di pageContents (page.tsx)
 const TOTAL_PAGES = 5;
-
-const NEW_LINE = "“Kami memahami masalah Anda, dan kami memiliki sesuatu yang dapat membantu.”";
 
 // "View" = sisi buku yang sedang dilihat. Urutannya:
 // 0 = sampul depan (kanan), 1 = sisi kiri setelah sampul dibuka, 2 = sisi kanan lembar berikutnya, dst.
@@ -146,19 +141,8 @@ const InteractiveBook = () => {
   }, [goNext, goPrev]);
 
   return (
-    <section className="book-stage" ref={root}>
-      <div className="wrap lg:w-1/2 absolute left-0 top-0 lg:-top-3">
-        <h2 style={{ fontSize: "clamp(1.9rem, 4.2vw, 2.8rem)"}} className={cn('max-w-[20ch] text-ink mb-8 transition-all ease-out duration-500', view===0? '':'blur-[2px]')} data-reveal>Website bisa bercerita, bukan hanya menjual.</h2>
-        <p className={cn("hidden md:flex mb-2 font-display tracking-wide font-medium leading-4 line-through decoration-3 text-gray-500 mx-2 max-w-[24ch] transition-all ease-out duration-500", view===0? 'blur-[1px]':'blur-[2px]')} style={{fontSize: "clamp(1.4rem, 3vw, 1.6rem)"}} ref={oldRef}>“Ini produk kami. Silakan beli.”</p>
-
-        <p className={cn("hidden md:inline font-display tracking-wide font-extrabold leading-18 mt-4 relative transition-all duration-300", view===0? "z-60 text-btn-bg" : "-z-10 text-muted")} style={{fontSize: "clamp(1.9rem, 4.6vw, 3.3rem)"}} ref={newRef}>
-          {NEW_LINE.split(" ").map((w, i) => (
-            <span key={i}>
-              <span className='transition-all ease-out duration-700' style={{filter: `blur(${view===0?0:Math.floor((i+1)/2)}px)`}} data-word>{w}</span>{" "}
-            </span>
-          ))}
-        </p>
-      </div>
+    <section className="book-stage mt-5" ref={root}>
+      <BookIntro oldRef={oldRef} newRef={newRef} view={view} />
       <div ref={shifterRef} className="book-shifter z-0">
         <div className="book shadow-lg">
           <div className="book__spine"></div>

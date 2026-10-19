@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useTranslations } from "next-intl";
-import { BrochurePoints, PainPoints } from '@/i18n/types';
+import { BrochurePoints } from '@/i18n/types';
 import CrumpleFlyerSection from './CrumpleFlyerSection';
 gsap.registerPlugin(ScrollTrigger);
 
@@ -90,7 +90,7 @@ const Pain = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        {/* <div className="grid md:grid-cols-3 gap-8 mb-12">
           {(t.raw("points") as PainPoints[]).map((point, index) => (
             <div 
               key={index}
@@ -101,7 +101,7 @@ const Pain = () => {
               <p className="text-gray-600">{point.description}</p>
             </div>
           ))}
-        </div>
+        </div> */}
 
         <div 
           ref={conclusionRef}

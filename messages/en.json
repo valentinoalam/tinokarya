@@ -197,6 +197,277 @@
     },
     "conclusion": "You're spending your marketing budget on materials whose impact is difficult to measure. Worse, you're missing out on a modern way customers prefer to engage—with information that's quick, interactive, and easy to access."
   },
+  "Book": {
+    "newLine": "“We understand your challenges, and we have something that can help.”",
+    "title": "A Website Can Tell a Story, Not Just Sell.",
+    "subtitle": "“Here's our product. Please buy it.”",
+    "pages": [
+      {
+        "front": {
+          "title": "A Website Is a Home",
+          "image": {
+            "src": "/images/illust/book-house.svg",
+            "alt": "Illustration of a house with windows shaped like website pages and an open door"
+          },
+          "paragraphs": [
+            "Not just a place to sell, but a place where your brand tells its story."
+          ]
+        },
+        "back": {
+          "title": "A Stall or a Home?",
+          "image": {
+            "src": "/images/illust/book-lapak-rumah.svg",
+            "alt": "Illustration of a simple market stall on the left and a welcoming home on the right"
+          },
+          "paragraphs": [
+            {
+              "text": "“Here's our product. Please buy it.”",
+              "variant": "strike"
+            },
+            "A stall displays products. A home introduces who you are and what you care about.",
+            {
+              "text": "“We understand your challenges, and we do our best to help you.”",
+              "variant": "quote"
+            }
+          ]
+        }
+      },
+      {
+        "front": {
+          "title": "Customers Come with Questions",
+          "image": {
+            "src": "/images/illust/book-pertanyaan.svg",
+            "alt": "Illustration of a customer with many questions and a phone displaying answers"
+          },
+          "paragraphs": [
+            "What services do you offer? How much does it cost? Where are you located? Can this business be trusted?",
+            "Your website answers these questions anytime, even after your store has closed."
+          ]
+        },
+        "back": {
+          "title": "Every Brand Has a Story",
+          "image": {
+            "src": "/images/illust/book-cerita.svg",
+            "alt": "Illustration of an open book with a heart and stars emerging from its pages"
+          },
+          "paragraphs": [
+            "Your background, values, and way of working help customers get to know the people they choose to trust.",
+            "Your products still matter. But a clear story gives customers a reason to choose you."
+          ]
+        }
+      },
+      {
+        "front": {
+          "title": "For Local Businesses",
+          "image": {
+            "src": "/images/illust/book-setempat.svg",
+            "alt": "Illustration of a shop with a striped awning, an open sign, a location pin, and a WhatsApp chat icon"
+          },
+          "paragraphs": [
+            "Whether it's a café, repair shop, salon, or clinic, local customers often search online before visiting.",
+            "• Address, map, and opening hours",
+            "• Clear services and pricing",
+            "• WhatsApp buttons for orders or reservations"
+          ]
+        },
+        "back": {
+          "title": "For Delivery-Based Businesses",
+          "image": {
+            "src": "/images/illust/book-pengiriman.png",
+            "alt": "Illustration of a truck carrying packages along a route to its destination city",
+            "width": 320,
+            "height": 200
+          },
+          "paragraphs": [
+            "Online stores, small businesses, and manufacturers serving customers in other cities.",
+            "• A complete catalog with photos and prices",
+            "• Delivery information and ordering instructions",
+            "• Your own brand, without relying solely on marketplaces"
+          ]
+        }
+      },
+      {
+        "front": {
+          "title": "Make Your Business Look More Professional",
+          "image": {
+            "src": "/images/illust/book-proper.jfif",
+            "alt": "Illustration of a well-organized website with a green checkmark badge and five stars"
+          },
+          "paragraphs": [
+            "Whether you serve customers in person or deliver to their door, a website makes your business look more established and trustworthy.",
+            "• Organized information that's easy to find",
+            "• Easy ways for customers to contact you",
+            "• A professional impression from the very first visit"
+          ]
+        },
+        "back": {
+          "title": "Start Simple",
+          "image": {
+            "src": "/images/illust/book-mulai.svg",
+            "alt": "Illustration of a checklist with a pencil and a newly sprouted seedling"
+          },
+          "paragraphs": [
+            "Explain who you help, what problems you solve, and how customers can reach you.",
+            "A website won't automatically bring in customers, but it helps them feel confident when they find you. Keep improving it as your business grows."
+          ]
+        }
+      },
+      {
+        "front": {
+          "title": "Welcome Customers In",
+          "image": {
+            "src": "/images/illust/book-selamat-datang.svg",
+            "alt": "Illustration of an open home door warmly welcoming visitors"
+          },
+          "paragraphs": [
+            "A good home feels welcoming: it's clear, easy to explore, and ready to help.",
+            "Start with the information your customers need most."
+          ]
+        },
+        "back": {
+          "title": "A Website Is a Home",
+          "image": {
+            "src": "/images/illust/book-house.svg",
+            "alt": "A house symbolizing a brand that welcomes its customers"
+          },
+          "paragraphs": [
+            {
+              "text": "“We understand your challenges, and we do our best to help you.”",
+              "variant": "quote"
+            },
+            "Build a home for your brand."
+          ]
+        }
+      }
+    ]
+  },
+  "stories": {
+    "stories": [
+      {
+        "title": "Yummy Cake",
+        "slides": [
+          {
+            "image": "/story-slides/1-6.webp"
+          },
+          {
+            "title": "Dina's Journey with 'Yummy Cake'",
+            "image": "/story-slides/1-1.webp",
+            "naration": "Dina is a homemaker who is skilled at baking cakes. Her homemade treats are always in high demand in her neighborhood. Friends and neighbors often order birthday cakes, cookies, and dessert boxes for special occasions. Seeing the potential, Dina decides to start a small business called 'Lezatnya Dina'."
+          },
+          {
+            "title": "Promoting on Social Media",
+            "image": "/story-slides/1-2.webp",
+            "naration": "At first, Dina relies solely on word-of-mouth recommendations. Over time, however, she realizes that her business is not growing. Her friends suggest promoting her cakes on social media. Dina creates Instagram and Facebook accounts to showcase photos of her baked goods. Soon, orders start coming in from beyond her neighborhood."
+          },
+          {
+            "title": "A Big Order Lost",
+            "image": "/story-slides/1-3.webp",
+            "naration": "One day, Dina receives a large order inquiry from a potential customer who discovers her Instagram account. The customer wants to order 50 dessert boxes for a corporate event. However, the customer becomes confused because Dina relies entirely on Instagram direct messages. There is no comprehensive information about her menu, prices, or ordering process. Eventually, the customer chooses another bakery with a website that provides all the necessary information."
+          },
+          {
+            "title": "Building a Landing Page",
+            "image": "/story-slides/1-4.webp",
+            "naration": "Dina realizes what her business is missing. She learns from a friend with digital industry experience and decides to create a simple landing page for her business. On the page, she showcases photos of her best cakes, a complete menu with prices, testimonials from satisfied customers, and an 'Order Now' button that connects directly to her WhatsApp."
+          },
+          {
+            "title": "Outstanding Results",
+            "image": "/story-slides/1-5.webp",
+            "naration": "Once her landing page goes live, Dina shares the link on social media and in online ads. The results are remarkable! Many new customers feel more comfortable placing orders because all the information is available in one place. They no longer need to ask about prices or menu options. Dina even starts receiving orders from other cities thanks to online ads that direct potential customers to her landing page."
+          }
+        ]
+      },
+      {
+        "title": "CreativeInk",
+        "slides": [
+          {
+            "image": "/story-slides/2-5.webp"
+          },
+          {
+            "title": "Rian's Journey with 'CreativeInk'",
+            "image": "/story-slides/2-1.webp",
+            "naration": "Rian is a talented graphic designer who has recently started his own design business, 'CreativeInk'. Initially, he relies on local freelance platforms to find projects. However, he feels that these platforms charge high commissions and make it difficult for him to build his own business identity. Rian decides to find a way for clients to contact him directly."
+          },
+          {
+            "title": "A Potential Client Lost",
+            "image": "/story-slides/2-2.webp",
+            "naration": "One day, Rian meets a promising potential client through a friend's referral. The client needs logo design and branding for a new business. Rian enthusiastically explains his portfolio and services via email. However, the client asks him to provide a website link or dedicated page containing complete information about his services, including his portfolio, service packages, pricing, and testimonials from previous clients. Rian is at a loss because he does not have a website or landing page. He relies solely on a PDF containing his portfolio and pricing proposals. In the end, the client chooses another designer who has a professional website with complete, easily accessible information."
+          },
+          {
+            "title": "Building a Landing Page",
+            "image": "/story-slides/2-4.webp",
+            "naration": "Realizing his mistake, Rian quickly creates a simple landing page for 'CreativeInk'. The page showcases his best design work, service packages and pricing, testimonials from previous clients, and a 'Contact Me' button that connects directly to his email and WhatsApp."
+          },
+          {
+            "title": "Remarkable Results",
+            "image": "/story-slides/2-4.webp",
+            "naration": "After completing his landing page, Rian begins promoting it on social media, design forums, and business community groups. The results are remarkable! Many potential clients feel more comfortable because all the information they need is available on one page. They no longer have to ask about pricing or the work process. Rian even starts attracting clients from other cities and countries through online promotions that direct potential clients to his landing page."
+          },
+          {
+            "title": "Remarkable Results",
+            "image": "/story-slides/2-4.webp",
+            "naration": "After completing his landing page, Rian begins promoting it on social media, design forums, and business community groups. The results are remarkable! Many potential clients feel more comfortable because all the information they need is available on one page. They no longer have to ask about pricing or the work process. Rian even starts attracting clients from other cities and countries through online promotions that direct potential clients to his landing page."
+          }
+        ]
+      },
+      {
+        "title": "Wanderlust Adventures",
+        "slides": [
+          {
+            "image": "/story-slides/3-6.webp"
+          },
+          {
+            "title": "Andi's Tour and Travel Business",
+            "image": "/story-slides/3-1.webp",
+            "naration": "Andi is a tour guide who runs a travel business called 'Wanderlust Adventures'. His business offers tour packages to exotic natural destinations, such as mountain hikes, forest explorations, and visits to hidden beaches. Initially, Andi relies solely on word-of-mouth recommendations and printed brochures distributed at cafés and popular hangout spots."
+          },
+          {
+            "title": "A Missed Opportunity",
+            "image": "/story-slides/3-2.webp",
+            "naration": "One day, Andi hears that a nature enthusiast community from a major city is looking for a tour package for 30 people. They discover 'Wanderlust Adventures' through a friend's recommendation, but when they search for more information online, they cannot find an accessible website or landing page. Andi only has an Instagram account that is rarely updated, with no comprehensive information about tour packages, prices, or itineraries. The group eventually chooses another travel agency with a professional website featuring complete information, destination photos, and testimonials from previous customers. Andi loses a major business opportunity because potential clients cannot find the information they need."
+          },
+          {
+            "title": "Building a Landing Page",
+            "image": "/story-slides/3-3.webp",
+            "naration": "Recognizing the problem, Andi decides to create a simple landing page for 'Wanderlust Adventures'. The page features stunning destination photos, a list of tour packages with prices, detailed itineraries for each package, testimonials from satisfied customers, and a 'Book Now' button that connects directly to his WhatsApp."
+          },
+          {
+            "title": "Outstanding Results",
+            "image": "/story-slides/3-5.webp",
+            "naration": "Once the landing page goes live, Andi starts promoting it through Google Ads and social media. The results are outstanding! Many potential customers feel more confident because all the information is clearly presented. They no longer need to ask about prices or schedules. Andi even starts attracting customers from other regions who are interested in his tour packages."
+          }
+        ]
+      },
+      {
+        "title": "SkillUp Academy",
+        "slides": [
+          {
+            "image": "/story-slides/4-1-3.webp"
+          },
+          {
+            "title": "Sarah's Online Course Business",
+            "image": "/story-slides/4-1.webp",
+            "naration": "Sarah is a digital marketing expert who decides to launch an online course business called 'SkillUp Academy'. She offers online courses in digital marketing, SEO, and content creation. Initially, Sarah relies solely on online course platforms to sell her classes. However, she feels that these platforms charge high commissions and limit her creativity in promoting her courses."
+          },
+          {
+            "title": "An Engaging Webinar",
+            "image": "/story-slides/4-3.webp",
+            "naration": "One day, Sarah attends a webinar and gets the opportunity to promote her courses to hundreds of participants. She delivers an engaging presentation, and many attendees express interest in signing up. However, when Sarah provides only a link to the online course platform, many participants feel uncomfortable because they have to register and pay through that platform. Some even ask for a direct link to a website or dedicated page that provides more comprehensive information."
+          },
+          {
+            "title": "Building a Landing Page",
+            "image": "/story-slides/4-4.webp",
+            "naration": "Sarah realizes the importance of having her own landing page. She quickly creates one for 'SkillUp Academy', featuring detailed descriptions of her courses, a list of modules and learning benefits, testimonials from previous students, and an 'Enroll Now' button that takes visitors directly to the payment process."
+          },
+          {
+            "title": "Increasing Course Enrollments",
+            "image": "/story-slides/4-6.webp",
+            "naration": "Once her landing page goes live, Sarah begins promoting it through webinars, email marketing, and Facebook ads. As a result, course enrollments increase significantly because prospective students feel more comfortable and confident with the information available on her landing page."
+          }
+        ]
+      }
+    ],
+    "conclusion": "From the narratives above, we can see that a landing page or website is an essential tool for businesses in the digital era. A landing page or website not only helps a business appear more professional but also makes it easier for customers to take action."
+  },
   "compare": {
     "title": "Social media complements. A website is yours.",
     "sub": "Both are useful. The difference is who holds the control.",
@@ -230,48 +501,86 @@
       ]
     ]
   },
-  "story": {
-    "title": "A website can tell a story, not just sell.",
-    "oldLine": "“This is our product. Please buy.”",
-    "newLine": "“We understand your problem, and we have something that can help.”",
-    "examples": [
+  "BranchStory": {
+    "ariaLabel": "The business journey from a simple shop to multiple branches",
+    "eyebrow": "The Business Journey",
+    "heading": "From a Simple Shop to",
+    "headingHighlight": "Multiple Branches",
+    "stages": [
       {
-        "title": "Food businesses",
-        "text": "Not just showing a menu, but sharing the story behind the ingredients, how it's made, the history of the dish, or tips for enjoying it."
+        "n": "01",
+        "title": "A Simple Shop",
+        "sub": "Customers are already coming in, but the setup is still basic"
       },
       {
-        "title": "Professional services",
-        "text": "Sharing education that helps potential customers understand the problem they face, through articles, guides, FAQs, or case studies."
+        "n": "02",
+        "title": "+ Branding & Decor",
+        "sub": "People begin to recognize the brand, not just the products"
+      },
+      {
+        "n": "03",
+        "title": "+ Computer & POS",
+        "sub": "The business starts keeping track of orders, inventory, and customers"
+      },
+      {
+        "n": "04",
+        "title": "+ Takeaway Service",
+        "sub": "Customers can order ahead, skip the queue, or have their orders delivered"
+      },
+      {
+        "n": "05",
+        "title": "+ Multiple Branches",
+        "sub": "One brand, one system, multiple stores"
+      },
+      {
+        "n": "∞",
+        "title": "One Store, Multiple Branches.",
+        "sub": "The same brand, systems, and data extend across every store—that's your business asset.",
+        "quote": "Once, it was just one store. Now, it's one brand with a system that can be replicated across multiple locations."
       }
     ],
-    "close": "This kind of relationship is what slowly builds trust."
+    "steps": [
+      "Simple Shop",
+      "Branding & Decor",
+      "Computer & Data",
+      "Takeaway",
+      "Multiple Branches",
+      "Business Asset"
+    ],
+    "scrollHint": "Scroll to build ↓",
+    "webglError": "WebGL is not available on this device."
   },
   "packages": {
-    "title": "Start with the basics. Grow when your business is ready.",
-    "base": {
-      "title": "Basic Package",
-      "tag": "An official website with your business information",
-      "items": [
-        "Business profile",
-        "Services",
-        "Portfolio",
-        "Contact"
-      ]
+    "title": {
+      "hook": "Start with the basics.",
+      "line": " Grow when your business is ready."
     },
-    "later": {
-      "title": "Can be added later",
-      "tag": "Your website grows with your business",
-      "items": [
-        "Product catalog",
-        "Ordering and booking system",
-        "Articles and blog",
-        "Consultation form",
-        "WhatsApp integration",
-        "Newsletter",
-        "Payment system",
-        "Various business automations"
-      ]
-    },
+    "packages": [
+      {
+        "title": "Basic Package",
+        "tag": "An official website with your business information",
+        "items": [
+          "Business profile",
+          "Services",
+          "Portfolio",
+          "Contact"
+        ]
+      },
+      {
+        "title": "Can be added later",
+        "tag": "Your website grows with your business",
+        "items": [
+          "Product catalog",
+          "Ordering and booking system",
+          "Articles and blog",
+          "Consultation form",
+          "WhatsApp integration",
+          "Newsletter",
+          "Payment system",
+          "Various business automations"
+        ]
+      }
+    ],
     "note": "A website isn't just a cost for “having a page on the internet”. It's a digital asset that can keep growing as your business grows."
   },
   "usecase": {

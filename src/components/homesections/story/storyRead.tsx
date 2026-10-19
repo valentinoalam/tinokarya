@@ -9,12 +9,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Slide } from "./content";
 import { cn } from "@/lib/utils";
 import { NeonGradientCard } from "@/components/ui/neon-gradient-card";
 import { forwardRef, useEffect, useState } from "react";
 
 import Image from "next/image";
+import { Slide } from './bible';
 
 interface CarouselProps {
   slides: Slide[];
@@ -104,29 +104,29 @@ const StoryCarousel = forwardRef<HTMLDivElement, CarouselProps>(({ slides, class
                 
                 <CardContent className='h-96 px-0 overflow-visible relative mb-5'>
                   <Image
-                    src={slide.gambar}
-                    alt={slide.judul?? `cover-image-${index}`}
+                    src={slide.image}
+                    alt={slide.title?? `cover-image-${index}`}
                     width={465} height={382}
                     className="w-full h-auto aspect-auto object-top rounded-lg top-1 mask-b-from-95%"
                     quality={75}
                     priority
                     />
                 </CardContent>
-                {slide.cerita &&<CardFooter className="absolute bottom-0 place-self-center z-60 -mt-8 border-t-2 w-[110%] bg-white/90 border-slate-900 text-slate-950 shadow-md rounded-3xl hover:text-black">
+                {slide.naration &&<CardFooter className="absolute bottom-0 place-self-center z-60 -mt-8 border-t-2 w-[110%] bg-white/90 border-slate-900 text-slate-950 shadow-md rounded-3xl hover:text-black">
                  {/* absolute -bottom-16 left-6 w-[300px] p-4 bg-inherit border-slate-900 text-slate-900 border shadow-lg rounded-3xl hover:text-black hover:shadow-xl */}
-                  <CardDescription className='text-xs pt-6'>{slide.cerita}</CardDescription>
+                  <CardDescription className='text-xs pt-6'>{slide.naration}</CardDescription>
                 </CardFooter>}
               </NeonGradientCard>
             ) : (
               <Card className={`h-96 bg-opacity-80 blur-xs bg-transparent ${opacity===0? 'hidden': 'opacity-50'}`}>
                 <CardHeader className="border-b-2 p-2 text-center">
-                  <CardTitle>{slide.judul}</CardTitle>
+                  <CardTitle>{slide.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  {/* <Image src={slide.gambar} alt={slide.judul} className="w-full h-64 object-cover rounded-lg" /> */}
+                  {/* <Image src={slide.gambar} alt={slide.title} className="w-full h-64 object-cover rounded-lg" /> */}
                 </CardContent>
                 <CardFooter className="border-t-2 p-3">
-                  <CardDescription>{slide.cerita}</CardDescription>
+                  <CardDescription>{slide.naration}</CardDescription>
                 </CardFooter>
               </Card>
             )}
