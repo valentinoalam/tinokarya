@@ -5,6 +5,7 @@ import "./cardboard-nav.css"
 import "./landing-fold.css"
 
 import { usePathname } from "next/navigation"
+import {Link} from "@/i18n/navigation"
 import { routing } from '@/i18n/routing';
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -13,7 +14,6 @@ import { ShinyButton } from "@/components/ui/shiny-button"
 import Logo from "../logo/Logo"
 import { defaultNavData, flattenDefaultNavForMobile, landingPageData } from "./navigationData"
 import { type NavItem, NavLink } from "./navigationMenu"
-import {Link} from "@/i18n/navigation"
 import dynamic from "next/dynamic"
 import { cn } from "@/lib/utils"
 import useScrollContext from "@/hooks/useScrollTracking"
@@ -33,6 +33,7 @@ const DockNavigation = dynamic(() => import("./dockNav"), {
 interface MobileNavItem {
   label: string
   href: string
+  intl: boolean
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>> | string | null
   children?: MobileNavItem[]
   type?: "dropdown" | "featured" | "button" | "link"
@@ -55,21 +56,9 @@ const groupDesktopNavItems = (navItems: NavItem[]): NavItem[] => {
 
   // Group regular items
   const visibleRegularItems = regularItems.slice(0, maxVisibleItems)
-  const hiddenRegularItems = regularItems.slice(maxVisibleItems)
 
-  // Create the "Other" dropdown with all required properties
-  const otherMenuItem: NavItem = {
-    label: "Other",
-    type: "dropdown",
-    href: "",
-    children: hiddenRegularItems.map(item => ({
-      ...item,
-      href: item.href || "",
-      type: item.type || "link"
-    }))
-  }
 
-  return [...visibleRegularItems, otherMenuItem, ...buttonItems]
+  return [...visibleRegularItems, ...buttonItems]
 }
 
 // Delay (detik) buka/tutup tiap lipatan, dibaca oleh CSS (--do / --dc)
@@ -187,7 +176,7 @@ export default function Header() {
 
   const renderMobileItem = (item: MobileNavItem) => {
     return (
-      <MobileNavLink
+      <MobileNavLink intl={item.intl}
         href={item.href}
         onClick={closeMobileMenu}
         className="cb-chip group flex items-center gap-3 w-full px-4 py-3 text-left"
@@ -310,7 +299,7 @@ export default function Header() {
                 menuOpen={isOpen}
               />
               : <Face>
-                <MobileNavLink
+                <MobileNavLink intl
                   href="/"
                   onClick={closeMobileMenu}
                   className="cb-chip group flex items-center gap-3 w-full px-4 py-3 text-left"
@@ -445,13 +434,10 @@ function CardboardDesktopMenu({ items, className }: { items: NavItem[]; classNam
     <nav aria-label="Main" className={className}>
       <ul ref={rootRef} className="flex items-center gap-1">
         {visible.map((item, index) => {
-          const hasChildren = item.type === "dropdown" && !!item.children?.length
           const isActive = !!item.href && pathname === item.href
-
-          if (!hasChildren) {
             return (
               <li key={`${item.label}-${index}`}>
-                <NavLink
+                <NavLink intl={item.intl}
                   href={item.href || "#"}
                   onClick={() => setOpenIndex(null)}
                   className={cn("cb-trigger", isActive && "is-active")}
@@ -460,98 +446,7 @@ function CardboardDesktopMenu({ items, className }: { items: NavItem[]; classNam
                 </NavLink>
               </li>
             )
-          }
-
-          const isOpen = openIndex === index
-          const menuId = `cb-drop-${index}`
-          const alignEnd = index >= visible.length / 2
-
-          return (
-            <li
-              key={`${item.label}-${index}`}
-              className="relative"
-              onPointerEnter={(e) => {
-                if (e.pointerType === "mouse") openMenu(index)
-              }}
-              onPointerLeave={(e) => {
-                if (e.pointerType === "mouse") scheduleClose()
-              }}
-              onBlur={(e) => {
-                if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
-                  setOpenIndex(prev => (prev === index ? null : prev))
-                }
-              }}
-            >
-              <button
-                type="button"
-                className="cb-trigger"
-                aria-haspopup="true"
-                aria-expanded={isOpen}
-                aria-controls={menuId}
-                onPointerDown={(e) => {
-                  lastInput.current = e.pointerType === "mouse" ? "mouse" : "touch"
-                }}
-                onKeyDown={() => {
-                  lastInput.current = "key"
-                }}
-                onClick={() => {
-                  // Mouse sudah membuka lewat hover, jadi klik tidak boleh menutupnya
-                  if (lastInput.current === "mouse") openMenu(index)
-                  else setOpenIndex(prev => (prev === index ? null : index))
-                }}
-              >
-                {item.label}
-                <ChevronDown className="cb-chev w-4 h-4" />
-              </button>
-
-              <div
-                id={menuId}
-                className="cb-drop"
-                data-cb-open={isOpen}
-                data-align={alignEnd ? "end" : "start"}
-                aria-hidden={!isOpen}
-              >
-                {/* Lipatan utama: badan flap */}
-                <div className="cb-fold" style={foldDelay(0, 0.2)}>
-                  <Face clip="cb-clip-flap">
-                    <ul className="p-3 space-y-1.5">
-                      {item.children!.map((child, ci) => {
-                        const Icon = child.icon
-                        return (
-                          <li key={`${child.label}-${ci}`} className="cb-item" style={{ "--i": ci } as React.CSSProperties}>
-                            <NavLink
-                              href={child.href ?? "#"}
-                              onClick={() => setOpenIndex(null)}
-                              className="cb-chip flex items-center gap-3 px-3 py-2.5"
-                            >
-                              {Icon && (
-                                <span className="cb-tile">
-                                  <Icon className="w-4 h-4" />
-                                </span>
-                              )}
-                              <span className="flex flex-col min-w-0">
-                                <span className="font-bold text-sm truncate">{child.label}</span>
-                                {child.description && (
-                                  <span className="cb-ink-soft text-xs line-clamp-2">{child.description}</span>
-                                )}
-                              </span>
-                            </NavLink>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </Face>
-
-                  {/* Lipatan kedua: bibir flap di ujung bawah */}
-                  <div className="cb-fold cb-fold-lip" style={foldDelay(0.2, 0)}>
-                    <Face className="cb-crease" clip="cb-clip-lip">
-                      <div className="h-3.5" />
-                    </Face>
-                  </div>
-                </div>
-              </div>
-            </li>
-          )
+          
         })}
       </ul>
     </nav>
@@ -608,7 +503,7 @@ function LandingFold({
                   className="lp-item"
                   style={{ "--i": j } as React.CSSProperties}
                 >
-                  <MobileNavLink
+                  <MobileNavLink intl={item.intl}
                     href={item.href as string}
                     onClick={onNavigate}
                     className="cb-chip lp-chip justify-around"
@@ -629,17 +524,19 @@ function LandingFold({
 // Enhanced MobileNavLink component
 function MobileNavLink({
   href,
+  intl,
   children,
   className,
   onClick
 }: {
   href: string;
+  intl: boolean;
   children: React.ReactNode;
   className?: string;
   onClick?: () => void
 }) {
   return (
-    <NavLink
+    <NavLink intl={intl}
       href={href}
       onClick={onClick}
       className={cn("transition-colors duration-200", className)}

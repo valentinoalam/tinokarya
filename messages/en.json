@@ -635,5 +635,86 @@
   },
   "footer": {
     "text": "Basic Digitalization Package for Small Businesses"
+  },
+  "Pricing": {
+    "hero": {
+      "title": "Fast Next.js websites, with a price you can calculate yourself.",
+      "desc": "Choose a project type, a package, and add-ons. The total estimate and down payment update right beside you.",
+      "wizard": "Not sure yet? Estimate with the wizard"
+    },
+    "tabs": { "label": "Project type", "landing": "Landing page", "store": "Online store" },
+    "packages": {
+      "pick": "Choose a package",
+      "popular": "Most popular",
+      "youGet": "What you get with {name}",
+      "starter": {
+        "name": "Starter",
+        "tagline": "Small businesses, personal branding, or validating a business idea with high performance.",
+        "duration": "4–6 business days",
+        "features": ["Up to 5–6 sections (Hero, About, Services, Testimonial, CTA, FAQ)", "Ultra-fast loading & high Lighthouse score", "SEO-friendly (SSR / SSG)", "Responsive & modern", "WhatsApp button & contact form (API / Webhook)", "Basic animation: fade-in, hover, smooth scroll"]
+      },
+      "interactive": {
+        "name": "Interactive",
+        "tagline": "Startups, SaaS products, agencies, and brands that put dynamic visuals first.",
+        "duration": "7–12 business days",
+        "features": ["All Starter features", "Custom UI/UX design (Figma prototype)", "Precise scroll-triggered animations", "SVG morphing & interactive components", "CRM / email marketing integration (Resend, Mailchimp, ConvertKit)", "Zero layout shift & high FPS"]
+      },
+      "immersive": {
+        "name": "Premium 3D",
+        "tagline": "Flagship product launches, corporate brands, and world-class web experiences.",
+        "duration": "14–25 business days",
+        "features": ["All Interactive features", "Interactive 3D models & WebGL canvas", "Interactive scroll storytelling", "Custom cursor, audio, & advanced shaders", "Analytics & conversion tracking setup", "Priority support & 1 month of maintenance"]
+      },
+      "s-starter": {
+        "name": "Starter Store",
+        "tagline": "Small shops that want to start selling online quickly.",
+        "specs": { "products": "Up to 50", "payment": "Manual transfer / WhatsApp checkout", "shipping": "Flat rate / manual option", "stock": "Simple admin dashboard", "discount": "Simple coupon codes", "account": "—", "report": "Excel export / basic summary", "support": "1 month" }
+      },
+      "s-pro": {
+        "name": "Pro E-Commerce",
+        "tagline": "Growing businesses that need automatic payments and shipping rates.",
+        "specs": { "products": "Up to 500", "payment": "Payment gateway (Midtrans / Xendit)", "shipping": "Automatic shipping rates (RajaOngkir API)", "stock": "Full order management & inventory control", "discount": "Advanced coupons, flash sales, bundles", "account": "Login, wishlist, order history", "report": "Analytics dashboard & revenue reports", "support": "3 months maintenance & training" }
+      },
+      "s-flagship": {
+        "name": "Flagship Store",
+        "tagline": "Large scale, with multiple warehouses, payment channels, and internal systems.",
+        "specs": { "products": "Unlimited", "payment": "Multi gateway + e-wallet + PayLater", "shipping": "Auto courier selection & real-time tracking", "stock": "Multi-warehouse inventory sync & ERP integration", "discount": "Automated promo rules, tiered loyalty points", "account": "SSO (Google / Apple), saved addresses, member area", "report": "Advanced reporting & custom analytics export", "support": "6 months priority support & server SLA" }
+      }
+    },
+    "specs": { "products": "Number of products", "payment": "Payments", "shipping": "Shipping", "stock": "Stock & orders", "discount": "Discounts", "account": "Customer accounts", "report": "Reports", "support": "Support" },
+    "compare": { "title": "Compare online store packages", "feature": "Feature" },
+    "addons": {
+      "title": "Optional add-ons",
+      "qty": "Number of languages", "less": "Decrease", "more": "Increase", "perLang": "extra language",
+      "express": "Express delivery", "expressDesc": "Work done 2× faster", "expressPrice": "+30% of total",
+      "landing": {
+        "3d": { "name": "Custom 3D / Lottie assets" },
+        "i18n": { "name": "Multi-language (IND / ENG)" },
+        "form": { "name": "Interactive form" },
+        "cms": { "name": "Headless CMS", "desc": "Sanity, Strapi, or WordPress" }
+      },
+      "store": {
+        "n8n": { "name": "Automation (n8n / Webhook)", "desc": "Order notifications to WhatsApp, Telegram, or Google Sheets" },
+        "i18n": { "name": "Multi-language" },
+        "seo": { "name": "SEO copywriting & content", "desc": "Keyword research, profile & product content" }
+      }
+    },
+    "terms": {
+      "title": "Payment terms and workflow",
+      "dp": "50% down payment", "dpDesc": "Paid upfront before the project starts.",
+      "final": "50% final payment", "finalDesc": "After the project is tested and ready to go live.",
+      "rev": "Revisions", "revDesc": "2 major revisions and unlimited minor revisions during development."
+    },
+    "est": {
+      "aria": "Cost estimate", "total": "Estimated total", "range": "Range", "complexity": "Project complexity",
+      "low": "Simple", "mid": "Medium", "high": "Complex", "dp": "50% down payment", "final": "Final payment",
+      "wa": "Send estimate via WhatsApp", "scope": "View project scope",
+      "note": "The final figure is set after we discuss your needs. This estimate excludes third-party costs such as domain and hosting."
+    },
+    "umkm": { "label": "My business is an MSME, 50% off", "desc": "Applies to the total project cost. Business documents must be verified.", "line": "MSME discount" },
+    "wa": {
+      "hello": "Hello, I'm interested in the *{name}* package.", "addons": "Add-ons", "express": "Express delivery: yes",
+      "umkm": "MSME 50% discount: yes (can send business documents)", "estimate": "Estimate"
+    }
   }
 }

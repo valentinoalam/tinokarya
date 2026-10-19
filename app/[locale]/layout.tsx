@@ -8,7 +8,7 @@ import { hasLocale } from "next-intl";
 import { getLocale, getMessages, getTimeZone } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { inter, geist, merriweather, playfair, display, body } from "@/config/fonts";
-import { Providers } from "./providers";
+import { Providers } from "./provider";
 import Script from "next/script";
 import Head from "next/head";
 import ScrollAnimations from "@/components/Layout/ScrollAnimations";

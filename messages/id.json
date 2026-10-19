@@ -592,5 +592,86 @@
   },
   "footer": {
     "text": "Paket Dasar Digitalisasi UMKM"
+  },
+  "Pricing": {
+    "hero": {
+      "title": "Wujudkan Website yang Anda bayangkan! ",
+      "desc": "Pilih jenis proyek, paket, dan tambahan. Estimasi total beserta DP langsung diperbarui di samping.",
+      "wizard": "Belum yakin? Hitung estimasi lewat wizard"
+    },
+    "tabs": { "label": "Jenis proyek", "landing": "Landing page", "store": "Toko online" },
+    "packages": {
+      "pick": "Pilih paket",
+      "popular": "Paling dipilih",
+      "youGet": "Yang Anda dapat di {name}",
+      "starter": {
+        "name": "Starter",
+        "tagline": "UMKM, personal branding, atau validasi ide bisnis dengan performa tinggi.",
+        "duration": "4–6 hari kerja",
+        "features": ["Hingga 5–6 seksi (Hero, About, Services, Testimonial, CTA, FAQ)", "Loading super cepat & skor Lighthouse tinggi", "SEO-friendly (SSR / SSG)", "Responsif & modern", "Tombol WhatsApp & form kontak (API / Webhook)", "Animasi dasar: fade-in, hover, smooth scroll"]
+      },
+      "interactive": {
+        "name": "Interactive",
+        "tagline": "Startup, produk SaaS, agency, dan brand yang mengutamakan visual dinamis.",
+        "duration": "7–12 hari kerja",
+        "features": ["Semua fitur Starter", "Desain UI/UX custom (prototipe Figma)", "Animasi scroll-triggered yang presisi", "SVG morphing & komponen interaktif", "Integrasi CRM / email marketing (Resend, Mailchimp, ConvertKit)", "Zero layout shift & FPS tinggi"]
+      },
+      "immersive": {
+        "name": "Premium 3D",
+        "tagline": "Peluncuran produk flagship, brand korporat, dan pengalaman web kelas dunia.",
+        "duration": "14–25 hari kerja",
+        "features": ["Semua fitur Interactive", "Model 3D interaktif & WebGL canvas", "Interactive storytelling saat di-scroll", "Custom cursor, audio, & advanced shaders", "Setup analytics & conversion tracking", "Priority support & maintenance 1 bulan"]
+      },
+      "s-starter": {
+        "name": "Starter Store",
+        "tagline": "Toko kecil yang ingin mulai jualan online dengan cepat.",
+        "specs": { "products": "Hingga 50", "payment": "Transfer manual / checkout WhatsApp", "shipping": "Flat rate / opsi manual", "stock": "Dashboard admin sederhana", "discount": "Kode kupon sederhana", "account": "—", "report": "Export Excel / ringkasan dasar", "support": "1 bulan" }
+      },
+      "s-pro": {
+        "name": "Pro E-Commerce",
+        "tagline": "Bisnis berkembang yang butuh pembayaran dan ongkir otomatis.",
+        "specs": { "products": "Hingga 500", "payment": "Payment gateway (Midtrans / Xendit)", "shipping": "Cek ongkir otomatis (RajaOngkir API)", "stock": "Manajemen order & kontrol inventori penuh", "discount": "Kupon lanjutan, flash sale, bundle", "account": "Login, wishlist, riwayat order", "report": "Dashboard analytics & laporan pendapatan", "support": "3 bulan maintenance & training" }
+      },
+      "s-flagship": {
+        "name": "Flagship Store",
+        "tagline": "Skala besar dengan banyak gudang, kanal pembayaran, dan sistem internal.",
+        "specs": { "products": "Unlimited", "payment": "Multi gateway + e-wallet + PayLater", "shipping": "Pilih kurir otomatis & tracking real-time", "stock": "Sinkron inventori multi-gudang & integrasi ERP", "discount": "Aturan promo otomatis, poin loyalitas bertingkat", "account": "SSO (Google / Apple), alamat tersimpan, area member", "report": "Pelaporan lanjutan & export analytics custom", "support": "6 bulan priority support & SLA server" }
+      }
+    },
+    "specs": { "products": "Jumlah produk", "payment": "Pembayaran", "shipping": "Ongkir", "stock": "Stok & order", "discount": "Diskon", "account": "Akun pelanggan", "report": "Laporan", "support": "Support" },
+    "compare": { "title": "Bandingkan paket toko online", "feature": "Fitur" },
+    "addons": {
+      "title": "Tambahan opsional",
+      "qty": "Jumlah bahasa", "less": "Kurangi", "more": "Tambah", "perLang": "bahasa tambahan",
+      "express": "Express delivery", "expressDesc": "Pengerjaan 2× lebih cepat", "expressPrice": "+30% dari total",
+      "landing": {
+        "3d": { "name": "Aset 3D / Lottie custom" },
+        "i18n": { "name": "Multi-bahasa (IND / ENG)" },
+        "form": { "name": "Formulir interaktif" },
+        "cms": { "name": "Headless CMS", "desc": "Sanity, Strapi, atau WordPress" }
+      },
+      "store": {
+        "n8n": { "name": "Automation (n8n / Webhook)", "desc": "Notifikasi order ke WhatsApp, Telegram, atau Google Sheets" },
+        "i18n": { "name": "Multi-bahasa" },
+        "seo": { "name": "SEO copywriting & konten", "desc": "Riset kata kunci, konten profil & produk" }
+      }
+    },
+    "terms": {
+      "title": "Cara pembayaran dan alur kerja",
+      "dp": "DP 50%", "dpDesc": "Dibayar di awal sebelum proyek dimulai.",
+      "final": "Pelunasan 50%", "finalDesc": "Setelah proyek selesai diuji dan siap go-live.",
+      "rev": "Revisi", "revDesc": "2× revisi mayor dan revisi minor tanpa batas selama pengerjaan."
+    },
+    "est": {
+      "aria": "Estimasi biaya", "total": "Estimasi total", "range": "Kisaran", "complexity": "Kompleksitas proyek",
+      "low": "Sederhana", "mid": "Menengah", "high": "Kompleks", "dp": "DP 50%", "final": "Pelunasan",
+      "wa": "Kirim estimasi lewat WhatsApp", "scope": "Lihat ruang lingkup proyek",
+      "note": "Angka final ditentukan setelah diskusi kebutuhan. Estimasi ini belum termasuk biaya pihak ketiga seperti domain dan hosting."
+    },
+    "umkm": { "label": "Usaha saya UMKM, diskon 50%", "desc": "Berlaku untuk total biaya proyek. Perlu verifikasi dokumen usaha.", "line": "Diskon UMKM" },
+    "wa": {
+      "hello": "Halo, saya tertarik dengan paket *{name}*.", "addons": "Add-on", "express": "Express delivery: ya",
+      "umkm": "Diskon UMKM 50%: ya (siap kirim dokumen usaha)", "estimate": "Estimasi"
+    }
   }
 }

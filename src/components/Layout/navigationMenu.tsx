@@ -10,7 +10,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import {Link} from '@/i18n/navigation';
+import {Link as IntlLink} from '@/i18n/navigation';
+import Link from 'next/link';
 import { cn } from "@/lib/utils"
 import ShareButton from "../buttons/shareButton"
 import Image from "next/image"
@@ -19,13 +20,24 @@ import { MoreVertical } from "lucide-react"
 
 interface NavLinkProps {
   href: string
+  intl: boolean
   children: React.ReactNode
   className?: string
   onClick?: () => void
 }
 
-export const NavLink: React.FC<NavLinkProps> = ({ href, children, className, onClick }) => {
+export const NavLink: React.FC<NavLinkProps> = ({ href, intl, children, className, onClick }) => {
+  if(intl) return (
+    <IntlLink
+      href={href}
+      onClick={onClick}
+      className={cn("transition-colors duration-200 text-foreground/70 hover:text-foreground", className)}
+    >
+      {children}
+    </IntlLink>
+  )
   return (
+    
     <Link
       href={href}
       onClick={onClick}
@@ -37,13 +49,14 @@ export const NavLink: React.FC<NavLinkProps> = ({ href, children, className, onC
 }
 
 export interface NavItem {
-  type?: "dropdown" | "featured" | "button" | "link"
+  type?: "featured" | "button" | "link"
   label: string
   description?: string
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>> | null
   href: string
   image?: string
   children?: NavItem[]
+  intl: boolean
   onClick?: () => void
 }
 
@@ -302,8 +315,6 @@ const NavigationMenuComponent: React.FC<NavigationMenuProps> = ({ items, classNa
 
   const renderNavItem = (item: NavItem) => {
     switch (item.type) {
-      case "dropdown":
-        return item.children ? renderDropdown(item) : renderSimpleLink(item)
       case "featured":
         return renderFeatured(item)
       default:

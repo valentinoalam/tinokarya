@@ -87,7 +87,7 @@ export const TIPS: Record<string, string> = {
   "spec:Support": "Masa bantuan perbaikan dan pendampingan setelah toko go-live.",
 };
 
-export function UmkmToggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) {
+export function UmkmToggle({ checked, onChange, label, desc }: { checked: boolean; onChange: (v: boolean) => void; label?: string; desc?: string }) {
   return (
     <label
       className={`flex cursor-pointer items-start gap-3 rounded-xl p-3.5 transition ${
@@ -97,9 +97,9 @@ export function UmkmToggle({ checked, onChange }: { checked: boolean; onChange: 
       <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-4 w-4 accent-[#1FA37F]" />
       <span className="text-sm">
         <span className="flex items-center gap-1.5 font-semibold">
-          Usaha saya UMKM, diskon 50% <InfoTip text={TIPS.umkm} align="left" />
+          {label ?? "Usaha saya UMKM, diskon 50%"} <InfoTip text={TIPS.umkm} align="left" />
         </span>
-        <span className="block text-[#4A5968]">Berlaku untuk total biaya proyek. Perlu verifikasi dokumen usaha.</span>
+        <span className="block text-[#4A5968]">{desc ?? "Berlaku untuk total biaya proyek. Perlu verifikasi dokumen usaha."}</span>
       </span>
     </label>
   );

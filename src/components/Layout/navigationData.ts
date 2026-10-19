@@ -1,10 +1,6 @@
 import {
-  BookOpen,
   DollarSign,
   HelpCircle,
-  Mail,
-  Gift,
-  Workflow,
 } from "lucide-react"
 import { NavItem } from "./navigationMenu"
 
@@ -14,12 +10,14 @@ export const defaultNavData: NavItem[] = [
     href: "/price",
     description: "Create pricing tables and calculators",
     icon: DollarSign,
+    intl: true
   },
   {
     label: "About",
     href: "/about",
     description: "Learn more about our company and mission",
     icon: HelpCircle,
+    intl: false
   },
 ]
 
