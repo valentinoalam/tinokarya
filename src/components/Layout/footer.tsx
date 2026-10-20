@@ -37,16 +37,9 @@ const buildColumns = (): FooterColumn[] => {
 
   for (const item of defaultNavData) {
     if (item.type === "button") continue
-    if (item.type === "dropdown" && item.children?.length) {
-      groups.push({
-        title: item.label,
-        links: item.children
-          .filter(child => child.href)
-          .map(child => ({ label: child.label, href: child.href as string })),
-      })
-    } else if (item.href) {
-      pages.push({ label: item.label, href: item.href })
-    }
+    
+    pages.push({ label: item.label, href: item.href })
+    
   }
 
   return [...(pages.length ? [{ title: "Pages", links: pages }] : []), ...groups]

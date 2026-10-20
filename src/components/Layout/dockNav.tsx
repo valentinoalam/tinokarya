@@ -42,7 +42,7 @@ const DockNav = ({ className, isDefaultRoute }: { className?: string; isDefaultR
                 <DockIcon key={item.label}>
                   <Tooltip>
                     <TooltipTrigger>
-                      <NavLink
+                      <NavLink intl={false}
                         href={item.href as string}
                         aria-label={item.label}
                         className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "size-12 rounded-full")}
