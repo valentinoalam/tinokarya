@@ -109,7 +109,6 @@ const StoryCarousel = forwardRef<HTMLDivElement, CarouselProps>(({ slides, class
                     width={465} height={382}
                     className="w-full h-auto aspect-auto object-top rounded-lg top-1 mask-b-from-95%"
                     quality={75} loading='lazy'
-                    priority={false}
                     />
                 </CardContent>
                 {slide.naration &&<CardFooter className="absolute bottom-0 place-self-center z-60 -mt-8 border-t-2 w-[110%] bg-white/90 border-slate-900 text-slate-950 shadow-md rounded-3xl hover:text-black">
