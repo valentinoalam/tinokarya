@@ -1,4 +1,4 @@
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.25rem, 4vw, 3rem); }
+.grid { gap: clamp(1.25rem, 4vw, 3rem); }
 .col { border: 2px solid var(--ink); border-radius: 16px; padding: clamp(1.5rem, 3vw, 2.25rem); background: var(--surface); transition: transform .25s ease, box-shadow .25s ease; }
 .now { background: var(--hero-bg); color: #12213A; border-color: #12213A; box-shadow: 8px 8px 0 var(--ink); }
 .now:hover { transform: translate(-3px, -3px); box-shadow: 11px 11px 0 var(--ink); }

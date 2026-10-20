@@ -8,7 +8,7 @@ const PackageSection = () => {
     const packages = t.raw("packages")
     const note = t("note")
     return (
-        <section id="paket"><Packages title={title} packages={packages} note={note}  /></section>
+        <section id="paket" className="mt-18 w-full"><Packages title={title} packages={packages} note={note}  /></section>
     )
 }
 

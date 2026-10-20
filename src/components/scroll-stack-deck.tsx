@@ -123,7 +123,7 @@ function AnimatedCard({
       <article className="group relative box-border w-full pt-14">
         <div
           style={{ backgroundColor: project.color }}
-          className="absolute left-0 top-0 flex h-12 w-44 items-center rounded-t-2xl px-4 text-base font-semibold tracking-tight text-black shadow-[inset_0_-1px_0_rgba(0,0,0,0.04)] sm:h-14 sm:w-60 sm:px-6"
+          className="absolute left-0 top-3.5 lg:top-0 flex h-12 w-44 items-center rounded-t-2xl px-4 text-base font-semibold tracking-tight text-black shadow-[inset_0_-1px_0_rgba(0,0,0,0.04)] sm:h-14 sm:w-60 sm:px-6"
         >
           <TextureOverlay texture="paperGrain" opacity={0.4} className="absolute" />
           <span className="truncate">{project.tabTitle}</span>

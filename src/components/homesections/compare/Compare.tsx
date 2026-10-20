@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import styles from "./Compare.module.css";
 import { useTranslations } from "next-intl";
 
@@ -8,7 +9,8 @@ export default function Compare() {
       <div className="wrap">
         <h2 data-reveal>{t("title")}</h2>
         <p className={styles.sub} data-reveal>{t("sub")}</p>
-        <div className={styles.scroll} data-reveal>
+        <p className="flex md:hidden text-center animate-shake justify-self-center">scroll →</p>
+        <div className={cn(styles.scroll, "lg:mt-8")} data-reveal>
           <table>
             <thead>
               <tr>

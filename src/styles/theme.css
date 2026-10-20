@@ -58,7 +58,7 @@
   --animate-shine: shine var(--duration) infinite linear;
   --animate-border-beam: border-beam calc(var(--duration) * 1s) infinite linear;
   --animate-shiny-text: shiny-text 8s infinite;
-  
+  --animate-shake: shake 2s infinite;
   @keyframes accordion-down {
     from {
       height: 0;
@@ -124,5 +124,9 @@
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    70% { transform: translateX(8px); }
   }
 }

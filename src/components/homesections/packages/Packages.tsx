@@ -73,9 +73,9 @@ export default function Packages({title, packages, note}: {title:string[]; packa
       };
     }, []);
   return (
-    <div className="wrap flex flex-col gap-5">
-      <div ref={titleRef} className="sec-title inline-flex w-max self-center font-black text-4xl" data-reveal>{title[0]}<KineticText className='font-display font-black text-4xl' text={title[1]}/></div>
-      <div className={cn(styles.grid, "w-[80%] mx-auto mt-4")} data-reveal-group>
+    <div className="wrap flex flex-col gap-5 w-full">
+      <div ref={titleRef} className="sec-title inline-flex w-fit text-center flex-wrap self-center font-black text-4xl" data-reveal>{title[0]}<KineticText className='font-display font-black text-4xl' text={title[1]}/></div>
+      <div className={cn(styles.grid, "lg:w-[80%] flex lg:flex-row flex-col lg:mx-auto w-full mt-4")} data-reveal-group>
         <ParallaxCard ref={cardsRef.current[0]} className={cn("relative border bg-card text-card-foreground cursor-pointer",
               'from-[#667db6] via-[#0082c8] to-[#667db6] border-[#667db6] hover:border-[#0082c8]',
               "transition-all duration-200 ease-in-out pricing-item relative text-white overflow-hidden bg-linear-to-r", `${styles.col} ${styles.now}`)}>
@@ -107,7 +107,7 @@ export default function Packages({title, packages, note}: {title:string[]; packa
         </ParallaxCard>
       </div>
       <Link href={'/price'} className='flex place-self-center w-max mt-4'><InteractiveHoverButton className='bg-[#c8c500]/60 transition-all duration-200 ease-in-out hover:bg-[#667db6] hover:border-[#c8c500]'>Hitung disini</InteractiveHoverButton></Link>
-      <p className={cn(styles.note, "text-center mx-auto w-max text-black")} data-reveal>{note}</p>
+      <p className={cn(styles.note, "text-center mx-auto w-full flex-wrap text-black")} data-reveal>{note}</p>
     </div>
   );
 }

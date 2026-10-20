@@ -8,7 +8,7 @@ export default function Cta() {
   const t = useTranslations("cta");
   const wa = useTranslations("wa");
   return (
-    <section className={cn(styles.cta, "mt-8 mb-30")} id="kontak">
+    <section className={cn(styles.cta, "relative mt-8 lg:mb-30 mb-90 h-60")} id="kontak">
       <div className="wrap">
         <h2 data-reveal>{t("title")}</h2>
         <p data-reveal>{t("text")}</p>
