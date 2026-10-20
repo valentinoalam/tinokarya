@@ -55,7 +55,7 @@ export default function Benefits() {
     <section className={`${styles.band} ${stage.band}`} id="manfaat">
       <BenefitMural tone={index} ready={shown} image={MURAL_IMAGE} />
       <div className="wrap">
-        <MagicText className="sec-title text-4xl text-end pr-20 mb-2 font-black">{t("title")}</MagicText>
+        <MagicText className="sec-title text-4xl text-center mb-2 font-black">{t("title")}</MagicText>
 
         <div className={stage.stage} ref={stageRef} data-tone={index} data-shown={shown}>
           

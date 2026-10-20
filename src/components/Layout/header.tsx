@@ -220,7 +220,7 @@ export default function Header() {
       data-scrolled={isScrolled}
       data-closing={isClosing && !alreadyFixed}
       className={cn(
-        "cb-nav w-full z-50 transition-transform duration-300",
+        "cb-nav w-full z-50 transition-transform duration-300 overflow-clip",
         alreadyFixed ? "sticky lg:fixed top-0" : "relative", isClosing ? "scale-x-110 lg:scale-x-100 lg:fixed lg:-top-16 lg:translate-y-16": ""
       )}
     >

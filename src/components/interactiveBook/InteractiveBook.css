@@ -67,7 +67,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  height: 100dvh;
+  height: 90dvh;
   /* overflow: hidden; */
   display: grid;
   place-items: center;
@@ -88,8 +88,8 @@
 
 .book {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   transform-style: preserve-3d;
 }
 
@@ -329,7 +329,7 @@
 .book-nav {
   position: absolute;
   left: 50%;
-  bottom: max(14px, env(safe-area-inset-bottom));
+  bottom: max(64px, env(safe-area-inset-bottom));
   transform: translateX(-50%);
   display: flex;
   align-items: center;

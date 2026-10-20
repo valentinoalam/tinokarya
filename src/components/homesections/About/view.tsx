@@ -219,7 +219,7 @@ const About = () => {
         className={`inset-x-0 w-full -top-10 h-40 pointer-events-none`}
       ></div>
 
-      <div className="flex flex-col mb-20 gap-14 lg:gap-20 z-50 px-5 mx-auto max-w-7xl md:px-10">
+      <div className="flex flex-col mb-20 gap-14 lg:gap-20 z-50 lg:px-5 mx-auto max-w-7xl md:px-10">
         {/* Image */}
         <Image
           ref={imageRef}
@@ -227,7 +227,7 @@ const About = () => {
           width={256}
           height={283}
           loading="lazy"
-          className="absolute z-10 scale-175 opacity-60 left-1/4 top-1/3 aspect-auto"
+          className="absolute z-10 scale-175 opacity-60 left-0 top-1/3 aspect-auto"
           alt="setting"
           style={{
             width: "256px",
@@ -239,7 +239,7 @@ const About = () => {
         <div className="flex z-30 flex-col gap-14 lg:gap-20">
           {/* Our Story Section */}
           <div className="flex flex-col gap-5 md:flex-row" ref={storyRef}>
-            <h2 className="flex-1 text-3xl font-bold md:text-5xl transition-colors duration-300">
+            <h2 className="flex-1 text-3xl text-center font-bold md:text-5xl transition-colors duration-300">
               <SparklesText sparklesCount={6} text={t("story.title")} />
             </h2>
             <p className="flex-1 leading-none text-lg transition-colors">{t("story.description")}</p>
@@ -247,7 +247,7 @@ const About = () => {
 
           {/* Mission Section */}
           <div className="flex flex-col gap-5 md:flex-row" ref={missionRef}>
-            <h2 className="flex-1 text-3xl font-semibold md:text-5xl transition-colors duration-300">
+            <h2 className="flex-1 text-3xl text-center font-semibold md:text-5xl transition-colors duration-300">
               <SparklesText sparklesCount={4} colors={{first: '#A6F1E0', second: '#FFAB5B'}} text={t("mission.title")} />
             </h2>
             <p className="flex-1 leading-none text-lg transition-colors">{t("mission.description")}</p>
@@ -255,7 +255,7 @@ const About = () => {
 
           {/* Approach Section */}
           <div className="flex flex-col gap-5 md:flex-row" ref={approachRef}>
-            <h2 className="flex-1 text-3xl font-bold md:text-5xl transition-colors duration-300">
+            <h2 className="flex-1 text-3xl flex-wrap text-center font-bold md:text-5xl transition-colors duration-300">
               <SparklesText sparklesCount={3} colors={{first: '#BE5985', second: '#FFB200'}} text={t("approach.title")} />
             </h2>
             <p className="flex-1 leading-none text-lg transition-colors" >{t("approach.description")}</p>

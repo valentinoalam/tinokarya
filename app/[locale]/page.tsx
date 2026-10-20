@@ -22,7 +22,7 @@ export default async function Page() {
       <Hero />
       <main className="mx-5 mt-16 flex flex-col gap-8">
         <Intro />
-        <div className="container relative mx-auto h-max px-6 py-20" >
+        <div className="container relative mx-auto h-max px-1 md:px-4 lg:px-6 py-20" >
           <About />
         </div>
         <Pain />

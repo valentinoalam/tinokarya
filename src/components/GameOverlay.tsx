@@ -348,7 +348,7 @@ export default function GameOverlay({ focused }: { focused: boolean }) {
         <div className={styles.startHint}>Klik area game, lalu jalan dengan tombol panah</div>
       )}
 
-      {!modal && (
+      {/* {!modal && (
         <div className={styles.controls}>
           <div className={styles.dpad}>
             {dpadBtn('▲', 'up', 0, -1)}
@@ -379,7 +379,7 @@ export default function GameOverlay({ focused }: { focused: boolean }) {
             </button>
           </div>
         </div>
-      )}
+      )} */}
 
       {modal && (
         <div className={styles.backdrop} onClick={() => setModal(null)}>

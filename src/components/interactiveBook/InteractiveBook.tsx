@@ -95,11 +95,11 @@ const InteractiveBook = () => {
     //    xPercent 100 -> halaman kiri di tengah (sampul belakang / tampilan 1 sisi kiri)
     let xPercent: number;
     if (mode === 'compact') {
-      xPercent = view % 2 === 1 ? 100 : 0;
+      xPercent = view % 2 === 1 ? 80 : 0;
     } else if (turned === 0) {
       xPercent = 0;
     } else if (turned === TOTAL_PAGES) {
-      xPercent = 100;
+      xPercent = 80;
     } else {
       xPercent = 50;
     }

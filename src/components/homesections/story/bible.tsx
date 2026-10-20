@@ -133,9 +133,9 @@ const StoryBible = ({stories, conclusion}: {stories: Story[], conclusion:string}
   };
   
   return (
-    <div ref={sectionRef} className="overflow-y-visible overflow-x-hidden no-scrollbar pt-10 z-10 space-y-11">
-      <Tabs defaultValue={stories[0].title} className="w-full space-y-6 container relative mx-auto">
-        <TabsList className="bg-transparent w-full grid-cols-4 gap-4 justify-evenly flex">
+    <div ref={sectionRef} className="overflow-y-visible w-full no-scrollbar pt-10 z-10 space-y-11">
+      <Tabs defaultValue={stories[0].title} className="w-11/12 lg:w-fullspace-y-6 relative mx-auto">
+        <TabsList className="bg-transparent w-full grid-cols-2 lg:grid-cols-4 gap-4 justify-evenly">
           {stories.map((cerita, index) => (
             <TabsTrigger key={index} value={cerita.title} onClick={() => handleTabChange(index)}>
               {cerita.title}
