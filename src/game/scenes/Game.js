@@ -289,10 +289,37 @@ export default class Game extends Phaser.Scene {
       EventBus.on( 'touch-action', () => {
         if ( gameConfig.overlapData.isActive ) this._UTILITY.boxManager.createBox( 'dialog' );
       } ),
+      // tombol B = SPACE (lonceng)
+      EventBus.on( 'touch-bell', () => this.ringCowbell() ),
       // tombol menu = SHIFT
       EventBus.on( 'touch-menu', () => this._UTILITY.boxManager.createBox( 'tasks' ) ),
     ];
     this.events.once( 'shutdown', () => offs.forEach( ( off ) => off() ) );
+  }
+
+  // [template] animasi aksi (lonceng) sesuai arah hadap; dipakai tombol Spasi & tombol B layar sentuh
+  ringCowbell() {
+    if ( this._UTILITY.boxManager.isOpen || this._changing ) return;
+
+    gameConfig.pauseUpdateLoop = true;
+    this.stopPlayerAnim();
+
+    switch( this._ANIMS.pressedCursor ) {
+      case 'down':
+        this.playAnim( 'ring-cowbell-down' );
+        break;
+      case 'up':
+        this.playAnim( 'ring-cowbell-up' );
+        break;
+      case 'left':
+        this.playAnim( 'ring-cowbell-left' );
+        break;
+      case 'right':
+        this.playAnim( 'ring-cowbell-right' );
+        break;
+      default:
+        this._PLAYER.setTexture( 'jack-standing', 0 );
+    }
   }
 
   // returns frame for player's Standing sprite

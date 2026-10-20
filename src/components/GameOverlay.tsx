@@ -51,6 +51,9 @@ export default function GameOverlay({ focused }: { focused: boolean }) {
   const [modal, setModal] = useState<ModalState>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [hint, setHint] = useState<string | null>(null);
+  const [touch] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(hover: none) and (pointer: coarse)').matches,
+  );
 
   // Phaser -> React
   useEffect(() => {
@@ -66,6 +69,14 @@ export default function GameOverlay({ focused }: { focused: boolean }) {
   // React -> Phaser: karakter berhenti selama dialog terbuka
   useEffect(() => {
     EventBus.emit('ui-lock', modal !== null);
+  }, [modal]);
+
+  // Di perangkat sentuh tidak ada Esc: tombol A / ☰ menutup dialog yang sedang terbuka.
+  useEffect(() => {
+    if (!modal) return;
+    const close = () => setModal(null);
+    const offs = [EventBus.on('touch-action', close), EventBus.on('touch-menu', close)];
+    return () => offs.forEach((off) => off());
   }, [modal]);
 
   useEffect(() => {
@@ -228,7 +239,9 @@ export default function GameOverlay({ focused }: { focused: boolean }) {
           )}
 
           <p className={styles.muted}>
-            Panah: jalan · Enter: interaksi · Shift: menu ini · Spasi: bunyikan lonceng · Esc: tutup
+            {touch
+              ? 'Joystick: jalan · A: interaksi / tutup · ☰: menu ini · 🔔: lonceng'
+              : 'Panah: jalan · Enter: interaksi · Shift: menu ini · Spasi: bunyikan lonceng · Esc: tutup'}
           </p>
         </>
       );

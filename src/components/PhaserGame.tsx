@@ -5,9 +5,11 @@ import type Phaser from 'phaser';
 import { EventBus } from '../game/EventBus';
 import GameOverlay from './GameOverlay';
 import styles from './Game.module.css';
+import TouchControls from './TouchControls';
 
 export default function PhaserGame() {
   const hostRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const [focused, setFocused] = useState(false);
 
   useEffect(() => {
@@ -48,17 +50,20 @@ export default function PhaserGame() {
   };
 
   return (
-    <div className={styles.wrap} onClick={handleContainerClick}>
-      <div
-        ref={hostRef}
-        className={styles.host}
-        tabIndex={0}
-        aria-label="Game: jelajahi rumah dan Indomaret"
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-        style={{ outline: 'none' }} // Opsional: menghilangkan garis fokus bawaan browser
-      />
-      <GameOverlay focused={focused} />
+    <div ref={wrapRef} className={styles.wrap} onClick={handleContainerClick}>
+      <div className={styles.stage}>
+        <div
+          ref={hostRef}
+          className={styles.host}
+          tabIndex={0}
+          aria-label="Game: jelajahi rumah dan Indomaret"
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          style={{ outline: 'none' }} // Opsional: menghilangkan garis fokus bawaan browser
+        />
+        <GameOverlay focused={focused} />
+      </div>
+      <TouchControls fullscreenTarget={wrapRef} />
     </div>
   );
 }

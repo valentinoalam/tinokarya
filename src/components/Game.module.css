@@ -1,14 +1,19 @@
 .wrap {
   position: relative;
-  height: 100vh;
+  width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  aspect-ratio: 4 / 3;
   background: #10242b;
   border: 4px solid #0a171c;
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 0 0 3px #ffd23f, 8px 8px 0 3px rgba(0, 0, 0, 0.35);
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
 }
 
 .host {
@@ -84,55 +89,6 @@
   font-size: clamp(11px, 2vw, 14px);
   text-align: center;
   max-width: 90%;
-}
-
-/* ---------- Kontrol sentuh ---------- */
-.controls {
-  position: absolute;
-  inset: auto 0 0 0;
-  display: none;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 12px;
-}
-@media (hover: none) {
-  .controls {
-    display: flex;
-  }
-  .startHint {
-    display: none;
-  }
-}
-.dpad {
-  display: grid;
-  grid-template-columns: repeat(3, 46px);
-  grid-template-rows: repeat(3, 46px);
-  gap: 4px;
-}
-.pad,
-.action {
-  pointer-events: auto;
-  touch-action: none;
-  user-select: none;
-  -webkit-user-select: none;
-  background: rgba(10, 23, 28, 0.75);
-  color: #fff6dd;
-  border: 2px solid #fff6dd;
-  border-radius: 8px;
-  font-size: 18px;
-}
-.up { grid-area: 1 / 2; }
-.left { grid-area: 2 / 1; }
-.right { grid-area: 2 / 3; }
-.down { grid-area: 3 / 2; }
-.action {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: #ff5d4a;
-  border-color: #fff;
-  font-weight: 800;
-  font-size: 22px;
 }
 
 /* ---------- Dialog ---------- */
@@ -280,21 +236,182 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.actions {
+
+/* ---------- Layar penuh ---------- */
+.wrap:fullscreen {
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   display: flex;
-  align-items: flex-end;
-  gap: 10px;
+  flex-direction: column;
+  background: #0a171c;
 }
-.menuBtn {
-  pointer-events: auto;
+.wrap:fullscreen .stage {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: none;
+  aspect-ratio: auto;
+}
+
+/* ---------- Controller sentuh (Android) ---------- */
+.controls {
+  display: none;
+}
+.stick,
+.buttons,
+.fsBtn,
+.padBtn {
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
-  width: 44px;
-  height: 44px;
-  background: rgba(10, 23, 28, 0.75);
-  color: #fff6dd;
-  border: 2px solid #fff6dd;
-  border-radius: 8px;
-  font-size: 18px;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .startHint {
+    display: none;
+  }
+  .controls {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px calc(16px + env(safe-area-inset-bottom, 0px));
+    background: #0a171c;
+  }
+
+  .stick {
+    position: relative;
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 246, 221, 0.12) 0%, rgba(255, 246, 221, 0.04) 70%);
+    border: 3px solid rgba(255, 246, 221, 0.55);
+    flex: none;
+  }
+  .knob {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 58px;
+    height: 58px;
+    margin: -29px 0 0 -29px;
+    border-radius: 50%;
+    background: #fff6dd;
+    border: 3px solid #10242b;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+  }
+  .arrow {
+    position: absolute;
+    color: rgba(255, 246, 221, 0.5);
+    font-size: 13px;
+    pointer-events: none;
+  }
+  .aUp { top: 6px; left: 50%; transform: translateX(-50%); }
+  .aDown { bottom: 6px; left: 50%; transform: translateX(-50%); }
+  .aLeft { left: 8px; top: 50%; transform: translateY(-50%); }
+  .aRight { right: 8px; top: 50%; transform: translateY(-50%); }
+
+  .buttons {
+    position: relative;
+    width: 168px;
+    height: 144px;
+    flex: none;
+  }
+  .padBtn {
+    position: absolute;
+    border: 3px solid #10242b;
+    border-radius: 50%;
+    font-family: inherit;
+    font-weight: 800;
+    color: #fff;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.5);
+  }
+  .padBtn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+    filter: brightness(1.15);
+  }
+  .btnA {
+    right: 0;
+    bottom: 6px;
+    width: 84px;
+    height: 84px;
+    background: #ff5d4a;
+    font-size: 30px;
+  }
+  .btnB {
+    left: 4px;
+    bottom: 34px;
+    width: 64px;
+    height: 64px;
+    background: #ffd23f;
+    font-size: 26px;
+  }
+  .btnMenu {
+    right: 22px;
+    top: 0;
+    width: 46px;
+    height: 46px;
+    background: #3b6fb5;
+    font-size: 20px;
+  }
+  .fsBtn {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 246, 221, 0.7);
+    background: rgba(10, 23, 28, 0.75);
+    color: #fff6dd;
+    font-size: 20px;
+    line-height: 1;
+    z-index: 3;
+  }
+}
+
+/* Landscape: controller melayang di sisi kiri/kanan game, game muat tinggi layar */
+@media (hover: none) and (pointer: coarse) and (orientation: landscape) {
+  .wrap {
+    background: #0a171c;
+  }
+  .stage {
+    width: min(100%, calc(100svh * 4 / 3));
+    margin: 0 auto;
+  }
+  .controls {
+    position: absolute;
+    inset: 0;
+    background: none;
+    pointer-events: none;
+    align-items: flex-end;
+    padding: 0 max(16px, env(safe-area-inset-right, 0px)) max(14px, env(safe-area-inset-bottom, 0px))
+      max(16px, env(safe-area-inset-left, 0px));
+  }
+  .stick,
+  .padBtn,
+  .fsBtn {
+    pointer-events: auto;
+  }
+  .stick {
+    width: 132px;
+    height: 132px;
+  }
+  .stick .knob {
+    width: 54px;
+    height: 54px;
+    margin: -27px 0 0 -27px;
+  }
+  .buttons {
+    height: 132px;
+    width: 160px;
+  }
 }
