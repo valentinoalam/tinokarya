@@ -311,7 +311,7 @@ export function ScrollStackDeck({
 
             {scrollIndicatorText ? (
               <div className="mt-2 flex items-center justify-center gap-2.5">
-                <span className="text-lg font-normal leading-relaxed tracking-tight text-accent-foreground sm:text-xl">
+                <span className="text-lg font-normal leading-relaxed tracking-tight text-ink sm:text-xl">
                   {scrollIndicatorText}
                 </span>
                 <motion.svg
