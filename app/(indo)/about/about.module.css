@@ -1,8 +1,10 @@
-.page {
+html, body, .page {
   /* min-height: 100vh; */
   background:
     radial-gradient(ellipse at 50% -10%, #1d4a3f 0%, transparent 60%),
     #0d1d22;
+}
+.page {
   color: #fff6dd;
   padding: clamp(20px, 5vw, 56px) 16px 72px;
 }

@@ -221,7 +221,7 @@ export default function Header() {
       data-closing={isClosing && !alreadyFixed}
       className={cn(
         "cb-nav w-full z-50 transition-transform duration-300",
-        alreadyFixed ? "sticky lg:fixed top-0" : "relative", isClosing ? "scale-x-110 lg:scale-x-100 lg:fixed lg:-top-16 translate-y-16": ""
+        alreadyFixed ? "sticky lg:fixed top-0" : "relative", isClosing ? "scale-x-110 lg:scale-x-100 lg:fixed lg:-top-16 lg:translate-y-16": ""
       )}
     >
       {/* Lapisan kardus: tekstur + bentuk flap ujung tutup */}
