@@ -244,7 +244,7 @@
   p { margin: 0 0 1em; max-width: 62ch; }
  
   .wrap { width: min(1220px, 100% - 1rem); margin-inline: auto; }
-  section { padding-block: clamp(2.5rem, 8vw, 6.5rem); }
+  section { padding-block: clamp(2.5rem, 4vw, 6.5rem); }
  
   .sr-only {
     position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;

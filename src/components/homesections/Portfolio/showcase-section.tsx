@@ -14,7 +14,7 @@ import { showcaseProjects } from "@/data/case-studies";
 export function ShowcaseSection() {
   
   return (
-    <section id="karya" className="mt-16 scroll-mt-4">
+    <section id="karya" className="lg:mt-8 scroll-mt-4">
       <div className="w-full relative text-center">
         <RightDotsDecoration />
         <MagicText className="text-6xl text-ink font-bebas text-shadow-4xl/60 font-black text-center mb-4 md:text-8xl">

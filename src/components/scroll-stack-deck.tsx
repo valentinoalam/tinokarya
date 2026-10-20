@@ -344,7 +344,7 @@ export function ScrollStackDeck({
         className="relative w-full"
         style={{ height: `${projects.length * 110}vh` }}
       >
-        <div className="pointer-events-none sticky top-0 grid h-screen min-h-screen w-full place-items-center px-4">
+        <div className="pointer-events-none sticky items-baseline top-0 grid h-screen min-h-screen w-full place-items-center px-4">
           <div className="pointer-events-auto relative h-148 min-h-148 w-[min(calc(100%-2rem),62.5rem)] overflow-visible">
             {projects.map((project, index) => (
               <AnimatedCard
