@@ -35,7 +35,7 @@ export default function ScrollAnimations() {
       gsap.utils.toArray<HTMLElement>("[data-reveal-group]").forEach((group) => {
         gsap.fromTo(group.children, from(group.dataset.revealGroup || undefined), {
           ...to,
-          duration: 0.7,
+          duration: 0.35,
           ease: "power3.out",
           stagger: 0.09,
           scrollTrigger: { trigger: group, start: "top 88%", once: true },

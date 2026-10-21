@@ -259,11 +259,11 @@ export default function Header() {
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </ShinyButton>
-            <div className="flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-3">
               <LocaleSwitcher />
               <ThemeToggle />
+              <ShareButton />
             </div>
-            <ShareButton />
           </div>
         </div>
       </div>
@@ -288,7 +288,19 @@ export default function Header() {
       >
         {/* Lipatan 1: judul + mode */}
         <div className="cb-fold" style={foldDelay(0, 0.32)}>
-          
+          <Face className="md:hidden">
+            <div className="flex items-center justify-between px-4 py-3">
+              <div className="flex items-center gap-2 font-bold text-lg">
+                <Sparkles className="w-5 h-5 fill-accent" />
+                Menu
+              </div>
+              <div className="flex items-center gap-2">
+                <LocaleSwitcher />
+                <ThemeToggle />
+                <ShareButton />
+              </div>
+            </div>
+          </Face>
 
           {/* Lipatan 2: breadcrumb + daftar */}
           <div className="cb-fold" style={foldDelay(0.22, 0.16)}>
@@ -298,7 +310,7 @@ export default function Header() {
                 onNavigate={closeMobileMenu}
                 menuOpen={isOpen}
               />
-              : <Face>
+              : <Face className="cb-crease">
                 <MobileNavLink intl
                   href="/"
                   onClick={closeMobileMenu}
@@ -324,8 +336,7 @@ export default function Header() {
             </Face>
             
             {/* Lipatan 3: tombol aksi (flap ujung kardus) */}
-            {hasActions && (
-              
+            {hasActions && ( 
               <div className="cb-fold" style={foldDelay(0.44, 0)}>
                 <Face className="cb-crease" clip="cb-clip-end" bodyClassName="pb-3">
                   <div className="p-4 space-y-2">
@@ -477,7 +488,7 @@ function LandingFold({
 
   return (
     <>
-      <Face>
+      <Face className="cb-crease">
         <button
           type="button"
           className="lp-head"

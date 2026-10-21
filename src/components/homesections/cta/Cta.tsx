@@ -15,7 +15,6 @@ export default function Cta() {
         <div data-reveal>
           <Button variant="hero" className="flex items-baseline w-max rounded-2xl py-1 px-2 border" wa>
             <span className='transition-colors duration-150 font-bold group-hover:text-yellow-500'>{wa("cta")}</span>
-            
             <MessageCircle className="w-4 h-4 ml-1 fill-green-500 stroke-black z-20 opacity-80 group-hover:opacity-100 group-hover:stroke-yellow-300 group-hover:fill-yellow-400 transition-all duration-150 group-hover:translate-x-1" />
           </Button>
         </div>

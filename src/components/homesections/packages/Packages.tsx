@@ -8,11 +8,11 @@ import { cn } from "@/lib/utils";
 import styles from "./Packages.module.css";
 import ParallaxCard from '@/components/cards/paralax';
 import { ThreeLines } from '@/components/lines/3lines';
-import Link from 'next/link';
 import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
 import { TextureOverlay } from '@/components/ui/texture-overlay';
 import { KineticText } from '@/components/ui/kinetic-text';
 import { GlyphMatrix } from '@/components/ui/glyph-matrix';
+import { Link } from '@/i18n/navigation';
 
 type Package = {
   title: string;

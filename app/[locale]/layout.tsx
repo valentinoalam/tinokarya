@@ -55,7 +55,7 @@ export default async function LocaleLayout({ children }: { children: React.React
   const messages = await getMessages();
   const timeZone = await getTimeZone();
   return (
-    <html lang={locale} suppressHydrationWarning className={`${inter.variable} ${geist.variable} ${merriweather.variable} ${playfair.variable} ${display.variable} ${body.variable}`} >
+    <html lang={locale} suppressHydrationWarning className={`overflow-clip ${inter.variable} ${geist.variable} ${merriweather.variable} ${playfair.variable} ${display.variable} ${body.variable}`} >
       <Head>
         <Script
           id="theme-script"
