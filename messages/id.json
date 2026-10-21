@@ -128,7 +128,7 @@
         "items": [
           {
             "lead": "Kontrol penuh atas konten dan brand.",
-            "text": "Katalog, naration brand, dan tampilan tersusun sesuai karakter usaha Anda, tanpa terganggu iklan pesaing seperti yang sering terjadi di marketplace."
+            "text": "Katalog, cerita brand, dan tampilan tersusun sesuai karakter usaha Anda, tanpa terganggu iklan pesaing seperti yang sering terjadi di marketplace."
           },
           {
             "lead": "Bebas dari perubahan algoritma.",
@@ -148,12 +148,12 @@
   },
   "About": {
     "story": {
-      "title": "naration Kami",
+      "title": "Cerita Kami",
       "description": "Perjalanan kami didorong oleh hasrat untuk mengubah ide menjadi pengalaman visual yang mendalam. Berawal dari visi untuk merevolusi dunia konten, kami berkembang menjadi pusat kreativitas dan inovasi."
     },
     "mission": {
       "title": "Misi",
-      "description": "Kami percaya bahwa setiap merek memiliki narasi unik yang siap dinarationkan. Misi kami adalah menghidupkan kisah-kisah tersebut melalui keaslian, kreativitas, dan dampak yang berarti."
+      "description": "Kami percaya bahwa setiap merek memiliki narasi unik yang siap diceritakan. Misi kami adalah menghidupkan kisah-kisah tersebut melalui keaslian, kreativitas, dan dampak yang berarti."
     },
     "approach": {
       "title": "Pendekatan",
@@ -200,7 +200,7 @@
   },
   "Book": {
     "newLine": "“Kami memahami masalah Anda, dan kami memiliki sesuatu yang dapat membantu.”",
-    "title": "Website bisa bernaration, bukan hanya menjual.",
+    "title": "Website bisa bercerita, bukan hanya menjual.",
     "subtitle": "“Ini produk kami. Silakan beli.”",
     "pages": [
       {
@@ -208,7 +208,7 @@
           "title": "Website Adalah Rumah",
           "image": { "src": "/images/illust/book-house.svg", "alt": "Ilustrasi rumah dengan jendela berbentuk halaman website dan pintu yang terbuka" },
           "paragraphs": [
-              "Bukan hanya lapak untuk menjual, tetapi tempat brand Anda bernaration."
+              "Bukan hanya lapak untuk menjual, tetapi tempat brand Anda bercerita."
             ]
         },
         "back": {
@@ -231,11 +231,11 @@
           ]
         },
         "back": {
-          "title": "Brand Punya naration",
-          "image": { "src": "/images/illust/book-naration.svg", "alt": "Ilustrasi buku terbuka dengan hati dan bintang yang muncul dari halamannya" },
+          "title": "Brand Punya Cerita",
+          "image": { "src": "/images/illust/book-cerita.svg", "alt": "Ilustrasi buku terbuka dengan hati dan bintang yang muncul dari halamannya" },
           "paragraphs": [
             "Latar belakang, nilai, dan cara kerja Anda membantu pelanggan mengenal siapa yang mereka percaya.",
-            "Produk tetap penting. Namun naration yang jelas memberi alasan untuk memilih Anda."
+            "Produk tetap penting. Namun cerita yang jelas memberi alasan untuk memilih Anda."
           ]
         }
       },
@@ -423,7 +423,7 @@
         ]
       }
     ],
-    "conclusion": "Dari naration-naration di atas, kita bisa melihat bahwa landing page atau website adalah alat yang sangat penting untuk bisnis di era digital.   Landing page atau website tidak hanya membantu bisnis terlihat lebih profesional, tetapi juga memudahkan pelanggan untuk mengambil tindakan.  "
+    "conclusion": "Dari cerita-cerita di atas, kita bisa melihat bahwa landing page atau website adalah alat yang sangat penting untuk bisnis di era digital.   Landing page atau website tidak hanya membantu bisnis terlihat lebih profesional, tetapi juga memudahkan pelanggan untuk mengambil tindakan.  "
   },
   "compare": {
     "title": "Media sosial melengkapi. Website menjadi milik Anda.",
@@ -434,7 +434,7 @@
       [
         "Kendali atas tampilan dan konten",
         "Mengikuti aturan platform",
-        "Anda menyusun informasi, naration, visual, dan penawaran sendiri"
+        "Anda menyusun informasi, cerita, visual, dan penawaran sendiri"
       ],
       [
         "Iklan pesaing",
@@ -588,7 +588,7 @@
   },
   "cta": {
     "title": "Siap punya rumah digital untuk usaha Anda?",
-    "text": "narationkan usaha Anda. Kami bantu jelaskan isi paket dan langkah berikutnya."
+    "text": "ceritakan usaha Anda. Kami bantu jelaskan isi paket dan langkah berikutnya."
   },
   "footer": {
     "text": "Paket Dasar Digitalisasi UMKM"

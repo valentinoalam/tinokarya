@@ -52,7 +52,7 @@ export default function Faq() {
   const t = useTranslations("faq");
   const items = t.raw("items") as { q: string; a: string }[];
   return (
-    <section className={styles.faq}>
+    <section id="faq" className={styles.faq}>
       <div className="wrap">
         <h2 data-reveal>{t("title")}</h2>
         <div data-reveal-group>

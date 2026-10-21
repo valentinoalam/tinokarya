@@ -21,6 +21,16 @@ const printFont = Barlow_Condensed({
   display: "swap",
 })
 
+/**
+ * Kecepatan badan kardus naik dibanding kecepatan scroll.
+ *  1    = naik sama persis dengan scroll (seperti footer biasa, tidak menutupi apa pun)
+ *  1.15 = sedikit lebih cepat -> menutup bagian bawah section terakhir dengan pelan
+ *  2    = dua kali lebih cepat (menutup banyak section sebelum sempat dibaca)
+ */
+const LIFT_SPEED = 1.15
+
+/** Jarak scroll (px) untuk tiap tahap penutup: menutup flap, lalu rim menyusut */
+const FINISH_SCROLL = 90
 interface FooterLink {
   label: string
   href: string
@@ -90,7 +100,13 @@ export default function Footer({ tagline, brandName, className }: FooterProps) {
       // Tinggi flap tutup (dibaca dari CSS) -> badan naik sedikit lagi untuk menutupinya
       const flap = parseFloat(getComputedStyle(body).getPropertyValue("--cb-flap")) || 14
       const rimHeight = rim.offsetHeight
- 
+      // Panjang scroll tiap tahap dihitung dalam piksel:
+      // badan menempuh satu tinggi layar, dan LIFT_SPEED menentukan seberapa cepat
+      const lift = window.innerHeight / LIFT_SPEED
+      const total = lift + FINISH_SCROLL * 2
+      track.style.height = `${total}px`
+      const liftShare = lift / total // porsi progres untuk tahap naik
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: track,
@@ -102,9 +118,11 @@ export default function Footer({ tagline, brandName, className }: FooterProps) {
             const p = self.progress
             body.style.visibility = p > 0 ? "visible" : "hidden"
  
-            // 1) Tutup (navbar) turun lebih dulu: 50% pertama
-            getNav()?.style.setProperty("--cb-close", Math.min(1, p / 0.5).toFixed(3))
- 
+            // 1) Tutup (navbar) turun selama separuh pertama tahap naik
+            getNav()?.style.setProperty(
+              "--cb-close",
+              Math.min(1, p / (liftShare * 0.5)).toFixed(3),
+            )
             const nowClosing = p > 0
             if (nowClosing !== closing) {
               closing = nowClosing
@@ -115,12 +133,12 @@ export default function Footer({ tagline, brandName, className }: FooterProps) {
       })
  
       // 2) Badan naik dan bertemu tutup (70%)
-      tl.fromTo(body, { y: () => window.innerHeight }, { y: 0, ease: "power1.out", duration: 0.7 })
+      tl.fromTo(body, { y: () => window.innerHeight }, { y: 0, ease: "none", duration: lift })
         // 3) Badan naik sedikit lagi, menutup lipatan ujung tutup kardus (15%)
-        .to(body, { y: -(flap + 1), ease: "power2.inOut", duration: 0.15 })
+        .to(body, { y: -(flap + 1), ease: "power2.inOut", duration: FINISH_SCROLL })
         // 4) Terakhir: penampang kardus (rim) tertutup navbar. Tingginya menyusut ke 0 dan
         //    background-nya berpatokan ke bawah, jadi gelombang tampak masuk ke bawah tepi navbar (15%)
-        .fromTo(rim, { height: rimHeight }, { height: 0, ease: "power1.inOut", duration: 0.15 })
+        .fromTo(rim, { height: rimHeight }, { height: 0, ease: "power1.inOut", duration: FINISH_SCROLL })
     })
  
     return () => {

@@ -18,6 +18,7 @@ import ShareButton from "../buttons/shareButton"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { ThemeToggle } from "../buttons/ThemeToggle"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -270,8 +271,16 @@ export default function Header() {
       >
         {/* Lipatan 1: judul + mode */}
         <div className="cb-fold" style={foldDelay(0, 0.32)}>
-          
-
+          <div className="cb-fold" style={foldDelay(0, 0.32)}>
+            <Face className="md:hidden">
+              <div className="flex items-center justify-between px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <ThemeToggle />
+                  <ShareButton />
+                </div>
+              </div>
+            </Face>
+          </div>
           {/* Lipatan 2: breadcrumb + daftar */}
           <div className="cb-fold" style={foldDelay(0.22, 0.16)}>
             <Face>
@@ -314,7 +323,11 @@ export default function Header() {
                         {item.label}
                       </Button>
                     ))}
-                    <ShareButton className="w-full justify-center" />
+                    <div className="flex items-center gap-2">
+                      <ThemeToggle />
+                      <ShareButton className="w-full justify-center" />
+                    </div>
+                    
                   </div>
                 </Face>
               </div>

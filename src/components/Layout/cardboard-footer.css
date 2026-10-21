@@ -60,6 +60,7 @@
  
 /* Jarak scroll ekstra di ujung halaman; makin pendek = badan makin cepat naik */
 .cb-footer-track {
+  height: 80vh;
   height: 80svh;
   pointer-events: none;
 }
